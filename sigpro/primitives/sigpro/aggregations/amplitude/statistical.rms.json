@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "numpy.rms",
+                "name": "rms_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }

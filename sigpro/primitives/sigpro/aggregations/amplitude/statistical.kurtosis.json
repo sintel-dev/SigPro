@@ -14,7 +14,7 @@
         ],
         "output": [
             {
-                "name": "scipy.stats.skew",
+                "name": "kurtosis_value",
                 "type": "float"
             }
         ]

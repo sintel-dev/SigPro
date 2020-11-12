@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "numpy.mean",
+                "name": "mean_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }

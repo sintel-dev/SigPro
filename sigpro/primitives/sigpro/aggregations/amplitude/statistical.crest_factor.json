@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "crest_factor",
+                "name": "crest_factor_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }

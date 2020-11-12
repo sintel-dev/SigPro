@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "scipy.stats.skew",
+                "name": "skew_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }

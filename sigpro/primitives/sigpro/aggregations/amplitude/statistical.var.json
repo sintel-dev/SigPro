@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "numpy.var",
+                "name": "var_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }

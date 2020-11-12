@@ -14,9 +14,12 @@
         ],
         "output": [
             {
-                "name": "numpy.std",
+                "name": "std_value",
                 "type": "float"
             }
         ]
+    },
+    "hyperparameters": {
+        "fixed": {}
     }
 }
