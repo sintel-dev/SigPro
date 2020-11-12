@@ -1,7 +1,7 @@
 """Amplitude statistical module."""
 
 import numpy as np
-from scipy import stats
+import scipy.stats
 
 
 def mean(amplitude_values):
@@ -88,7 +88,7 @@ def skew(amplitude_values):
        float:
            The skewness value of the input array.
     """
-    return stats.skew(amplitude_values)
+    return scipy.stats.skew(amplitude_values)
 
 
 def kurtosis(amplitude_values, fisher=True, bias=True):
@@ -109,4 +109,4 @@ def kurtosis(amplitude_values, fisher=True, bias=True):
            The kurtosis value of the input array. If all values are equal, return
            `-3` for Fisher's definition and `0` for Pearson's definition.
     """
-    return stats.kurtosis(amplitude_values, fisher=fisher, bias=bias)
+    return scipy.stats.kurtosis(amplitude_values, fisher=fisher, bias=bias)
