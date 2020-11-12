@@ -8,7 +8,7 @@ def mean(amplitude_values):
     """Calculate the mean value of the values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -22,7 +22,7 @@ def std(amplitude_values):
     """Compute the arithmetic mean value of the values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -36,7 +36,7 @@ def var(amplitude_values):
     """Compute the variance value of the values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -50,7 +50,7 @@ def rms(amplitude_values):
     """Compute the RMS (Root Mean Square) of the values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -66,7 +66,7 @@ def crest_factor(amplitude_values):
     Used for estimating the amount of impact wear in a bearing.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -81,7 +81,7 @@ def skew(amplitude_values):
     """Compute the sample skewness of an array of values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
 
     Returns:
@@ -95,7 +95,7 @@ def kurtosis(amplitude_values, fisher=True, bias=True):
     """Compute the kurtosis ,Fisher or Pearson, of an array of values.
 
     Args:
-        amplitude_values (list):
+        amplitude_values (numpy.ndarray):
             Array of floats representing signal values.
         fisher (bool):
             If ``True``, Fisher’s definition is used (normal ==> 0.0). If ``False``,
