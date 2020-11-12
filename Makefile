@@ -81,6 +81,11 @@ install-test: clean-build clean-pyc ## install the package and test dependencies
 install-develop: clean-build clean-pyc ## install the package in editable mode and dependencies for development
 	pip install -e .[dev]
 
+MINIMUM := $(shell sed -n '/install_requires = \[/,/]/p' setup.py | head -n-1 | tail -n+2 | sed 's/ *\(.*\),$?$$/\1/g' | tr '>' '=')
+
+.PHONY: install-minimum
+install-minimum: ## install the minimum supported versions of the package dependencies
+	pip install $(MINIMUM)
 
 # LINT TARGETS
 
