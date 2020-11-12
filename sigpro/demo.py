@@ -50,7 +50,7 @@ def get_amplitude_demo(idx=None):
     return np.array(df.iloc[idx]['values']), 10000
 
 
-def get_frequency_demo(idx=None):
+def get_frequency_demo(idx=None, real=True):
     """Get amplitude values and the corresponding frequency values.
 
     The frequency demo data is meant to be used for the ``frequency aggregations``
@@ -64,6 +64,9 @@ def get_frequency_demo(idx=None):
     Args:
         idx (int or None):
             If `int`, return the value at that index if `None` return a random index.
+        real (bool):
+            If ``True``, return the real values for the computed ``fft`` transformations,
+            if it's set to ``False`` it will return a complex ndarray. Defaults to ``True``.
 
     Returns:
         tuple:
@@ -72,10 +75,14 @@ def get_frequency_demo(idx=None):
     amplitude_values, sampling_frequency = get_amplitude_demo(idx)
     fft_values = np.fft.fft(amplitude_values)
     frequencies = np.fft.fftfreq(len(fft_values), sampling_frequency)
+    if real:
+        fft_values = np.real(fft_values)
+        frequencies = np.real(frequencies)
+
     return fft_values, frequencies
 
 
-def get_frequency_time_demo(idx=None):
+def get_frequency_time_demo(idx=None, real=True):
     """Get amplitude values, frequency values and time values.
 
     The frequency time demo data is meant to be used for the ``frequency time aggregations``
@@ -90,6 +97,9 @@ def get_frequency_time_demo(idx=None):
     Args:
         idx (int or None):
             If `int`, return the value at that index if `None` return a random index.
+        real (bool):
+            If ``True``, return the real values for the computed ``stft`` transformations,
+            if it's set to ``False`` it will return a complex ndarray. Defaults to ``True``.
 
     Returns:
         tuple:
@@ -100,5 +110,8 @@ def get_frequency_time_demo(idx=None):
         amplitude_values,
         fs=sampling_frequency
     )
+
+    if real:
+        amplitude_values = np.real(amplitude_values)
 
     return amplitude_values, sample_frequencies, time_values
