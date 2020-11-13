@@ -18,8 +18,5 @@
                 "type": "numpy.ndarray"
             }
         ]
-    },
-    "hyperparameters": {
-        "fixed": {}
     }
 }

@@ -1,6 +1,6 @@
 {
-    "name": "sigpro.transformations.frequency.fft.fft_real",
-    "primitive": "sigpro.transformations.frequency.fft.fft_real",
+    "name": "sigpro.transformations.frequency.fft.fft",
+    "primitive": "sigpro.transformations.frequency.fft.fft",
     "classifiers": {
         "type": "transformation",
         "subtype": "amplitude"
@@ -26,8 +26,5 @@
                 "type": "numpy.ndarray"
             }
         ]
-    },
-    "hyperparameters": {
-        "fixed": {}
     }
 }
