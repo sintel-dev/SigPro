@@ -1,0 +1,1 @@
+"""SigPro Amplitude Frequency module."""

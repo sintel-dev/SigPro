@@ -1,0 +1,22 @@
+{
+    "name": "sigpro.aggregations.amplitude.statistical.rms",
+    "primitive": "sigpro.aggregations.amplitude.statistical.rms",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "rms_value",
+                "type": "float"
+            }
+        ]
+    }
+}
