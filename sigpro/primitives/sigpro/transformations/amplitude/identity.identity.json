@@ -1,0 +1,22 @@
+{
+    "name": "sigpro.transformations.amplitude.identity.identity",
+    "primitive": "sigpro.transformations.amplitude.identity.identity",
+    "classifiers": {
+        "type": "transformation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ]
+    }
+}
