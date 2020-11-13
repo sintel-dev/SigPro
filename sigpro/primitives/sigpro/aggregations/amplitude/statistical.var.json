@@ -1,0 +1,22 @@
+{
+    "name": "sigpro.aggregations.amplitude.statistical.var",
+    "primitive": "sigpro.aggregations.amplitude.statistical.var",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "var_value",
+                "type": "float"
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "sigpro.aggregations.amplitude.statistical.kurtosis",
+    "primitive": "sigpro.aggregations.amplitude.statistical.kurtosis",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "kurtosis_value",
+                "type": "float"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "fisher": {
+                "type": "bool",
+                "default": true
+            },
+            "bias": {
+                "type": "bool",
+                "default": true
+            }
+        }
+    }
+}
