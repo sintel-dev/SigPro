@@ -1,0 +1,1 @@
+"""SigPro Aggregations Ampltiude module."""

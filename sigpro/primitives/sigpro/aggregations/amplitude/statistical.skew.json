@@ -1,0 +1,22 @@
+{
+    "name": "sigpro.aggregations.amplitude.statistical.skew",
+    "primitive": "sigpro.aggregations.amplitude.statistical.skew",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "skew_value",
+                "type": "float"
+            }
+        ]
+    }
+}
