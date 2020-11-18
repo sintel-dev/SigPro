@@ -6,14 +6,15 @@ from sigpro.demo import get_amplitude_demo, get_frequency_demo, get_frequency_ti
 
 DEMO_FUNCTIONS = {
     'aggregation': {
-        'amplitude': get_amplitude_demo,
-        'frequency': get_frequency_demo,
-        'frequency_time': get_frequency_time_demo
+        'amplitude': (get_amplitude_demo, 'amplitude_values', 'sampling_frequency'),
+        'frequency': (get_frequency_demo, 'amplitude_values', 'frequency_values'),
+        'frequency_time': (
+            get_frequency_time_demo, 'amplitude_values', 'frequency_values', 'time_values'),
     },
     'transformation': {
-        'amplitude': get_amplitude_demo,
-        'frequency': get_amplitude_demo,
-        'frequency_time': get_amplitude_demo,
+        'amplitude': (get_amplitude_demo, 'amplitude_values', 'sampling_frequency'),
+        'frequency': (get_amplitude_demo, 'amplitude_values', 'sampling_frequency'),
+        'frequency_time': (get_amplitude_demo, 'amplitude_values', 'sampling_frequency'),
     }
 }
 
@@ -129,37 +130,6 @@ PRIMITIVE_INPUTS = {
 }
 
 
-def _get_demo_data(primitive_type, primitive_subtype, index):
-    get_demo = DEMO_FUNCTIONS[primitive_type][primitive_subtype]
-    if primitive_type == 'aggregation':
-        if primitive_subtype == 'amplitude':
-            amplitude_values, sampling_frequency = get_demo(index)
-            return {
-                'amplitude_values': amplitude_values,
-                'sampling_frequency': sampling_frequency,
-            }
-
-        if primitive_subtype == 'frequency':
-            amplitude_values, frequency_values = get_demo(index)
-            return {
-                'amplitude_values': amplitude_values,
-                'frequency_values': frequency_values,
-            }
-
-        amplitude_values, frequency_values, time_values = get_demo(index)
-        return {
-            'amplitude_values': amplitude_values,
-            'frequency_values': frequency_values,
-            'time_values': time_values
-        }
-
-    amplitude_values, sampling_frequency = get_demo(index)
-    return {
-        'amplitude_values': amplitude_values,
-        'sampling_frequency': sampling_frequency
-    }
-
-
 def _check_primitive_type_and_subtype(primitive_type, primitive_subtype):
     subtypes = PRIMITIVE_INPUTS.get(primitive_type)
     if not subtypes:
@@ -186,7 +156,7 @@ def _get_primitive_instance(primitive, kwargs):
 
 def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
                   amplitude_values=None, sampling_frequency=None,
-                  frequency_values=None, time_values=None, index=None, **kwargs):
+                  frequency_values=None, time_values=None, demo_row_index=None, **kwargs):
     """Run a given `primitive` with the specified configuration.
 
     Given a primitive and it's hyperparameters, attempt to run this against either the data
@@ -218,9 +188,9 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
             or ``None``.
         time_values (numpy.ndarray or None):
             Array of floats representing time values or ``None``.
-        index (int or None):
+        demo_row_index (int or None):
             If `int`, return the value at that index if `None` return a random index. This is used
-            if no amplitude values is provided in order to retrieve data from the demo.
+            if no amplitude values are provided.
         context (optional):
             Additional context arguments required to run the primitive.
         hyperparameters (optional):
@@ -247,7 +217,8 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
             primitive_subtype = primitive.metadata['classifiers']['subtype']
 
         _check_primitive_type_and_subtype(primitive_type, primitive_subtype)
-        data = _get_demo_data(primitive_type, primitive_subtype, index=index)
+        get_demo_data_function, *arg_names = DEMO_FUNCTIONS[primitive_type][primitive_subtype]
+        data = dict(zip(arg_names, get_demo_data_function(idx=demo_row_index)))
 
     kwargs.update(data)
     return primitive.produce(**kwargs)
