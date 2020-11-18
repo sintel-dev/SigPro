@@ -1,8 +1,21 @@
 """Tools to contribute a primitive."""
-import numpy as np
-import scipy.signal
+from mlblocks import MLBlock
+from mlblocks.discovery import load_primitive
 
-from sigpro.demo import get_demo_data
+from sigpro.demo import get_amplitude_demo, get_frequency_demo, get_frequency_time_demo
+
+DEMO_FUNCTIONS = {
+    'aggregation': {
+        'amplitude': get_amplitude_demo,
+        'frequency': get_frequency_demo,
+        'frequency_time': get_frequency_time_demo
+    },
+    'transformation': {
+        'amplitude': get_amplitude_demo,
+        'frequency': get_amplitude_demo,
+        'frequency_time': get_amplitude_demo,
+    }
+}
 
 PRIMITIVE_INPUTS = {
     'transformation': {
@@ -116,6 +129,37 @@ PRIMITIVE_INPUTS = {
 }
 
 
+def _get_demo_data(primitive_type, primitive_subtype, index):
+    get_demo = DEMO_FUNCTIONS[primitive_type][primitive_subtype]
+    if primitive_type == 'aggregation':
+        if primitive_subtype == 'amplitude':
+            amplitude_values, sampling_frequency = get_demo(index)
+            return {
+                'amplitude_values': amplitude_values,
+                'sampling_frequency': sampling_frequency,
+            }
+
+        if primitive_subtype == 'frequency':
+            amplitude_values, frequency_values = get_demo(index)
+            return {
+                'amplitude_values': amplitude_values,
+                'frequency_values': frequency_values,
+            }
+
+        amplitude_values, frequency_values, time_values = get_demo(index)
+        return {
+            'amplitude_values': amplitude_values,
+            'frequency_values': frequency_values,
+            'time_values': time_values
+        }
+
+    amplitude_values, sampling_frequency = get_demo(index)
+    return {
+        'amplitude_values': amplitude_values,
+        'sampling_frequency': sampling_frequency
+    }
+
+
 def _check_primitive_type_and_subtype(primitive_type, primitive_subtype):
     subtypes = PRIMITIVE_INPUTS.get(primitive_type)
     if not subtypes:
@@ -125,48 +169,24 @@ def _check_primitive_type_and_subtype(primitive_type, primitive_subtype):
     if not primitive_inputs:
         raise ValueError((
             f'Invalid primitive subtype for primitive of '
-            'type {primitive_type}: {primitive_subtype}'
+            f'type {primitive_type}: {primitive_subtype}'
         ))
 
-def _get_demo_data(primitive_type, primitive_subtype):
-    demo_data = get_demo_data()
-    if primitive_type == 'aggregation':
-        if primitive_subtype == 'frequency_time':
-            demo_data = demo_data['values'].apply(scipy.signal.stft, fs=10000)
 
-            # TODO: Extract and separate amplitude values, frequency values and time values
-            # return {
-            #     'amplitude_values': amplitude_values,
-            #     'frequency_values': frequency_values,
-            #     'time_values': time_values
-            # }
+def _get_primitive_instance(primitive, kwargs):
+    expected_args = load_primitive(primitive).get('hyperparameters', {}).get('fixed', {})
+    given_args = {
+        key: value
+        for key, value in kwargs.items()
+        if key in expected_args
+    }
 
-        else:
-            demo_data = get_demo_data()
-            demo_data = demo_data['values'].apply(np.fft.fft)
-            amplitude_values = demo_data.apply(np.real)
-            # 10000 is the sampling frequency used in the demo data
-            frequency_values = np.fft.fftfreq(len(amplitude_values), 10000)
-            return {
-                'amplitude_values': amplitude_values,
-                'frequency_values': frequency_values
-            }
-
-    if primitive_type == 'transformation':
-        demo_data = get_demo_data()
-        demo_data = demo_data['values']
-        amplitude_values = demo_data.apply(np.real)
-        # 10000 is the sampling frequency used in the demo data
-        sampling_frequency = 10000
-        return {
-            'amplitude_values': amplitude_values,
-            'sampling_frequency': sampling_frequency
-        }
+    return MLBlock(primitive, **given_args)
 
 
 def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
                   amplitude_values=None, sampling_frequency=None,
-                  frequency_values=None, time_values=None, **kwargs):
+                  frequency_values=None, time_values=None, index=None, **kwargs):
     """Run a given `primitive` with the specified configuration.
 
     Given a primitive and it's hyperparameters, attempt to run this against either the data
@@ -198,6 +218,9 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
             or ``None``.
         time_values (numpy.ndarray or None):
             Array of floats representing time values or ``None``.
+        index (int or None):
+            If `int`, return the value at that index if `None` return a random index. This is used
+            if no amplitude values is provided in order to retrieve data from the demo.
         context (optional):
             Additional context arguments required to run the primitive.
         hyperparameters (optional):
@@ -208,10 +231,9 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
             A tuple with the produced values from the primitive for each row of the demo data
             corresponding to the type and subtype of this.
     """
-    primitive = MLBlocks(primitive)
-    data = None
+    primitive = _get_primitive_instance(primitive, kwargs)
 
-    if amplitude_values:
+    if amplitude_values is not None:
         data = {
             'amplitude_values': amplitude_values,
             'sampling_frequency': sampling_frequency,
@@ -221,18 +243,11 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
 
     else:
         if primitive_type is None:
-            primitive_type = primitive.metadata['classifiers'].get('type')
-            primitive_subtype = primitive.metadata['classifiers'].get('subtype')
+            primitive_type = primitive.metadata['classifiers']['type']
+            primitive_subtype = primitive.metadata['classifiers']['subtype']
 
         _check_primitive_type_and_subtype(primitive_type, primitive_subtype)
-        data = _get_demo_data(primitive_type, primitive_subtype)
+        data = _get_demo_data(primitive_type, primitive_subtype, index=index)
 
-    primitive_args = {}
-    primitive_produce_args = primitive.produce_args.copy()
-    primitive_produce_args = [item['name'] for item in primitive_produce_args]
-    data_args = [name for name in data.keys() if name in primitive_produce_args]
-    produce_args_names = [name for name in kwargs]
-
-    missing = list(set(primitive_produce_args).difference(produce_args_names + data_args))
-    if missing:
-        raise ValueError(f'Required args by the primitive not found: {missing}')
+    kwargs.update(data)
+    return primitive.produce(**kwargs)
