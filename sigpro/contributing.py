@@ -1,4 +1,9 @@
 """Tools to contribute a primitive."""
+import importlib
+import inspect
+import json
+import os
+
 from mlblocks import MLBlock
 from mlblocks.discovery import load_primitive
 
@@ -36,7 +41,7 @@ PRIMITIVE_INPUTS = {
                 {
                     'name': 'amplitude_values',
                     'type': 'numpy.ndarray',
-                }
+                },
             )
         },
         'frequency': {
@@ -96,6 +101,12 @@ PRIMITIVE_INPUTS = {
                     'type': 'numpy.ndarray',
                     'optional': True,
                 }
+            ),
+            'output': (
+                {
+                    'name': 'value',
+                    'type': 'float',
+                },
             )
         },
         'frequency': {
@@ -108,6 +119,12 @@ PRIMITIVE_INPUTS = {
                     'name': 'frequency_values',
                     'type': 'numpy.ndarray',
                 }
+            ),
+            'output': (
+                {
+                    'name': 'value',
+                    'type': 'float',
+                },
             )
         },
         'frequency_time': {
@@ -124,6 +141,12 @@ PRIMITIVE_INPUTS = {
                     'name': 'time_values',
                     'type': 'numpy.ndarray',
                 }
+            ),
+            'output': (
+                {
+                    'name': 'value',
+                    'type': 'float',
+                },
             )
         },
     }
@@ -152,6 +175,176 @@ def _get_primitive_instance(primitive, kwargs):
     }
 
     return MLBlock(primitive, **given_args)
+
+
+def _import_object(object_name):
+    """Import an object from its Fully Qualified Name."""
+    try:
+        package, name = object_name.rsplit('.', 1)
+        return getattr(importlib.import_module(package), name)
+    except (AttributeError, ModuleNotFoundError, ValueError):
+        raise ImportError(f'Cannot import {object_name}') from None
+
+
+def _validate_subtype_inputs(function_args, primitive_inputs):
+    for primitive_input in primitive_inputs:
+        arg_name = primitive_input['name']
+        optional = primitive_input.get('optional')
+        if optional:
+            arg_name = arg_name[1:]
+        elif arg_name not in function_args:
+            raise ValueError(f'Primitive does not have `{arg_name}` argument (primitive type)')
+
+        if arg_name in function_args:
+            function_args.remove(arg_name)
+
+
+def _validate_context_arguments(function_args, context_arguments):
+    for context_argument in context_arguments:
+        name = context_argument['name']
+        if name not in function_args:
+            raise ValueError(f'Primitive does not have `{name}` argument (context)')
+
+        function_args.remove(name)
+
+
+def _validate_hyperparameters(function_args, hyperparameters):
+    for name in hyperparameters.keys():
+        if name not in function_args:
+            raise ValueError(f'Primitive does not have `{name}` argument (hyperparameter)')
+
+        function_args.remove(name)
+
+
+def _validate_primitive_inputs(primitive_function, primitive_inputs, context_arguments,
+                               fixed_hyperparameters, tunable_hyperparameters):
+    argspec = inspect.getfullargspec(primitive_function)
+    function_args = argspec.args.copy()
+
+    _validate_subtype_inputs(function_args, primitive_inputs)
+    _validate_context_arguments(function_args, context_arguments)
+    _validate_hyperparameters(function_args, fixed_hyperparameters)
+    _validate_hyperparameters(function_args, tunable_hyperparameters)
+
+    if function_args:
+        raise ValueError(f'Unexpected additional arguments found: {function_args}')
+
+
+def make_primitive(primitive, primitive_type, primitive_subtype, context_arguments=None,
+                   fixed_hyperparameters=None, tunable_hyperparameters=None,
+                   primitive_outputs=None, output_path=None):
+    """Create a primitive JSON.
+
+    During the JSON creation the primitive function signature is validated to
+    ensure that it matches the primitive type and subtype implicitly specified
+    by the primitive name.
+
+    Any additional function arguments are also validated to ensure that the
+    function does actually expect them.
+
+    Args:
+        primitive (str):
+            The name of the primitive, the python path including the name of the
+            module and the name of the function.
+        primitive_type (str):
+            Type of primitive.
+        primitive_subtype (str):
+            Subtype of the primitive.
+        context_arguments (list or None):
+            A list with dictionaries containing the name and type of the context arguments.
+        fixed_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value that it
+            should take.
+        tunable_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value and the
+            range of values that it can take.
+        primitive_outputs (list or None):
+            A list with dictionaries containing the name and type of the output values. If
+            ``None`` default values for those will be used.
+        output_path (str):
+            Path to were to save the pipeline, if not provided a name using hte primitive name
+            will be generated. Defaults to ``None``.
+
+    Raises:
+        ValueError:
+            If the primitive specification arguments are not valid.
+
+    Returns:
+        str:
+            Path of the generated JSON file.
+    """
+    context_arguments = context_arguments or []
+    fixed_hyperparameters = fixed_hyperparameters or {}
+    tunable_hyperparameters = tunable_hyperparameters or {}
+
+    subtypes = PRIMITIVE_INPUTS.get(primitive_type)
+    if not subtypes:
+        raise ValueError(f'Invalid primitive_type: {primitive_type}')
+
+    primitive_inputs = subtypes.get(primitive_subtype)
+    if not primitive_inputs:
+        raise ValueError((
+            f'Invalid primitive_subtype for primitive of '
+            f'type {primitive_type}: {primitive_subtype}'
+        ))
+
+    if primitive_outputs is None:
+        primitive_outputs = primitive_inputs['output']
+
+    primitive_inputs = primitive_inputs['args']
+    primitive_function = _import_object(primitive)
+    _validate_primitive_inputs(primitive_function, primitive_inputs, context_arguments,
+                               fixed_hyperparameters, tunable_hyperparameters)
+
+    hp_args = list(fixed_hyperparameters) + list(tunable_hyperparameters)
+    primitive_args = inspect.getfullargspec(primitive_function).args.copy()
+    primitive_args = set(primitive_args) - set(hp_args)
+    primitive_args = [
+        {
+            'name': primitive_input['name'],
+            'type': primitive_input['type'],
+        }
+        for primitive_input in list(primitive_inputs) + context_arguments
+        if primitive_input['name'] in primitive_args
+    ]
+
+    primitive_dict = {
+        'name': primitive,
+        'primitive': primitive,
+        'classifiers': {
+            'type': primitive_type,
+            'subtype': primitive_subtype
+        },
+        'produce': {
+            'args': primitive_args,
+            'output': [
+                {
+                    'name': primitive_output['name'],
+                    'type': primitive_output['type'],
+                }
+                for primitive_output in primitive_outputs
+            ],
+        },
+        'hyperparameters': {
+            'fixed': fixed_hyperparameters,
+            'tunable': tunable_hyperparameters
+        }
+    }
+
+    if output_path is None:
+        _base_path = os.path.abspath(os.path.dirname(__file__))
+        output_path = primitive.split('.')
+        file_name = output_path[3:]
+        output_path = output_path[:3]
+        output_path = os.path.join(_base_path, 'primitives', *output_path)
+        file_name = '.'.join(file_name) + '.json'
+        os.makedirs(output_path, exist_ok=True)
+        output_path = os.path.join(output_path, file_name)
+
+    with open(output_path, 'w') as primitive_file:
+        json.dump(primitive_dict, primitive_file, indent=4)
 
 
 def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
