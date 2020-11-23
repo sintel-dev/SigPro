@@ -197,15 +197,23 @@ def _validate_subtype_inputs(function_args, primitive_inputs):
 
         if arg_name in function_args:
             function_args.remove(arg_name)
+            yield {
+                'name': arg_name,
+                'type': primitive_input['type']
+            }
 
 
 def _validate_context_arguments(function_args, context_arguments):
     for context_argument in context_arguments:
-        name = context_argument['name']
-        if name not in function_args:
-            raise ValueError(f'Primitive does not have `{name}` argument (context)')
+        arg_name = context_argument['name']
+        if arg_name not in function_args:
+            raise ValueError(f'Primitive does not have `{arg_name}` argument (context)')
 
-        function_args.remove(name)
+        function_args.remove(arg_name)
+        yield {
+            'name': arg_name,
+            'type': context_argument['type']
+        }
 
 
 def _validate_hyperparameters(function_args, hyperparameters):
@@ -216,23 +224,63 @@ def _validate_hyperparameters(function_args, hyperparameters):
         function_args.remove(name)
 
 
-def _validate_primitive_inputs(primitive_function, primitive_inputs, context_arguments,
-                               fixed_hyperparameters, tunable_hyperparameters):
+def _get_primitive_args(primitive_function, primitive_inputs, context_arguments,
+                        fixed_hyperparameters, tunable_hyperparameters):
     argspec = inspect.getfullargspec(primitive_function)
     function_args = argspec.args.copy()
+    primitive_args = []
 
-    _validate_subtype_inputs(function_args, primitive_inputs)
-    _validate_context_arguments(function_args, context_arguments)
+    primitive_args.extend(_validate_subtype_inputs(function_args, primitive_inputs))
+    primitive_args.extend(_validate_context_arguments(function_args, context_arguments))
     _validate_hyperparameters(function_args, fixed_hyperparameters)
     _validate_hyperparameters(function_args, tunable_hyperparameters)
 
     if function_args:
         raise ValueError(f'Unexpected additional arguments found: {function_args}')
 
+    return primitive_args
 
-def make_primitive(primitive, primitive_type, primitive_subtype, context_arguments=None,
-                   fixed_hyperparameters=None, tunable_hyperparameters=None,
-                   primitive_outputs=None, output_path=None):
+
+def _get_primitive_spec(primitive_type, primitive_subtype):
+
+    subtypes = PRIMITIVE_INPUTS.get(primitive_type)
+    if not subtypes:
+        raise ValueError(f'Invalid primitive_type: {primitive_type}')
+
+    primitive_spec = subtypes.get(primitive_subtype)
+    if not primitive_spec:
+        raise ValueError((
+            f'Invalid primitive_subtype for primitive of '
+            f'type {primitive_type}: {primitive_subtype}'
+        ))
+
+    return primitive_spec
+
+
+def _write_primitive(primitive_dict, primitive_name, primitives_path, primitives_subfolders):
+    primitives_path = os.path.abspath(primitives_path)
+
+    if primitives_subfolders:
+        output_path = primitive_name.split('.')
+        file_name = f'{output_path.pop()}.json'
+        output_path = os.path.join(primitives_path, *output_path)
+        os.makedirs(output_path, exist_ok=True)
+        primitive_path = os.path.join(output_path, file_name)
+
+    else:
+        file_name = f'{primitive_name}.json'
+        primitive_path = os.path.join(primitives_path, file_name)
+
+    with open(primitive_path, 'w') as primitive_file:
+        json.dump(primitive_dict, primitive_file, indent=4)
+
+    return primitive_path
+
+
+def make_primitive(primitive, primitive_type, primitive_subtype,
+                   context_arguments=None, fixed_hyperparameters=None,
+                   tunable_hyperparameters=None, primitive_outputs=None,
+                   primitives_path='sigpro/primitives', primitives_subfolders=True):
     """Create a primitive JSON.
 
     During the JSON creation the primitive function signature is validated to
@@ -263,9 +311,12 @@ def make_primitive(primitive, primitive_type, primitive_subtype, context_argumen
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
-        output_path (str):
-            Path to were to save the pipeline, if not provided a name using hte primitive name
-            will be generated. Defaults to ``None``.
+        primitives_path (str):
+            Path to the root of the primitives folder, in which the primitives JSON will be stored.
+            Defaults to `sigpro/primitives`.
+        primitives_subfolders (bool):
+            Whether to store the primitive JSON in a subfolder tree (``True``) or to use a flat
+            primitive name (``False``). Defaults to ``True``.
 
     Raises:
         ValueError:
@@ -279,36 +330,18 @@ def make_primitive(primitive, primitive_type, primitive_subtype, context_argumen
     fixed_hyperparameters = fixed_hyperparameters or {}
     tunable_hyperparameters = tunable_hyperparameters or {}
 
-    subtypes = PRIMITIVE_INPUTS.get(primitive_type)
-    if not subtypes:
-        raise ValueError(f'Invalid primitive_type: {primitive_type}')
+    primitive_spec = _get_primitive_spec(primitive_type, primitive_subtype)
+    primitive_inputs = primitive_spec['args']
+    primitive_outputs = primitive_outputs or primitive_spec['output']
 
-    primitive_inputs = subtypes.get(primitive_subtype)
-    if not primitive_inputs:
-        raise ValueError((
-            f'Invalid primitive_subtype for primitive of '
-            f'type {primitive_type}: {primitive_subtype}'
-        ))
-
-    if primitive_outputs is None:
-        primitive_outputs = primitive_inputs['output']
-
-    primitive_inputs = primitive_inputs['args']
     primitive_function = _import_object(primitive)
-    _validate_primitive_inputs(primitive_function, primitive_inputs, context_arguments,
-                               fixed_hyperparameters, tunable_hyperparameters)
-
-    hp_args = list(fixed_hyperparameters) + list(tunable_hyperparameters)
-    primitive_args = inspect.getfullargspec(primitive_function).args.copy()
-    primitive_args = set(primitive_args) - set(hp_args)
-    primitive_args = [
-        {
-            'name': primitive_input['name'],
-            'type': primitive_input['type'],
-        }
-        for primitive_input in list(primitive_inputs) + context_arguments
-        if primitive_input['name'] in primitive_args
-    ]
+    primitive_args = _get_primitive_args(
+        primitive_function,
+        primitive_inputs,
+        context_arguments,
+        fixed_hyperparameters,
+        tunable_hyperparameters
+    )
 
     primitive_dict = {
         'name': primitive,
@@ -333,18 +366,7 @@ def make_primitive(primitive, primitive_type, primitive_subtype, context_argumen
         }
     }
 
-    if output_path is None:
-        _base_path = os.path.abspath(os.path.dirname(__file__))
-        output_path = primitive.split('.')
-        file_name = output_path[3:]
-        output_path = output_path[:3]
-        output_path = os.path.join(_base_path, 'primitives', *output_path)
-        file_name = '.'.join(file_name) + '.json'
-        os.makedirs(output_path, exist_ok=True)
-        output_path = os.path.join(output_path, file_name)
-
-    with open(output_path, 'w') as primitive_file:
-        json.dump(primitive_dict, primitive_file, indent=4)
+    return _write_primitive(primitive_dict, primitive, primitives_path, primitives_subfolders)
 
 
 def run_primitive(primitive, primitive_type=None, primitive_subtype=None,

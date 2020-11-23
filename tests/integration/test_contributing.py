@@ -1,5 +1,35 @@
 """Test module for SigPro contributing module."""
-from sigpro.contributing import run_primitive
+import os
+import tempfile
+
+from sigpro.contributing import make_primitive, run_primitive
+
+
+def test_make_primitive_primitives_subfolders_true():
+    with tempfile.TemporaryDirectory('sigpro') as tmp_dir:
+        expected_result = ['sigpro', 'aggregations', 'amplitude', 'statistical', 'mean.json']
+        expected_result = os.path.join(tmp_dir, *expected_result)
+        result = make_primitive(
+            'sigpro.aggregations.amplitude.statistical.mean',
+            'aggregation',
+            'amplitude',
+            primitives_path=tmp_dir,
+        )
+        assert result == expected_result
+
+
+def test_make_primitive_primitives_subfolders_false():
+    with tempfile.TemporaryDirectory('sigpro') as tmp_dir:
+        expected_result = 'sigpro.aggregations.amplitude.statistical.mean.json'
+        expected_result = os.path.join(tmp_dir, expected_result)
+        result = make_primitive(
+            'sigpro.aggregations.amplitude.statistical.mean',
+            'aggregation',
+            'amplitude',
+            primitives_path=tmp_dir,
+            primitives_subfolders=False
+        )
+        assert result == expected_result
 
 
 def test_run_primitive_aggregation_no_hyperparameters():
