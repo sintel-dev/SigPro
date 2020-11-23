@@ -15,7 +15,7 @@ install_requires = [
     'mlprimitives>=0.2.6.dev0,<0.3',
     'mlblocks>=0.3.4,<0.4',
     'pandas>=1,<2',
-    'numpy>=1.15.4,<2',
+    'numpy>=1.15.4,<1.19',  # tensorflow
     'scipy>=1.3.3,<2',
 ]
 
@@ -61,6 +61,7 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
+    'importlib-metadata<2,>=0.12',
 ]
 
 setup(
