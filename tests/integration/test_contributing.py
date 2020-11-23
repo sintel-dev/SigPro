@@ -1,6 +1,7 @@
 """Test module for SigPro contributing module."""
 import os
 import tempfile
+
 import pytest
 
 from sigpro.contributing import make_primitive, run_primitive
