@@ -1,10 +1,38 @@
 """Test module for SigPro contributing module."""
+import json
 import os
 import tempfile
 
 import pytest
 
 from sigpro.contributing import make_primitive, run_primitive
+
+EXPECTED_PRIMITIVE_DICT = {
+    "name": "sigpro.aggregations.amplitude.statistical.mean",
+    "primitive": "sigpro.aggregations.amplitude.statistical.mean",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "amplitude"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "value",
+                "type": "float"
+            }
+        ]
+    },
+    'hyperparameters': {
+        'fixed': {},
+        'tunable': {}
+    }
+}
 
 
 def test_make_primitive_invalid_type():
@@ -42,6 +70,9 @@ def test_make_primitive_primitives_subfolders_true():
             primitives_path=tmp_dir,
         )
         assert result == expected_result
+        with open(result, 'rb') as created_primitive:
+            primitive_dict = json.load(created_primitive)
+            assert primitive_dict == EXPECTED_PRIMITIVE_DICT
 
 
 def test_make_primitive_primitives_subfolders_false():
@@ -56,6 +87,9 @@ def test_make_primitive_primitives_subfolders_false():
             primitives_subfolders=False
         )
         assert result == expected_result
+        with open(result, 'rb') as created_primitive:
+            primitive_dict = json.load(created_primitive)
+            assert primitive_dict == EXPECTED_PRIMITIVE_DICT
 
 
 def test_run_primitive_aggregation_no_hyperparameters():
