@@ -1,8 +1,33 @@
 """Test module for SigPro contributing module."""
 import os
 import tempfile
+import pytest
 
 from sigpro.contributing import make_primitive, run_primitive
+
+
+def test_make_primitive_invalid_type():
+    with pytest.raises(ValueError):
+        make_primitive('invalid', 'invalid', 'invalid')
+
+
+def test_make_primitive_invalid_subtype():
+    with pytest.raises(ValueError):
+        make_primitive('invalid', 'aggregation', 'invalid')
+
+
+def test_make_primitive_invalid_name():
+    with pytest.raises(ImportError):
+        make_primitive('invalid', 'aggregation', 'amplitude')
+
+
+def test_make_primitive_missing_additional_hyperparameters():
+    with pytest.raises(ValueError):
+        make_primitive(
+            'sigpro.aggregations.amplitude.statistical.kurtosis',
+            'aggregation',
+            'amplitude'
+        )
 
 
 def test_make_primitive_primitives_subfolders_true():
