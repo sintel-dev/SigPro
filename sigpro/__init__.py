@@ -14,7 +14,7 @@ _BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 MLBLOCKS_PRIMITIVES = os.path.join(_BASE_PATH, 'primitives')
 
 
-def get_primitives(primitive_type=None):
+def get_primitives(name=None, type=None, subtype=None):
     """Get a list of the available primitives.
 
     Optionally filter by primitive type: ``transformation`` or ``aggregation``.
@@ -27,7 +27,19 @@ def get_primitives(primitive_type=None):
         list:
             List of the names of the available primitives.
     """
-    if primitive_type and primitive_type not in ('transformation', 'aggregation'):
-        raise ValueError('primitive_type must be `transformation` or `aggregation`')
+    filters = {}
+    if type:
+        if type not in ('transformation', 'aggregation'):
+            raise ValueError('type must be `transformation` or `aggregation`.')
 
-    return discovery.find_primitives(primitive_type or 'sigpro')
+        filters['classifiers.type'] = type
+
+    primitives = discovery.find_primitives(name or 'sigpro', filters)
+
+    if subtype:
+        if subtype not in ('amplitude', 'frequency', 'frequency_time'):
+            raise ValueError('type must be `amplitude`, `frequency` or `frequency_time`.')
+
+        primitives = [primitive for primitive in primitives if subtype in primitive]
+
+    return primitives
