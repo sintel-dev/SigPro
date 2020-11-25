@@ -23,7 +23,7 @@ def get_demo_data():
     return df
 
 
-def get_amplitude_demo(idx=None):
+def get_amplitude_demo(index=None):
     """Get amplitude values and sampling frequency used.
 
     The amplitude demo data is meant to be used for the any ``transformation`` functions
@@ -35,7 +35,7 @@ def get_amplitude_demo(idx=None):
     will return a random signal.
 
     Args:
-        idx (int or None):
+        index (int or None):
             If `int`, return the value at that index if `None` return a random index.
 
     Returns:
@@ -44,13 +44,13 @@ def get_amplitude_demo(idx=None):
             sampling frequency used.
     """
     df = get_demo_data()
-    if idx is None:
-        idx = random.randint(0, len(df))
+    if index is None:
+        index = random.randint(0, len(df))
 
-    return np.array(df.iloc[idx]['values']), 10000
+    return np.array(df.iloc[index]['values']), 10000
 
 
-def get_frequency_demo(idx=None, real=True):
+def get_frequency_demo(index=None, real=True):
     """Get amplitude values and the corresponding frequency values.
 
     The frequency demo data is meant to be used for the ``frequency aggregations``
@@ -62,7 +62,7 @@ def get_frequency_demo(idx=None, real=True):
     will return a random signal.
 
     Args:
-        idx (int or None):
+        index (int or None):
             If `int`, return the value at that index if `None` return a random index.
         real (bool):
             If ``True``, return the real values for the computed ``fft`` transformations,
@@ -72,7 +72,7 @@ def get_frequency_demo(idx=None, real=True):
         tuple:
             A tuple two `np.array` containing amplitude values and frequency values.
     """
-    amplitude_values, sampling_frequency = get_amplitude_demo(idx)
+    amplitude_values, sampling_frequency = get_amplitude_demo(index)
     fft_values = np.fft.fft(amplitude_values)
     frequencies = np.fft.fftfreq(len(fft_values), sampling_frequency)
     if real:
@@ -82,7 +82,7 @@ def get_frequency_demo(idx=None, real=True):
     return fft_values, frequencies
 
 
-def get_frequency_time_demo(idx=None, real=True):
+def get_frequency_time_demo(index=None, real=True):
     """Get amplitude values, frequency values and time values.
 
     The frequency time demo data is meant to be used for the ``frequency time aggregations``
@@ -95,7 +95,7 @@ def get_frequency_time_demo(idx=None, real=True):
     signal over and over, otherwise it will return a random signal.
 
     Args:
-        idx (int or None):
+        index (int or None):
             If `int`, return the value at that index if `None` return a random index.
         real (bool):
             If ``True``, return the real values for the computed ``stft`` transformations,
@@ -105,7 +105,7 @@ def get_frequency_time_demo(idx=None, real=True):
         tuple:
             A tuple two `np.array` containing amplitude values and frequency values.
     """
-    amplitude_values, sampling_frequency = get_amplitude_demo(idx)
+    amplitude_values, sampling_frequency = get_amplitude_demo(index)
     sample_frequencies, time_values, amplitude_values = stft(
         amplitude_values,
         fs=sampling_frequency
