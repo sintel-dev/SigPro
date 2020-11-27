@@ -24,7 +24,7 @@ def test_get_amplitude_demo_without_index():
 
 
 def test_get_amplitude_demo_indexed():
-    values, sampling_frequency = get_amplitude_demo(idx=1)
+    values, sampling_frequency = get_amplitude_demo(index=1)
     assert EXPECTED_VALUES_LENGTH == len(values)
     assert EXPECTED_SAMPLING_FREQUENCY == sampling_frequency
 
@@ -36,7 +36,7 @@ def test_get_frequency_demo_without_index():
 
 
 def test_get_frequency_demo_indexed():
-    values, frequency_values = get_frequency_demo(idx=1)
+    values, frequency_values = get_frequency_demo(index=1)
     assert EXPECTED_VALUES_LENGTH == len(values)
     assert EXPECTED_FREQUENCY_LENGTH == len(frequency_values)
 
@@ -57,7 +57,7 @@ def test_get_frequency_time_demo_without_index():
 
 
 def test_get_frequency_time_demo_indexed():
-    values, frequencies, time_values = get_frequency_time_demo(idx=1)
+    values, frequencies, time_values = get_frequency_time_demo(index=1)
     assert 129 == len(values)
     assert 129 == len(frequencies)
     assert 5 == len(time_values)
