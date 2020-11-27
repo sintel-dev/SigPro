@@ -53,7 +53,7 @@ to the `get_primitives` function.
 For example, if you only want to obtain the list of *frequency transformation* primitives you can call `get_primitives` like this:
 
 ```python
-get_primitives(type='transformation', subtype='frequency')
+get_primitives(primitive_type='transformation', primitive_subtype='frequency')
 ```
 
 ### Filter primitives by Name
@@ -66,7 +66,7 @@ For example, if we are interested only in *frequency transformation*
 primitives based on *fft* we can call `get_primitives` as follows:
 
 ```python
-get_primitives('fft', type='transformation', subtype='frequency')
+get_primitives('fft', primitive_type='transformation', primitive_subtype='frequency')
 ```
 
 ## Run a Primitive
