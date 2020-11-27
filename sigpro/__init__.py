@@ -34,12 +34,10 @@ def get_primitives(name=None, type=None, subtype=None):
 
         filters['classifiers.type'] = type
 
-    primitives = discovery.find_primitives(name or 'sigpro', filters)
-
     if subtype:
         if subtype not in ('amplitude', 'frequency', 'frequency_time'):
             raise ValueError('type must be `amplitude`, `frequency` or `frequency_time`.')
 
-        primitives = [primitive for primitive in primitives if subtype in primitive]
+        filters['classifiers.subtype'] = subtype
 
-    return primitives
+    return discovery.find_primitives(name or 'sigpro', filters)
