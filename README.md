@@ -18,7 +18,9 @@
 
 ## Overview
 
-TODO
+SigPro offers an end-to-end solution to efficiently apply multiple *signal processing techniques*
+to convert *raw time series* into *feature time series* that encode the knowledge of domain experts
+in order to solve time series machine learning problems.
 
 # Install
 
@@ -43,9 +45,15 @@ pip install sigpro
 This will pull and install the latest stable release from [PyPi](https://pypi.org/).
 
 If you want to install from source or contribute to the project please read the
-[Contributing Guide](CONTRIBUTING.rst).
+[Contributing Guide](CONTRIBUTING.md).
 
 
-# Quickstart
+# User Guides
 
-TODO
+`SigPro` comes with the following user guides:
+
+* [PRIMITIVES.md](PRIMITIVES.md): Information about the primitive families, their expected input
+  and output.
+* [USAGE.md](USAGE.md): Instructions about how to usee the three main functionalities of `SigPro`.
+* [DEVELOPMENT.md](DEVELOPMENT.md): Step by step guide about how to write a valid `SigPro`
+  primitive and contribute it to either `SigPro` or your own library.
