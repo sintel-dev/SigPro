@@ -457,11 +457,11 @@ file will be generated as follows:
     },
     "hyperparameters": {
         "fixed": {
-            'min_frequency': {
-                'type': 'float',
+            "min_frequency": {
+                "type": "float",
             },
-            'max_frequency': {
-                'type': 'float',
+            "max_frequency": {
+                "type": "float",
             }
         },
         "tunable": {
