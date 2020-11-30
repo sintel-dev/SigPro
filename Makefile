@@ -170,7 +170,7 @@ publish-test: dist publish-confirm ## package and upload a release on TestPyPI
 
 .PHONY: publish
 publish: dist publish-confirm ## package and upload a release
-	twine upload dist/*
+	twine upload --repository-url https://pypi.dailab.ml:8080 dist/*
 
 .PHONY: bumpversion-release
 bumpversion-release: ## Merge master to stable and bumpversion release
