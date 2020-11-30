@@ -11,6 +11,7 @@
    :hidden:
 
    API Reference <api/sigpro>
+   usage
    contributing
    authors
    history

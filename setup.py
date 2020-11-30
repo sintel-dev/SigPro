@@ -12,10 +12,9 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlprimitives>=0.2.6.dev0,<0.3',
     'mlblocks>=0.3.4,<0.4',
     'pandas>=1,<2',
-    'numpy>=1.15.4,<1.19',  # tensorflow
+    'numpy>=1.15.4,<2',
     'scipy>=1.3.3,<2',
 ]
 

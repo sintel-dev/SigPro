@@ -433,7 +433,7 @@ def run_primitive(primitive, primitive_type=None, primitive_subtype=None,
 
         _check_primitive_type_and_subtype(primitive_type, primitive_subtype)
         get_demo_data_function, *arg_names = DEMO_FUNCTIONS[primitive_type][primitive_subtype]
-        data = dict(zip(arg_names, get_demo_data_function(idx=demo_row_index)))
+        data = dict(zip(arg_names, get_demo_data_function(index=demo_row_index)))
 
     kwargs.update(data)
     return primitive.produce(**kwargs)

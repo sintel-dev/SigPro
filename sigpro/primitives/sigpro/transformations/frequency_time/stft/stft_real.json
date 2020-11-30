@@ -3,7 +3,7 @@
     "primitive": "sigpro.transformations.frequency.stft.stft_real",
     "classifiers": {
         "type": "transformation",
-        "subtype": "amplitude"
+        "subtype": "frequency_time"
     },
     "produce": {
         "args": [

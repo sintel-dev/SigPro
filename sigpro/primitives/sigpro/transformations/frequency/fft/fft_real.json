@@ -3,7 +3,7 @@
     "primitive": "sigpro.transformations.frequency.fft.fft_real",
     "classifiers": {
         "type": "transformation",
-        "subtype": "amplitude"
+        "subtype": "frequency"
     },
     "produce": {
         "args": [
