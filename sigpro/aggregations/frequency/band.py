@@ -1,5 +1,6 @@
 import numpy as np
 
+"""Band Module."""
 
 def band_mean(amplitude_values, frequency_values, min_frequency, max_frequency):
     """Compute the mean values for a specific band.
@@ -15,6 +16,7 @@ def band_mean(amplitude_values, frequency_values, min_frequency, max_frequency):
             Band minimum.
         max_frequency (int or float):
             Band maximum.
+
     Returns:
         float:
             Mean value for the given band.
