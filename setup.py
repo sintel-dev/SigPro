@@ -61,6 +61,7 @@ development_requires = [
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
     'importlib-metadata<2,>=0.12',
+    'invoke',
 ]
 
 setup(
