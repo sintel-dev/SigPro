@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SigPro Usage &mdash; SigPro 0.0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to SigPro" href="contributing.html" />
+    <link rel="prev" title="sigpro.demo module" href="api/sigpro.demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>SigPro Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/usage.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sigpro-usage">
+<h1>SigPro Usage<a class="headerlink" href="#sigpro-usage" title="Permalink to this headline">¶</a></h1>
+<p>In this document you will find instructions about how to use the three
+main functionalities of the SigPro library:</p>
+<ul class="simple">
+<li><p>Find Primitives: How to find the primitive that you need for your task.</p></li>
+<li><p>Run a Primitive: How to run a primitive as a standalone function.</p></li>
+<li><p>Create a primitive JSON: How to create a primitive JSON for a python
+function.</p></li>
+</ul>
+<div class="section" id="find-primitives">
+<h2>Find primitives<a class="headerlink" href="#find-primitives" title="Permalink to this headline">¶</a></h2>
+<p>Before you start using any SigPro primitive you will to find the
+ones that are suitable for your task.</p>
+<p>This can be done with the <code class="docutils literal notranslate"><span class="pre">sigpro.get_primitives</span></code> function.</p>
+<p>In order to get the complete list of primitives available you can
+call it without any arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro</span> <span class="kn">import</span> <span class="n">get_primitives</span>
+
+<span class="n">get_primitives</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The output will be a list with the names of all the primitives
+that SigPro is able to find:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>[&#39;sigpro.aggregations.amplitude.statistical.crest_factor&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.kurtosis&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.mean&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.rms&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.skew&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.std&#39;,
+ &#39;sigpro.aggregations.amplitude.statistical.var&#39;,
+ &#39;sigpro.transformations.amplitude.identity.identity&#39;,
+ &#39;sigpro.transformations.frequency.fft.fft&#39;,
+ &#39;sigpro.transformations.frequency.fft.fft_real&#39;,
+ &#39;sigpro.transformations.frequency_time.stft.stft&#39;,
+ &#39;sigpro.transformations.frequency_time.stft.stft_real&#39;]
+</pre></div>
+</div>
+<div class="section" id="filter-primitives-by-type-and-subtype">
+<h3>Filter primitives by Type and Subtype<a class="headerlink" href="#filter-primitives-by-type-and-subtype" title="Permalink to this headline">¶</a></h3>
+<p>In most cases you will want to search for a primitive of a specific
+type or subtype.</p>
+<p>In order to do this, you can pass the <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">subtype</span></code> arguments
+to the <code class="docutils literal notranslate"><span class="pre">get_primitives</span></code> function.</p>
+<p>For example, if you only want to obtain the list of <em>frequency transformation</em> primitives you can call <code class="docutils literal notranslate"><span class="pre">get_primitives</span></code> like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_primitives</span><span class="p">(</span><span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filter-primitives-by-name">
+<h3>Filter primitives by Name<a class="headerlink" href="#filter-primitives-by-name" title="Permalink to this headline">¶</a></h3>
+<p>If you want to narrow the search bases on the name of the primitives
+you can pass a <em>string pattern</em>, and <code class="docutils literal notranslate"><span class="pre">get_primitives</span></code> will return only
+the primitives that match the indicated pattern.</p>
+<p>For example, if we are interested only in <em>frequency transformation</em>
+primitives based on <em>fft</em> we can call <code class="docutils literal notranslate"><span class="pre">get_primitives</span></code> as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_primitives</span><span class="p">(</span><span class="s1">&#39;fft&#39;</span><span class="p">,</span> <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="run-a-primitive">
+<h2>Run a Primitive<a class="headerlink" href="#run-a-primitive" title="Permalink to this headline">¶</a></h2>
+<p>SigPro primitives can be run in a standalone mode, which allows exploring
+their behavior for learning or debugging purposes.</p>
+<p>In order to do this you can use the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function passing
+the name of the primitive that you want to run.</p>
+<p>For example, if you want to run the
+<code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.mean</span></code> primitive you can use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro</span> <span class="kn">import</span> <span class="n">run_primitive</span>
+
+<span class="n">run_primitive</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will do the following steps:</p>
+<ul class="simple">
+<li><p>Load the indicate primitive.</p></li>
+<li><p>Load demo data of the corresponding type and subtype. In this case, this
+will load the Amplitude Aggregation demo data using the
+<code class="docutils literal notranslate"><span class="pre">get_amplitude_demo</span></code>.</p></li>
+<li><p>Call the indicated primitive passing a randomly selected row from the
+loaded demo data.</p></li>
+<li><p>Return the primitive output value (or values).</p></li>
+</ul>
+<div class="section" id="selecting-the-data-which-the-primitive-runs-on">
+<h3>Selecting the data which the primitive runs on<a class="headerlink" href="#selecting-the-data-which-the-primitive-runs-on" title="Permalink to this headline">¶</a></h3>
+<p>In some cases you will want to run the primitive multiple times on the
+same values instead of randomly selecting one row from the demo data.</p>
+<p>In order to restrict the execution to particular demo row, you can
+pass the <code class="docutils literal notranslate"><span class="pre">demo_row_index</span></code> value indicating the row that you want to use.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">,</span>
+    <span class="n">demo_row_index</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, the row used by the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function will be the
+one returned by the <code class="docutils literal notranslate"><span class="pre">get_amplitude_demo</span></code> when passing the same row index
+as input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro.demo</span> <span class="kn">import</span> <span class="n">get_amplitude_demo</span>
+
+<span class="n">row</span> <span class="o">=</span> <span class="n">get_amplitude_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-primitive-with-your-own-data">
+<h3>Running the primitive with your own data<a class="headerlink" href="#running-the-primitive-with-your-own-data" title="Permalink to this headline">¶</a></h3>
+<p>In some cases you will want to run the primitive with your own data.</p>
+<p>In order to do so, you should pass the expected data by the primitive as
+additional arguments to the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function. Those additional
+arguments depend on the type and subtype of the primitive, and must be
+passed to their respective fields:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">amplitude_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing signal values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sampling_frequency</span> <span class="pre">(float,</span> <span class="pre">int</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Sampling frequency value passed in Hz or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">frequency_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing frequency values for the given amplitude values
+or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">time_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing time values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Here is an example where you pass your own <code class="docutils literal notranslate"><span class="pre">amplitude_values</span></code> for the <code class="docutils literal notranslate"><span class="pre">mean</span></code>
+primitive (bear in mind that this primitive only requires amplitude values
+if more data was needed then it has to be passed as well):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="n">run_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">,</span>
+    <span class="n">amplitude_values</span><span class="o">=</span><span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-hyperparameter-values-or-additional-context-values">
+<h3>Passing hyperparameter values or additional context values<a class="headerlink" href="#passing-hyperparameter-values-or-additional-context-values" title="Permalink to this headline">¶</a></h3>
+<p>When a primitive accepts hyperparameters or requires additional context
+values, those can be specified at the end of the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function.</p>
+<p>The primitive <code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.kurtosis</span></code>
+can take as input <code class="docutils literal notranslate"><span class="pre">fisher</span></code> and <code class="docutils literal notranslate"><span class="pre">bias</span></code>, both boolean values, and in order
+to specify them we use <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.kurtosis&#39;</span><span class="p">,</span>
+    <span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This way we specified those two additional arguments for the primitive.</p>
+</div>
+<div class="section" id="full-run-primitive-arguments-list">
+<h3>Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list<a class="headerlink" href="#full-run-primitive-arguments-list" title="Permalink to this headline">¶</a></h3>
+<p>The complete list of arguments that this function takes are as follow:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">(str)</span></code>:</dt><dd><p>Path or name of the primitive to be used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive_type</span> <span class="pre">(str)</span></code>:</dt><dd><p>Type to which the primitive belongs to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive_subtype</span> <span class="pre">(str)</span></code>:</dt><dd><p>Subtype to which the primitive belongs to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">amplitude_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing signal values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sampling_frequency</span> <span class="pre">(float,</span> <span class="pre">int</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Sampling frequency value passed in Hz or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">frequency_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing frequency values for the given amplitude values
+or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">time_values</span> <span class="pre">(numpy.ndarray</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>Array of floats representing time values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">demo_row_index</span> <span class="pre">(int</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">int</span></code>, return the value at that index if <code class="docutils literal notranslate"><span class="pre">None</span></code> return a random index. This is used
+if no amplitude values are provided.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">context</span> <span class="pre">(optional)</span></code>:</dt><dd><p>Additional context arguments required to run the primitive.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hyperparameters</span> <span class="pre">(optional)</span></code>:</dt><dd><p>Additional hyperparameters or tunable hyperparameters arguments.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="create-a-primitive-json">
+<h2>Create a primitive JSON<a class="headerlink" href="#create-a-primitive-json" title="Permalink to this headline">¶</a></h2>
+<p>If you need to create a primitive JSON for a new Python function that you
+implemented you can use the <code class="docutils literal notranslate"><span class="pre">sigpro.contributin.make_primitive</span></code> function,
+which helps you in the process.</p>
+<blockquote>
+<div><p>For complete instructions about how to write a primitive from scratch
+and contribute it to the project please read the <a class="reference external" href="CONTRIBUTING.md">Contributing Guide</a></p>
+</div></blockquote>
+<p>For example, if you want to create the primitive for the implemented code
+in <code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.py</span></code> for the method <code class="docutils literal notranslate"><span class="pre">mean</span></code>, you
+can use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro.contributing</span> <span class="kn">import</span> <span class="n">make_primitive</span>
+
+<span class="n">make_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span>
+    <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;aggregation&#39;</span><span class="p">,</span>
+    <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will do the following steps:</p>
+<ul class="simple">
+<li><p>Validate that the inputs that the primitive expects are correct for its
+type and subtype.</p></li>
+<li><p>Validate that the function also expects the specified context arguments
+and hyperparameters.</p></li>
+<li><p>Validate that there are no additional arguments that have not been
+specified.</p></li>
+<li><p>If everything is correct, create a JSON file for your primitive in the
+<code class="docutils literal notranslate"><span class="pre">primitives</span></code> folder.</p></li>
+</ul>
+<p>And once it finishes it will return you the absolute path where the primitive
+has been stored:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/path/to/sigpro/primitives/aggregations/amplitude/statistical/mean.json
+</pre></div>
+</div>
+<p>If you explore this file, you will see the primitive <code class="docutils literal notranslate"><span class="pre">json</span></code> annotation:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;primitive&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;classifiers&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;aggregation&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;produce&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude_values&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;output&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;hyperparameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;fixed&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="nt">&quot;tunable&quot;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="using-your-primitive-path">
+<h3>Using your primitive path<a class="headerlink" href="#using-your-primitive-path" title="Permalink to this headline">¶</a></h3>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> will store the primitives inside the folder
+<code class="docutils literal notranslate"><span class="pre">sigpro/primitives</span></code> which is located in the project. If you want to store
+the primitives in a different directory you can do so by using the argument
+<code class="docutils literal notranslate"><span class="pre">primitives_path</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">make_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">,</span>
+    <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;aggregation&#39;</span><span class="p">,</span>
+    <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span>
+    <span class="n">primitives_path</span><span class="o">=</span><span class="s1">&#39;my_primitives&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The output path now would be:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/path/to/my_primitives/aggregations/amplitude/statistical/mean.json
+</pre></div>
+</div>
+</div>
+<div class="section" id="storing-flat-json-file">
+<h3>Storing flat json file<a class="headerlink" href="#storing-flat-json-file" title="Permalink to this headline">¶</a></h3>
+<p>If you would like to store your primtives without the path tree, you can do
+so by stting the argument <code class="docutils literal notranslate"><span class="pre">primitives_subfolders</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">make_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">,</span>
+    <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;aggregation&#39;</span><span class="p">,</span>
+    <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span>
+    <span class="n">primitives_path</span><span class="o">=</span><span class="s1">&#39;my_primitives&#39;</span><span class="p">,</span>
+    <span class="n">primitives_subfolders</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will create a file named <code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.statistical.mean.json</span></code>
+inside of the folder <code class="docutils literal notranslate"><span class="pre">my_primitives</span></code>, the contents of this <code class="docutils literal notranslate"><span class="pre">json</span></code> file
+are exactly the same as the one created previously, but the nomenclature of
+the file it’s different, we don’t have the subfolder structure.</p>
+</div>
+<div class="section" id="creating-a-primitive-with-tunable-hyperparameters">
+<h3>Creating a primitive with tunable hyperparameters<a class="headerlink" href="#creating-a-primitive-with-tunable-hyperparameters" title="Permalink to this headline">¶</a></h3>
+<p>In some cases our primitives have tunable hyperparameters or fixed ones.
+In order to do so you have to create a dictionary of hyperparameters with
+a dictionary that contains their default value and their type (in string):</p>
+<p>In this example you see how the <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code> primitive is being created with
+the tunable hyperparameters <code class="docutils literal notranslate"><span class="pre">fisher</span></code> and <code class="docutils literal notranslate"><span class="pre">bias</span></code> both being <code class="docutils literal notranslate"><span class="pre">booleans</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tunable_hyperparameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fisher&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;bias&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">make_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.kurtosis&#39;</span><span class="p">,</span>
+    <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;aggregation&#39;</span><span class="p">,</span>
+    <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span>
+    <span class="n">tunable_hyperparameters</span><span class="o">=</span><span class="n">tunable_hyperparameters</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-primitive-with-context-arguments">
+<h3>Create a primitive with context arguments<a class="headerlink" href="#create-a-primitive-with-context-arguments" title="Permalink to this headline">¶</a></h3>
+<p>When a primitive requires of a context argument, we have to use the
+argument <code class="docutils literal notranslate"><span class="pre">context_arguments</span></code> and pass it to <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code>. This
+argument has to be a python <code class="docutils literal notranslate"><span class="pre">list</span></code> that contains python <code class="docutils literal notranslate"><span class="pre">dictionaries</span></code>
+whith the <code class="docutils literal notranslate"><span class="pre">name</span></code> and<code class="docutils literal notranslate"><span class="pre">type</span></code> of the <code class="docutils literal notranslate"><span class="pre">context_argument</span></code>.</p>
+<p><em>This is just an example of how you would pass the context argument, this
+primitive does not exist.</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">context_arguments</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;test_arg1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;test_arg2&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;numpy.ndarray&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">make_primitive</span><span class="p">(</span>
+    <span class="s1">&#39;sigpro.aggregation.amplitude.context.contextual_method&#39;</span><span class="p">,</span>
+    <span class="n">context_arguments</span><span class="o">=</span><span class="n">context_arguments</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-make-primitive-arguments-list">
+<h3>Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list<a class="headerlink" href="#full-make-primitive-arguments-list" title="Permalink to this headline">¶</a></h3>
+<p>The complete list of arguments that this function takes are as follow:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">(str)</span></code>:</dt><dd><p>The name of the primitive, the python path including the name of the
+module and the name of the function.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive_type</span> <span class="pre">(str)</span></code>:</dt><dd><p>Type of primitive.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive_subtype</span> <span class="pre">(str)</span></code>:</dt><dd><p>Subtype of the primitive.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">context_arguments</span> <span class="pre">(list</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>A list with dictionaries containing the name and type of the context
+arguments.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fixed_hyperparameters</span> <span class="pre">(dict</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value that it
+should take.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">tunable_hyperparameters</span> <span class="pre">(dict</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value and the
+range of values that it can take.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitive_outputs</span> <span class="pre">(list</span> <span class="pre">or</span> <span class="pre">None)</span></code>:</dt><dd><p>A list with dictionaries containing the name and type of the output
+values. If <code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitives_path</span> <span class="pre">(str)</span></code>:</dt><dd><p>Path to the root of the primitives folder, in which the primitives JSON
+will be stored. Defaults to <code class="docutils literal notranslate"><span class="pre">sigpro/primitives</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">primitives_subfolders</span> <span class="pre">(bool)</span></code>:</dt><dd><p>Whether to store the primitive JSON in a subfolder tree (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or to
+use a flat primitive name (<code class="docutils literal notranslate"><span class="pre">False</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to SigPro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api/sigpro.demo.html" class="btn btn-neutral float-left" title="sigpro.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

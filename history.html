@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>History &mdash; SigPro 0.0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Credits" href="authors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>History</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/history.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="history">
+<h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>0.0.1 - 2021-01-26<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>First release to PyPI.</p>
+<p>This release comes with the first version of the <code class="docutils literal notranslate"><span class="pre">contributing</span></code> module, which makes it easier
+to create new primitives and to test those with the demo data included in this package.</p>
+<p>This release also includes the following User Guides:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/signals-dev/SigPro/blob/master/PRIMITIVES.md">PRIMITIVES.md</a>: Information
+about the primitive families, their expected input and output.</p></li>
+<li><p><a class="reference external" href="https://github.com/signals-dev/SigPro/blob/master/USAGE.md">USAGE.md</a>: Instructions about how
+to usee the three main functionalities of <code class="docutils literal notranslate"><span class="pre">SigPro</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/signals-dev/SigPro/blob/master/DEVELOPMENT.md">DEVELOPMENT.md</a>: Step by step
+guide about how to write a valid <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> primitive and contribute it to either <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> or
+your own library.</p></li>
+</ul>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Demo data: Available demo data to test primitives.</p></li>
+<li><p>First primitives: The following list of primitives were added:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.crest_factor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.kurtosis</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.mean</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.rms</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.skew</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.std</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.var</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.transformations.amplitude.identity.identity</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.transformations.frequency.fft.fft</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.transformations.frequency.fft.fft_real</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.transformations.frequency_time.stft.stft</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigpro.transformations.frequency_time.stft.stft_real</span></code></p></li>
+</ul>
+</li>
+<li><p>Contributing module.</p></li>
+<li><p>Documentation on how to contribute new primitives and how to run those.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="authors.html" class="btn btn-neutral float-left" title="Credits" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

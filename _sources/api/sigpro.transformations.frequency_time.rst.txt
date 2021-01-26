@@ -1,0 +1,14 @@
+sigpro.transformations.frequency\_time package
+==============================================
+
+.. automodule:: sigpro.transformations.frequency_time
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sigpro.transformations.frequency_time.stft

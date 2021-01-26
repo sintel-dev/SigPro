@@ -1,0 +1,14 @@
+sigpro.transformations.amplitude package
+========================================
+
+.. automodule:: sigpro.transformations.amplitude
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sigpro.transformations.amplitude.identity

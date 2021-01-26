@@ -1,0 +1,7 @@
+sigpro.aggregations.frequency.band module
+=========================================
+
+.. automodule:: sigpro.aggregations.frequency.band
+   :members:
+   :undoc-members:
+   :show-inheritance:

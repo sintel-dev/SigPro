@@ -1,0 +1,7 @@
+sigpro.contributing module
+==========================
+
+.. automodule:: sigpro.contributing
+   :members:
+   :undoc-members:
+   :show-inheritance:

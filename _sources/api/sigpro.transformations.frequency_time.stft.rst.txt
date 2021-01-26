@@ -1,0 +1,7 @@
+sigpro.transformations.frequency\_time.stft module
+==================================================
+
+.. automodule:: sigpro.transformations.frequency_time.stft
+   :members:
+   :undoc-members:
+   :show-inheritance:

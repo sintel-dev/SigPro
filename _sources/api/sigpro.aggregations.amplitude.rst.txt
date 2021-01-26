@@ -1,0 +1,14 @@
+sigpro.aggregations.amplitude package
+=====================================
+
+.. automodule:: sigpro.aggregations.amplitude
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sigpro.aggregations.amplitude.statistical

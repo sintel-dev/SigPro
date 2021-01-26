@@ -1,0 +1,16 @@
+sigpro.aggregations package
+===========================
+
+.. automodule:: sigpro.aggregations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   sigpro.aggregations.amplitude
+   sigpro.aggregations.frequency
+   sigpro.aggregations.frequency_time

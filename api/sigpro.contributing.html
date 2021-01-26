@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sigpro.contributing module &mdash; SigPro 0.0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sigpro.demo module" href="sigpro.demo.html" />
+    <link rel="prev" title="sigpro.transformations.frequency_time.stft module" href="sigpro.transformations.frequency_time.stft.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#user-guides">User Guides</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
+        
+      <li>sigpro.contributing module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/api/sigpro.contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sigpro.contributing">
+<span id="sigpro-contributing-module"></span><h1>sigpro.contributing module<a class="headerlink" href="#module-sigpro.contributing" title="Permalink to this headline">¶</a></h1>
+<p>Tools to contribute a primitive.</p>
+<p><strong>Functions:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.contributing.make_primitive" title="sigpro.contributing.make_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_primitive</span></code></a>(primitive, primitive_type, …)</p></td>
+<td><p>Create a primitive JSON.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.contributing.run_primitive" title="sigpro.contributing.run_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_primitive</span></code></a>(primitive[, primitive_type, …])</p></td>
+<td><p>Run a given <cite>primitive</cite> with the specified configuration.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="sigpro.contributing.make_primitive">
+<code class="sig-prename descclassname">sigpro.contributing.</code><code class="sig-name descname">make_primitive</code><span class="sig-paren">(</span><em class="sig-param">primitive</em>, <em class="sig-param">primitive_type</em>, <em class="sig-param">primitive_subtype</em>, <em class="sig-param">context_arguments=None</em>, <em class="sig-param">fixed_hyperparameters=None</em>, <em class="sig-param">tunable_hyperparameters=None</em>, <em class="sig-param">primitive_outputs=None</em>, <em class="sig-param">primitives_path='sigpro/primitives'</em>, <em class="sig-param">primitives_subfolders=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/contributing.html#make_primitive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.contributing.make_primitive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a primitive JSON.</p>
+<p>During the JSON creation the primitive function signature is validated to
+ensure that it matches the primitive type and subtype implicitly specified
+by the primitive name.</p>
+<p>Any additional function arguments are also validated to ensure that the
+function does actually expect them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitive</strong> (<em>str</em>) – The name of the primitive, the python path including the name of the
+module and the name of the function.</p></li>
+<li><p><strong>primitive_type</strong> (<em>str</em>) – Type of primitive.</p></li>
+<li><p><strong>primitive_subtype</strong> (<em>str</em>) – Subtype of the primitive.</p></li>
+<li><p><strong>context_arguments</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the context arguments.</p></li>
+<li><p><strong>fixed_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value that it
+should take.</p></li>
+<li><p><strong>tunable_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value and the
+range of values that it can take.</p></li>
+<li><p><strong>primitive_outputs</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the output values. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p></li>
+<li><p><strong>primitives_path</strong> (<em>str</em>) – Path to the root of the primitives folder, in which the primitives JSON will be stored.
+Defaults to <cite>sigpro/primitives</cite>.</p></li>
+<li><p><strong>primitives_subfolders</strong> (<em>bool</em>) – Whether to store the primitive JSON in a subfolder tree (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or to use a flat
+primitive name (<code class="docutils literal notranslate"><span class="pre">False</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the primitive specification arguments are not valid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Path of the generated JSON file.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.contributing.run_primitive">
+<code class="sig-prename descclassname">sigpro.contributing.</code><code class="sig-name descname">run_primitive</code><span class="sig-paren">(</span><em class="sig-param">primitive</em>, <em class="sig-param">primitive_type=None</em>, <em class="sig-param">primitive_subtype=None</em>, <em class="sig-param">amplitude_values=None</em>, <em class="sig-param">sampling_frequency=None</em>, <em class="sig-param">frequency_values=None</em>, <em class="sig-param">time_values=None</em>, <em class="sig-param">demo_row_index=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/contributing.html#run_primitive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.contributing.run_primitive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a given <cite>primitive</cite> with the specified configuration.</p>
+<p>Given a primitive and it’s hyperparameters, attempt to run this against either the data
+provided by the user or against the demo data. If there is no data provided, the type
+and subtype of the primitive must be passed as arguments if those are not specified inside
+the metadata. If the data it’s passed for the primitive there is no requirement of the type
+and subtype.</p>
+<p>In order to validate the primitive this function will run the following steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create an instance of the primitive.</p></li>
+<li><p>Call the primitive for each row in the data (the provided by the user or the demo)
+using the given hyperparameter values.</p></li>
+<li><p>Return a list of tuples with the output that the primitive generated</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitive</strong> (<em>str</em>) – Path or name of the primitive to be used.</p></li>
+<li><p><strong>primitive_type</strong> (<em>str</em>) – Type to which the primitive belongs to.</p></li>
+<li><p><strong>primitive_subtype</strong> (<em>str</em>) – Subtype to which the primitive belongs to.</p></li>
+<li><p><strong>amplitude_values</strong> (<em>numpy.ndarray</em><em> or </em><em>None</em>) – Array of floats representing signal values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>sampling_frequency</strong> (<em>float</em><em>, </em><em>int</em><em> or </em><em>None</em>) – Sampling frequency value passed in Hz or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>frequency_values</strong> (<em>numpy.ndarray</em><em> or </em><em>None</em>) – Array of floats representing frequency values for the given amplitude values
+or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>time_values</strong> (<em>numpy.ndarray</em><em> or </em><em>None</em>) – Array of floats representing time values or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>demo_row_index</strong> (<em>int</em><em> or </em><em>None</em>) – If <cite>int</cite>, return the value at that index if <cite>None</cite> return a random index. This is used
+if no amplitude values are provided.</p></li>
+<li><p><strong>context</strong> (<em>optional</em>) – Additional context arguments required to run the primitive.</p></li>
+<li><p><strong>hyperparameters</strong> (<em>optional</em>) – Additional hyperparameters or tunable hyperparameters arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple with the produced values from the primitive for each row of the demo data
+corresponding to the type and subtype of this.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sigpro.demo.html" class="btn btn-neutral float-right" title="sigpro.demo module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sigpro.transformations.frequency_time.stft.html" class="btn btn-neutral float-left" title="sigpro.transformations.frequency_time.stft module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

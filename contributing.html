@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing to SigPro &mdash; SigPro 0.0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Credits" href="authors.html" />
+    <link rel="prev" title="SigPro Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Contributing to SigPro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing-to-sigpro">
+<h1>Contributing to SigPro<a class="headerlink" href="#contributing-to-sigpro" title="Permalink to this headline">¶</a></h1>
+<p>Here you will find a series of steps that describe how to contribute a new implementation, fix or
+update to <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> library.</p>
+<div class="section" id="clone-the-repository">
+<h2>1. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>The first step would be to clone the <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> repository. In order to do so
+make sure that you have access to the repository by accessing it direcly
+<a class="reference external" href="https://github.com/signals-dev/SigPro/">https://github.com/signals-dev/SigPro/</a>.</p>
+<p>If you have access to the repository and you have your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> keys configured
+in your github account, you can clone it by using the following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:signals-dev/SigPro.git
+</pre></div>
+</div>
+<p>If you don’t have your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> keys configured you can clone the repository
+using your login name and password running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/signals-dev/SigPro
+</pre></div>
+</div>
+<p>Next, you can enter your repository folder, create a virtualenv and install
+the project and the development dependencies.
+<strong>Note</strong>: You need to have virtualenv and virtualenvwrapper installed for
+these steps to work</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> SigPro
+mkvirtualenv sigpro
+make install-develop
+</pre></div>
+</div>
+</div>
+<div class="section" id="prepare-your-branch">
+<h2>2. Prepare your branch<a class="headerlink" href="#prepare-your-branch" title="Permalink to this headline">¶</a></h2>
+<p>Before going any further, create the new <code class="docutils literal notranslate"><span class="pre">git</span></code> branch to which you will
+be pushing your development.</p>
+<p>To do so, type the following command with the desired name for your branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b &lt;name_of_your_branch&gt;
+</pre></div>
+</div>
+<p>Try to use the naming scheme of prefixing your branch with issue-X where X is
+the associated issue, such as issue-3-fix-foo-bug. And if you are not
+developing  on your own fork, further prefix the branch with your GitHub
+username, like githubusername/issue-3-fix-foo-bug.</p>
+</div>
+<div class="section" id="code-your-changes">
+<h2>3. Code your changes<a class="headerlink" href="#code-your-changes" title="Permalink to this headline">¶</a></h2>
+<p>Once you have your branch ready and set, you can start coding your changes.</p>
+<p>When doing so, ensure that the code is placed in its corresponding python
+file, and if you think that this doesn’t exist, create it in the location
+that you find more suitable. However, when it comes to <code class="docutils literal notranslate"><span class="pre">aggregations</span></code> and
+<code class="docutils literal notranslate"><span class="pre">tranformations</span></code>, those are bound to their type and subtype.</p>
+<p>Also, while hacking your changes, make sure to follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> style guide for python code
+and our <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> (the main change is that we allow 99 characters per
+line).</p>
+</div>
+<div class="section" id="test-your-changes">
+<h2>4. Test your changes<a class="headerlink" href="#test-your-changes" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have implemented your changes, make sure to  cover all your
+developments with the required unit tests, and that none of the old tests
+fail as consequence of your changes. For this, make sure to run the tests
+suite and check the code coverage by using the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make lint      <span class="c1"># Check code styling</span>
+$ make <span class="nb">test</span>      <span class="c1"># Run the tests</span>
+$ make coverage  <span class="c1"># Get the coverage report</span>
+</pre></div>
+</div>
+<p>Once you have finished coding your changes, make sure to run the following
+command to ensure that your changes pass all the styling checks and tests
+including other Python supported versions using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make test-all
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-pull-request">
+<h2>5. Create a pull request<a class="headerlink" href="#create-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>Once you have created and tested your primitive, you can create a pull
+request by doing the following steps:</p>
+<ol class="arabic simple">
+<li><p>(You did this previoulsy, but make sure) Create a new branch or ensure you are in the correct branch. Run the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> to see at which branch you are pointing. If you are in the desired follow the next step.</p></li>
+<li><p>Add the new files and the updated ones. By running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you will see the modified and <code class="docutils literal notranslate"><span class="pre">new/untracked</span></code> files. Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to <code class="docutils literal notranslate"><span class="pre">add</span></code> the files that involve your implementation, such as the new primitive <code class="docutils literal notranslate"><span class="pre">json</span></code> file, the new module with the new transformation or aggregation and other changes that you may have done to existing files (such as <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> if you updated or introduce a new dependency).</p></li>
+<li><p>Commit your changes using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Implement</span> <span class="pre">my</span> <span class="pre">new</span> <span class="pre">transformation&quot;</span></code>.</p></li>
+<li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">&lt;name_of_your_branch&gt;</span></code>.</p></li>
+<li><p>Go to <a class="reference external" href="https://github.com/signals-dev/SigPro/">https://github.com/signals-dev/SigPro/</a> and create a pull request from this branch to the master branch.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="authors.html" class="btn btn-neutral float-right" title="Credits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral float-left" title="SigPro Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

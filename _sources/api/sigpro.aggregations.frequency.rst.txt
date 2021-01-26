@@ -1,0 +1,14 @@
+sigpro.aggregations.frequency package
+=====================================
+
+.. automodule:: sigpro.aggregations.frequency
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sigpro.aggregations.frequency.band

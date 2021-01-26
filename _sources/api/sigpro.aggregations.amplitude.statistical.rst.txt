@@ -1,0 +1,7 @@
+sigpro.aggregations.amplitude.statistical module
+================================================
+
+.. automodule:: sigpro.aggregations.amplitude.statistical
+   :members:
+   :undoc-members:
+   :show-inheritance:

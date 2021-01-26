@@ -1,0 +1,23 @@
+sigpro package
+==============
+
+.. automodule:: sigpro
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   sigpro.aggregations
+   sigpro.transformations
+
+Submodules
+----------
+
+.. toctree::
+
+   sigpro.contributing
+   sigpro.demo

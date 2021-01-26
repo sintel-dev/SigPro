@@ -1,0 +1,7 @@
+sigpro.aggregations.frequency\_time package
+===========================================
+
+.. automodule:: sigpro.aggregations.frequency_time
+   :members:
+   :undoc-members:
+   :show-inheritance:

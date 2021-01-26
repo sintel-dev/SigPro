@@ -1,0 +1,7 @@
+sigpro.transformations.amplitude.identity module
+================================================
+
+.. automodule:: sigpro.transformations.amplitude.identity
+   :members:
+   :undoc-members:
+   :show-inheritance:

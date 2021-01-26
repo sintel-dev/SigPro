@@ -1,0 +1,7 @@
+sigpro.demo module
+==================
+
+.. automodule:: sigpro.demo
+   :members:
+   :undoc-members:
+   :show-inheritance:
