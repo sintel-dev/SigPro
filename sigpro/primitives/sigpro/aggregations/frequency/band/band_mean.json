@@ -1,0 +1,37 @@
+{
+    "name": "sigpro.aggregations.frequency.band.band_mean",
+    "primitive": "sigpro.aggregations.frequency.band.band_mean",
+    "classifiers": {
+        "type": "aggregation",
+        "subtype": "frequency"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            },
+            {
+                "name": "frequency_values",
+                "type": "numpy.ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "value",
+                "type": "float"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "min_frequency": {
+                "type": "float"
+            },
+            "max_frequency": {
+                "type": "float"
+            }
+        },
+        "tunable": {}
+    }
+}
