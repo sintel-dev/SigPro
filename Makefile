@@ -81,48 +81,51 @@ install-test: clean-build clean-pyc ## install the package and test dependencies
 install-develop: clean-build clean-pyc ## install the package in editable mode and dependencies for development
 	pip install -e .[dev]
 
-MINIMUM := $(shell sed -n '/install_requires = \[/,/]/p' setup.py | head -n-1 | tail -n+2 | sed 's/ *\(.*\),$?$$/\1/g' | tr '>' '=')
-
-.PHONY: install-minimum
-install-minimum: ## install the minimum supported versions of the package dependencies
-	pip install $(MINIMUM)
 
 # LINT TARGETS
 
 .PHONY: lint
 lint: ## check style with flake8 and isort
-	flake8 sigpro
-	flake8 tests --ignore=D
-	isort -c --recursive sigpro tests
-	pylint sigpro --rcfile=setup.cfg
+	invoke lint
 
 .PHONY: fix-lint
 fix-lint: ## fix lint issues using autoflake, autopep8, and isort
-	find sigpro tests -name '*.py' | xargs autoflake --in-place --remove-all-unused-imports --remove-unused-variables
-	autopep8 --in-place --recursive --aggressive sigpro tests
-	isort --apply --atomic --recursive sigpro tests
+	find sigpro -name '*.py' | xargs autoflake --in-place --remove-all-unused-imports --remove-unused-variables
+	autopep8 --in-place --recursive --aggressive sigpro
+	isort --apply --atomic --recursive sigpro
 
+	find tests -name '*.py' | xargs autoflake --in-place --remove-all-unused-imports --remove-unused-variables
+	autopep8 --in-place --recursive --aggressive tests
+	isort --apply --atomic --recursive tests
 
 # TEST TARGETS
 
 .PHONY: test-unit
 test-unit: ## run tests quickly with the default Python
-	python -m pytest --cov=sigpro
+	invoke pytest
 
 .PHONY: test-readme
 test-readme: ## run the readme snippets
-	rm -rf tests/readme_test && mkdir tests/readme_test
-	cd tests/readme_test && rundoc run --single-session python3 -t python3 ../../README.md
-	rm -rf tests/readme_test
+	invoke readme
+
+
+.PHONY: test-tutorials
+test-tutorials: ## run the tutorial notebooks
+	invoke tutorials
+
 
 .PHONY: test
-test: test-unit test-readme ## test everything that needs test dependencies
+test: test-unit test-readme test-tutorials ## test everything that needs test dependencies
+
+.PHONY: check-dependencies
+check-dependencies: ## test if there are any broken dependencies
+	pip check
 
 .PHONY: test-devel
-test-devel: lint docs ## test everything that needs development dependencies
+test-devel: check-dependencies lint docs ## test everything that needs development dependencies
 
 .PHONY: test-all
-test-all: ## test using tox
+test-all:
 	tox -r
 
 .PHONY: coverage
@@ -132,12 +135,11 @@ coverage: ## check code coverage quickly with the default Python
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
-
 # DOCS TARGETS
 
 .PHONY: docs
 docs: clean-docs ## generate Sphinx HTML documentation, including API docs
-	sphinx-apidoc --separate --no-toc -o docs/api/ sigpro
+	sphinx-apidoc --module-first --separate -T -o docs/api/ sigpro
 	$(MAKE) -C docs html
 
 .PHONY: view-docs
@@ -146,7 +148,7 @@ view-docs: docs ## view docs in browser
 
 .PHONY: serve-docs
 serve-docs: view-docs ## compile the docs watching for changes
-	watchmedo shell-command -W -R -D -p '*.rst;*.md' -c '$(MAKE) -C docs html' docs
+	watchmedo shell-command -W -R -D -p '*.rst;*.md' -c '$(MAKE) -C docs html' .
 
 
 # RELEASE TARGETS
@@ -170,7 +172,7 @@ publish-test: dist publish-confirm ## package and upload a release on TestPyPI
 
 .PHONY: publish
 publish: dist publish-confirm ## package and upload a release
-	twine upload --repository-url https://pypi.dailab.ml:8080 dist/*
+	twine upload dist/*
 
 .PHONY: bumpversion-release
 bumpversion-release: ## Merge master to stable and bumpversion release
