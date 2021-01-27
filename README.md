@@ -5,8 +5,7 @@
 
 [![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/SigPro.svg)](https://pypi.python.org/pypi/SigPro)
-[![Travis CI Shield](https://travis-ci.org/signals-dev/SigPro.svg?branch=master)](https://travis-ci.org/signals-dev/SigPro)
-[![Coverage Status](https://codecov.io/gh/signals-dev/SigPro/branch/master/graph/badge.svg)](https://codecov.io/gh/signals-dev/SigPro)
+[![Tests](https://github.com/signals-dev/SigPro/workflows/Run%20Tests/badge.svg)](https://github.com/signals-dev/SigPro/actions?query=workflow%3A%22Run+Tests%22+branch%3Amaster)
 [![Downloads](https://pepy.tech/badge/sigpro)](https://pepy.tech/project/sigpro)
 
 
