@@ -11,14 +11,14 @@ from scipy.signal import stft
 DEMO_PATH = os.path.join(os.path.dirname(__file__), 'data')
 
 
-def get_demo_data():
+def get_demo_data(nrows=None):
     """Get a demo ``pandas.DataFrame`` containing the accepted data format.
 
     Returns:
         A ``pd.DataFrame`` containing as ``values`` the signal values.
     """
     demo_path = os.path.join(DEMO_PATH, 'demo_timeseries.csv')
-    df = pd.read_csv(demo_path, parse_dates=['timestamp'])
+    df = pd.read_csv(demo_path, parse_dates=['timestamp'], nrows=nrows)
     df["values"] = df["values"].apply(json.loads).apply(list)
     return df
 
@@ -74,12 +74,12 @@ def get_frequency_demo(index=None, real=True):
     """
     amplitude_values, sampling_frequency = get_amplitude_demo(index)
     fft_values = np.fft.fft(amplitude_values)
-    frequencies = np.fft.fftfreq(len(fft_values), sampling_frequency)
+    length = len(fft_values)
+    frequencies = np.fft.fftfreq(len(fft_values), 1 / sampling_frequency)
     if real:
         fft_values = np.real(fft_values)
-        frequencies = np.real(frequencies)
 
-    return fft_values, frequencies
+    return fft_values[0:length // 2], frequencies[0:length // 2]
 
 
 def get_frequency_time_demo(index=None, real=True):
