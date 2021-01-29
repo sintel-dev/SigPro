@@ -1,0 +1,61 @@
+{
+    "name": "sigpro.process_signals.process_signals",
+    "primitive": "sigpro.process_signals.process_signals",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "data",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "transformations",
+                "type": "list"
+            },
+            {
+                "name": "aggregations",
+                "type": "list"
+            },
+            {
+                "name": "sampling_frequency",
+                "type": "int",
+                "default": 1000
+            },
+            {
+                "name": "keep_values",
+                "type": "bool",
+                "default": false
+            },
+            {
+                "name": "values_column",
+                "type": "str",
+                "default": "values"
+            }
+        ],
+        "output": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            },
+            {
+                "name": "frequency_values",
+                "type": "numpy.ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "keep_values": {
+                "type": "bool",
+                "default": false
+            },
+            "values_column": {
+                "type": "str",
+                "default": "values"
+            }
+        }
+    }
+}

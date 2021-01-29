@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
+from mlblocks import MLBlock
 from pandas import Timestamp
 from pandas.testing import assert_frame_equal
 
@@ -152,6 +153,48 @@ def test_process_signals_keep_values():
             Timestamp('2020-01-01 00:00:00'),
         ],
         'signal_values': [[1, 2, 3]],
+        'identity.mean.mean_value': [2.0],
+    })
+
+    assert_frame_equal(result, expected_result)
+
+
+def test_process_signals_primitive():
+    primitive = 'sigpro.process_signals.process_signals'
+    transformations = [
+        {
+            'name': 'identity',
+            'primitive': 'sigpro.transformations.amplitude.identity.identity',
+        },
+
+    ]
+    aggregations = [
+        {
+            'name': 'mean',
+            'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+        },
+    ]
+    data = pd.DataFrame({
+        'timestamp': [
+            Timestamp('2020-01-01 00:00:00'),
+        ],
+        'signal_values': [[1, 2, 3]],
+    })
+
+
+    init_params = {
+        'data': data,
+        'transformations': transformations,
+        'aggregations': aggregations,
+        'values_column': 'signal_values'
+    }
+
+    primitive = MLBlock(primitive, **init_params)
+    result = primitive.produce()
+    expected_result = pd.DataFrame({
+        'timestamp': [
+            Timestamp('2020-01-01 00:00:00'),
+        ],
         'identity.mean.mean_value': [2.0],
     })
 

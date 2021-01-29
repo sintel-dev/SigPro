@@ -79,7 +79,7 @@ def _build_pipeline(transformations, aggregations):
     )
 
 
-def _apply_pipeline(row, pipeline, values_column, kwargs):
+def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
     """Apply a ``mlblocks.MLPipeline`` to a row.
 
     Apply a ``MLPipeline`` to a row of a ``pd.DataFrame``, this function can
@@ -99,7 +99,7 @@ def _apply_pipeline(row, pipeline, values_column, kwargs):
     amplitude_values = row[values_column]
     output = pipeline.predict(
         amplitude_values=amplitude_values,
-        **kwargs
+        sampling_frequency=sampling_frequency,
     )
     output_names = pipeline.get_output_names()
 
@@ -109,8 +109,8 @@ def _apply_pipeline(row, pipeline, values_column, kwargs):
     return pd.Series(dict(zip(output_names, output)))
 
 
-def process_signals(data, transformations, aggregations, keep_values=False,
-                    values_column='values', **kwargs):
+def process_signals(data, transformations, aggregations, sampling_frequency=None,
+                    keep_values=False, values_column='values'):
     """Process Signals.
 
     The Process Signals is responsible for applying a collection of primitives specified by the
@@ -136,6 +136,8 @@ def process_signals(data, transformations, aggregations, keep_values=False,
             List of dictionaries containing the transformation primitives.
         aggregations (list):
             List of dictionaries containing the aggregation primitives.
+        sampling_frequency (int):
+            Sampling frequency for the data if required by the transformation. Defaults to ``None``
         target_column (str):
             The name of the column that contains the signal values. Defaults to ``values``.
         keep_values (bool):
@@ -148,7 +150,12 @@ def process_signals(data, transformations, aggregations, keep_values=False,
             data frame, otherwise the original signal values will be deleted.
     """
     pipeline = _build_pipeline(transformations, aggregations)
-    features = data.apply(_apply_pipeline, args=(pipeline, values_column, kwargs), axis=1)
+    features = data.apply(
+        _apply_pipeline,
+        args=(pipeline, values_column, sampling_frequency),
+        axis=1
+    )
+
     output = pd.concat([data, features], axis=1)
     if not keep_values:
         del output[values_column]
