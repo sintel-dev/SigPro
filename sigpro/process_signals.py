@@ -93,9 +93,13 @@ def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
             Pipeline to be used for producing the results.
         values_column (str):
             The name of the column that contains the signal values.
-        kwargs (dict):
-            Dictionary with additional arguments for the pipeline.
+        sampling_frequency (int or str):
+            If ``int`` use that value for all the rows. If ``str`` use the
+            column from the dataframe with that name.
     """
+    if isinstance(sampling_frequency, str):
+        sampling_frequency = row[sampling_frequency]
+
     amplitude_values = row[values_column]
     output = pipeline.predict(
         amplitude_values=amplitude_values,
@@ -110,7 +114,7 @@ def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
 
 
 def process_signals(data, transformations, aggregations, sampling_frequency=None,
-                    keep_values=False, values_column='values'):
+                    values_column='values', keep_values=False):
     """Process Signals.
 
     The Process Signals is responsible for applying a collection of primitives specified by the
@@ -136,8 +140,9 @@ def process_signals(data, transformations, aggregations, sampling_frequency=None
             List of dictionaries containing the transformation primitives.
         aggregations (list):
             List of dictionaries containing the aggregation primitives.
-        sampling_frequency (int):
-            Sampling frequency for the data if required by the transformation. Defaults to ``None``
+        sampling_frequency (int or str):
+            If ``int`` use that value for all the rows. If ``str`` use the column from the
+            dataframe with that name.
         target_column (str):
             The name of the column that contains the signal values. Defaults to ``values``.
         keep_values (bool):

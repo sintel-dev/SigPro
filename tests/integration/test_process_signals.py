@@ -144,8 +144,8 @@ def test_process_signals_keep_values():
         data,
         transformations,
         aggregations,
-        keep_values=True,
         values_column='signal_values',
+        keep_values=True,
     )
     # assert
     expected_result = pd.DataFrame({
@@ -195,6 +195,87 @@ def test_process_signals_primitive():
             Timestamp('2020-01-01 00:00:00'),
         ],
         'identity.mean.mean_value': [2.0],
+    })
+
+    assert_frame_equal(result, expected_result)
+
+
+def test_process_signals_sampling_frequency_str():
+    """Test the function ``process_signals``.
+
+    Test that ``process_signals`` applies a list of primitives to the demo data and generates
+    new features.
+
+    Input:
+        - data (pd.DataFrame): The demo data.
+        - transformations (list): List of sigpro transformations to apply.
+        - aggregations (list): List of sigpro aggregations to apply.
+        - sampling_frequency: Name of the column that contains the sampling frequency.
+        - values_column (str): Column name for the signals values.
+        - keep_values (bool): Return the values column or delete it.
+
+    Output:
+        - The featurized dataframe.
+    """
+    # Setup
+    transformations = [
+        {
+            'name': 'fft',
+            'primitive': 'sigpro.transformations.frequency.fft.fft_real',
+        },
+        {
+            'name': 'band',
+            'primitive': 'sigpro.transformations.frequency.band.frequency_band',
+            'init_params': {
+                'low': 9,
+                'high': 21
+            }
+        },
+    ]
+
+    aggregations = [
+        {
+            'name': 'mean',
+            'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+        },
+    ]
+
+    data = pd.DataFrame({
+        'timestamp': [
+            Timestamp('2020-01-01 00:00:00'),
+            Timestamp('2020-01-01 01:00:00'),
+        ],
+        'signal_values': [
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        ],
+        'sampling_frequency_values': [
+            100,
+            10
+        ],
+    })
+
+    # run
+    result = process_signals(
+        data,
+        transformations,
+        aggregations,
+        values_column='signal_values',
+        sampling_frequency='sampling_frequency_values'
+    )
+
+    # assert
+
+    expected_result = pd.DataFrame({
+        'timestamp': [
+            Timestamp('2020-01-01 00:00:00'),
+            Timestamp('2020-01-01 01:00:00'),
+        ],
+        'sampling_frequency_values': [
+            100,
+            10
+        ],
+        'fft.band.mean.mean_value': [-5.0, float('nan')],
     })
 
     assert_frame_equal(result, expected_result)

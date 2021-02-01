@@ -22,7 +22,7 @@
             {
                 "name": "sampling_frequency",
                 "type": "int",
-                "default": 1000
+                "default": null
             },
             {
                 "name": "keep_values",
