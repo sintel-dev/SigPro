@@ -181,7 +181,6 @@ def test_process_signals_primitive():
         'signal_values': [[1, 2, 3]],
     })
 
-
     init_params = {
         'data': data,
         'transformations': transformations,
