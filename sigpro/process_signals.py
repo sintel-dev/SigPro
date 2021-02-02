@@ -36,7 +36,9 @@ def _build_pipeline(transformations, aggregations):
     primitives = []
     init_params = {}
     prefix = []
+    outputs = []
     counter = Counter()
+
     for transformation in transformations:
         prefix.append(transformation['name'])
         primitive = transformation['primitive']
@@ -47,11 +49,10 @@ def _build_pipeline(transformations, aggregations):
         if params:
             init_params[primitive_name] = params
 
-    prefix = '.'.join(prefix)
-    outputs = []
+    prefix = '.'.join(prefix) if prefix else ''
 
     for aggregation in aggregations:
-        aggregation_name = f'{prefix}.{aggregation["name"]}'
+        aggregation_name = f'{prefix}.{aggregation["name"]}' if prefix else aggregation['name']
 
         primitive = aggregation['primitive']
         counter[primitive] += 1
@@ -72,14 +73,16 @@ def _build_pipeline(transformations, aggregations):
         if params:
             init_params[primitive_name] = params
 
+    outputs = {'default': outputs} if outputs else None
+
     return MLPipeline(
         primitives,
         init_params=init_params,
-        outputs={'default': outputs}
+        outputs=outputs
     )
 
 
-def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
+def _apply_pipeline(row, pipeline, values_column_name):
     """Apply a ``mlblocks.MLPipeline`` to a row.
 
     Apply a ``MLPipeline`` to a row of a ``pd.DataFrame``, this function can
@@ -91,19 +94,14 @@ def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
             Row used to apply the pipeline to.
         pipeline (mlblocks.MLPipeline):
             Pipeline to be used for producing the results.
-        values_column (str):
+        values_column_name (str):
             The name of the column that contains the signal values.
-        sampling_frequency (int or str):
-            If ``int`` use that value for all the rows. If ``str`` use the
-            column from the dataframe with that name.
     """
-    if isinstance(sampling_frequency, str):
-        sampling_frequency = row[sampling_frequency]
-
-    amplitude_values = row[values_column]
+    context = row.to_dict()
+    amplitude_values = context.pop(values_column_name)
     output = pipeline.predict(
         amplitude_values=amplitude_values,
-        sampling_frequency=sampling_frequency,
+        **context,
     )
     output_names = pipeline.get_output_names()
 
@@ -113,8 +111,8 @@ def _apply_pipeline(row, pipeline, values_column, sampling_frequency):
     return pd.Series(dict(zip(output_names, output)))
 
 
-def process_signals(data, transformations, aggregations, sampling_frequency=None,
-                    values_column='values', keep_values=False):
+def process_signals(data, transformations, aggregations,
+                    values_column_name='values', keep_values=False):
     """Process Signals.
 
     The Process Signals is responsible for applying a collection of primitives specified by the
@@ -140,10 +138,7 @@ def process_signals(data, transformations, aggregations, sampling_frequency=None
             List of dictionaries containing the transformation primitives.
         aggregations (list):
             List of dictionaries containing the aggregation primitives.
-        sampling_frequency (int or str):
-            If ``int`` use that value for all the rows. If ``str`` use the column from the
-            dataframe with that name.
-        target_column (str):
+        values_column_name (str):
             The name of the column that contains the signal values. Defaults to ``values``.
         keep_values (bool):
             Whether or not to keep the original signal values or remove them.
@@ -157,12 +152,13 @@ def process_signals(data, transformations, aggregations, sampling_frequency=None
     pipeline = _build_pipeline(transformations, aggregations)
     features = data.apply(
         _apply_pipeline,
-        args=(pipeline, values_column, sampling_frequency),
+        args=(pipeline, values_column_name),
         axis=1
     )
 
-    output = pd.concat([data, features], axis=1)
-    if not keep_values:
-        del output[values_column]
+    data = pd.concat([data, features], axis=1)
 
-    return output
+    if not keep_values:
+        del data[values_column_name]
+
+    return data

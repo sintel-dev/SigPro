@@ -20,31 +20,17 @@
                 "type": "list"
             },
             {
-                "name": "sampling_frequency",
-                "type": "int",
-                "default": null
-            },
-            {
                 "name": "keep_values",
                 "type": "bool",
                 "default": false
             },
             {
-                "name": "values_column",
+                "name": "values_column_name",
                 "type": "str",
                 "default": "values"
             }
         ],
-        "output": [
-            {
-                "name": "amplitude_values",
-                "type": "numpy.ndarray"
-            },
-            {
-                "name": "frequency_values",
-                "type": "numpy.ndarray"
-            }
-        ]
+        "output": []
     },
     "hyperparameters": {
         "fixed": {
@@ -52,7 +38,7 @@
                 "type": "bool",
                 "default": false
             },
-            "values_column": {
+            "values_column_name": {
                 "type": "str",
                 "default": "values"
             }
