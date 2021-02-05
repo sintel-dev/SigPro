@@ -5,6 +5,8 @@ include LICENSE
 include README.md
 include sigpro/data/demo_timeseries.csv
 
+recursive-include sigpro *json
+
 recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
