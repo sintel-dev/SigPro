@@ -232,7 +232,7 @@ def test_process_signals_primitive():
     Output:
         - The featurized dataframe.
     """
-    primitive = 'sigpro.process_signals.process_signals'
+    primitive = 'sigpro.process_signals'
     transformations = [
         {
             'name': 'identity',
