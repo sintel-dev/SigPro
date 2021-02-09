@@ -22,9 +22,10 @@ def fft(amplitude_values, sampling_frequency):
             * `frequency_values (numpy.ndarray)`
     """
     amplitude_values = np.fft.fft(amplitude_values)
-    frequency_values = np.fft.fftfreq(len(amplitude_values), sampling_frequency)
+    frequency_values = np.fft.fftfreq(len(amplitude_values), 1 / sampling_frequency)
 
-    return amplitude_values, frequency_values
+    length = len(frequency_values) // 2
+    return amplitude_values[:length], frequency_values[:length]
 
 
 def fft_real(amplitude_values, sampling_frequency):
@@ -48,7 +49,6 @@ def fft_real(amplitude_values, sampling_frequency):
             * `amplitude_values (numpy.ndarray)`
             * `frequency_values (numpy.ndarray)`
     """
-    amplitude_values = np.real(np.fft.fft(amplitude_values))
-    frequency_values = np.fft.fftfreq(len(amplitude_values), sampling_frequency)
+    amplitude_values, frequency_values = fft(amplitude_values, sampling_frequency)
 
-    return amplitude_values, frequency_values
+    return np.real(amplitude_values), np.real(frequency_values)

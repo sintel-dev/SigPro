@@ -116,5 +116,5 @@ def test_run_primitive_aggregation_hyperparameters():
 
 def test_run_primitive_transformation():
     result = run_primitive('sigpro.transformations.frequency.fft.fft')
-    assert len(result[0]) == 400
-    assert len(result[1]) == 400
+    assert len(result[0]) == 200
+    assert len(result[1]) == 200
