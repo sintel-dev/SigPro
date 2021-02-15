@@ -1,116 +1,189 @@
-# -*- coding: utf-8 -*-
-
 """Unit tests for the sigpro.process_signals module."""
 
+import pandas as pd
 
-def test_process_signals_target_column():
-    """Test the function ``process_signals``, if a target column is passed.
-
-    Ensure that the primitives are being applied to the specified target column.
-
-    Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
-    Output:
-        - The featurized dataframe using the selected column.
-    """
-    pass
+from sigpro.process_signals import process_signals
 
 
-def test_process_signals_multiple_first_level_primitives():
-    """Test the function ``process_signals`` with more than one first level primitive.
+def test_process_signals_keep_columns_false():
+    """Test process_signals with keep_columns False.
 
-    Process signals is expected to call each one of the first level primitives with
-    the original ``target_column``.
+    If keep_columns is false only the generated features are
+    returned.
 
     Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
+        - data, transformations, aggregations
+        - keep_columns=False
+
     Output:
-        - The featurized dataframe using more than one first level primitive.
-    Mock:
-        - Primitives
+        - pandas.DataFrame with the specified aggregations and nothing else.
+        - feature_names that match the columns in the data frame.
     """
-    pass
+
+    data = pd.DataFrame({
+        'values': [[1, 2, 3], [4, 5, 6]],
+        'dummy': [1, 2],
+    })
+
+    output, feature_columns = process_signals(
+        data,
+        transformations=[
+            {
+                'name': 'identity',
+                'primitive': 'sigpro.transformations.amplitude.identity.identity'
+            }
+        ],
+        aggregations=[
+            {
+                'name': 'mean',
+                'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+            }
+        ],
+        keep_columns=False
+    )
+
+    expected = pd.DataFrame({
+        'identity.mean.mean_value': [2.0, 5.0]
+    })
+    pd.testing.assert_frame_equal(expected, output)
+
+    assert feature_columns == ['identity.mean.mean_value']
 
 
-def test_process_signals_multiple_second_level_primitives():
-    """Test the function ``process_signals`` with more than one second level primitives.
+def test_process_signals_keep_columns_true():
+    """Test process_signals with keep_columns True.
 
-    Process signals is expected to call each of the second level primitives (the ones specified
-    for each first level primitive) with the output of it's parent primitive output.
+    If keep_columns is true the input columns are kept in the output
+    dataframe
 
     Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
+        - data, transformations, aggregations
+        - keep_columns=True
+
     Output:
-        - The featurized dataframe using more than one second level primitives.
+        - pandas.DataFrame with the specified aggregations + the input columns
+        - feature_names that match the new columns in the data frame.
     """
-    pass
+
+    data = pd.DataFrame({
+        'values': [[1, 2, 3], [4, 5, 6]],
+        'dummy': [1, 2],
+    })
+
+    output, feature_columns = process_signals(
+        data,
+        transformations=[
+            {
+                'name': 'identity',
+                'primitive': 'sigpro.transformations.amplitude.identity.identity'
+            }
+        ],
+        aggregations=[
+            {
+                'name': 'mean',
+                'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+            }
+        ],
+        keep_columns=True
+    )
+
+    expected = pd.DataFrame({
+        'values': [[1, 2, 3], [4, 5, 6]],
+        'dummy': [1, 2],
+        'identity.mean.mean_value': [2.0, 5.0]
+    })
+    pd.testing.assert_frame_equal(expected, output)
+
+    assert feature_columns == ['identity.mean.mean_value']
 
 
-def test_process_signals_multiple_transformations():
-    """Test the function ``process_signals`` that can apply more than one transformation.
+def test_process_signals_keep_columns_list():
+    """Test process_signals with keep_columns passed as a list.
 
-    After a transformation to the ``target_column`` has been applied, there could be another
-    transformation and/or aggregation to be applied afterwards. Ensure that a transformation
-    can be applied and it's primitives.
+    If keep_columns is a list keep the indicated columns in the output
+    dataframe and drop the rest.
 
     Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
+        - data (with a 'dummy' column), transformations, aggregations
+        - keep_columns=['dummy']
+
     Output:
-        - The featurized dataframe using multiple transformations.
+        - pandas.DataFrame with the specified aggregations + the 'dummy' column.
+        - feature_names that match the new columns in the data frame.
     """
-    pass
+
+    data = pd.DataFrame({
+        'values': [[1, 2, 3], [4, 5, 6]],
+        'dummy': [1, 2],
+    })
+
+    output, feature_columns = process_signals(
+        data,
+        transformations=[
+            {
+                'name': 'identity',
+                'primitive': 'sigpro.transformations.amplitude.identity.identity'
+            }
+        ],
+        aggregations=[
+            {
+                'name': 'mean',
+                'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+            }
+        ],
+        keep_columns=['dummy'],
+    )
+
+    expected = pd.DataFrame({
+        'dummy': [1, 2],
+        'identity.mean.mean_value': [2.0, 5.0]
+    })
+    pd.testing.assert_frame_equal(expected, output)
+
+    assert feature_columns == ['identity.mean.mean_value']
 
 
-def test_process_signals_nomenclature():
-    """Test the function ``process_signals`` that the names specified are as expected.
+def test_process_signals_feature_columns_input():
+    """Test process_signals with feature_columns as input.
 
-    When a new feature is generated this comes with a name which comes specified by the
-    name of the previous level primitive and the following primitive name usually it's
-    ``transformation_name_aggregation_name``.
+    If feature_columns list is passed those columns are considered
+    feature columns in the outpu.
 
     Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
+        - data (with a 'dummy' column), transformations, aggregations
+        - feature_columns='dummy'
+
     Output:
-        - The featurized dataframe with the expected column names.
+        - pandas.DataFrame with the specified aggregations and the 'dummy' column.
+        - feature_names that match the columns in the data frame + 'dummy'.
     """
-    pass
 
+    data = pd.DataFrame({
+        'values': [[1, 2, 3], [4, 5, 6]],
+        'dummy': [1, 2],
+    })
 
-def test_process_signals_first_level_hyperparameters():
-    """Test the function ``process_signals`` that uses the specified hyperparameters.
+    output, feature_columns = process_signals(
+        data,
+        transformations=[
+            {
+                'name': 'identity',
+                'primitive': 'sigpro.transformations.amplitude.identity.identity'
+            }
+        ],
+        aggregations=[
+            {
+                'name': 'mean',
+                'primitive': 'sigpro.aggregations.amplitude.statistical.mean',
+            }
+        ],
+        feature_columns=['dummy']
+    )
 
-    Ensure that the specified hyperparameters are used for the first level primitives.
+    expected = pd.DataFrame({
+        'dummy': [1, 2],
+        'identity.mean.mean_value': [2.0, 5.0]
+    })
+    pd.testing.assert_frame_equal(expected, output)
 
-    Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
-    Output:
-        - The featurized dataframe.
-    """
-    pass
-
-
-def test_process_signals_second_level_hyperparameters():
-    """Test the function ``process_signals`` that uses the specified hyperparameters.
-
-    Ensure that the specified hyperparameters are used for the second level primitives.
-
-    Input:
-        - data (pd.DataFrame).
-        - primitives (list).
-        - target_column (str).
-    Output:
-        - The featurized dataframe.
-    """
-    pass
+    assert feature_columns == ['dummy', 'identity.mean.mean_value']

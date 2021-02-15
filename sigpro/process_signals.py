@@ -111,9 +111,9 @@ def _apply_pipeline(row, pipeline, values_column_name):
     return pd.Series(dict(zip(output_names, output)))
 
 
-def process_signals(data, transformations, aggregations,
-                    values_column_name='values', keep_values=False):
-    """Process Signals.
+def process_signals(data, transformations, aggregations, values_column_name='values',
+                    keep_columns=False, feature_columns=None):
+    """Process Signals applying multiple transformation and aggregation primitives.
 
     The Process Signals is responsible for applying a collection of primitives specified by the
     user in order to create features for the given data.
@@ -140,14 +140,21 @@ def process_signals(data, transformations, aggregations,
             List of dictionaries containing the aggregation primitives.
         values_column_name (str):
             The name of the column that contains the signal values. Defaults to ``values``.
-        keep_values (bool):
-            Whether or not to keep the original signal values or remove them.
+        keep_columns (Union[bool, list]):
+            Whether to keep non-feature columns in the output DataFrame or not.
+            If a list of column names are passed, those columns are kept.
+        feature_columns (list):
+            List of column names from the input data frame that must be considered as
+            features and should not be dropped.
 
     Returns:
-        pandas.DataFrame:
-            A data frame with new feature columns by applying the previous primitives. If
-            ``keep_values`` is ``True`` the original signal values will be conserved in the
-            data frame, otherwise the original signal values will be deleted.
+        tuple:
+            pandas.DataFrame:
+                A data frame with new feature columns by applying the previous primitives. If
+                ``keep_values`` is ``True`` the original signal values will be conserved in the
+                data frame, otherwise the original signal values will be deleted.
+            list:
+                A list with the feature names generated.
     """
     pipeline = _build_pipeline(transformations, aggregations)
     features = data.apply(
@@ -155,10 +162,16 @@ def process_signals(data, transformations, aggregations,
         args=(pipeline, values_column_name),
         axis=1
     )
-
     data = pd.concat([data, features], axis=1)
 
-    if not keep_values:
-        del data[values_column_name]
+    if feature_columns:
+        feature_columns = feature_columns + list(features.columns)
+    else:
+        feature_columns = list(features.columns)
 
-    return data
+    if isinstance(keep_columns, list):
+        data = data[keep_columns + feature_columns]
+    elif not keep_columns:
+        data = data[feature_columns]
+
+    return data, feature_columns
