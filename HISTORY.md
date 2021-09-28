@@ -1,5 +1,10 @@
 # History
 
+## 0.0.3 - 2021-09-27
+
+### Features
+* Add `process_signals` function to take a collection of primitives and create features for the given data. 
+
 ## 0.0.2 - 2021-02-05
 
 ### Bug Fixes
