@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SigPro: Signal Processing Tools for Machine Learning &mdash; SigPro 0.0.2 documentation</title>
+  <title>SigPro: Signal Processing Tools for Machine Learning &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -93,7 +94,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -110,6 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -147,12 +149,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -230,30 +236,30 @@
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/SigPro"><img alt="PyPi Shield" src="https://img.shields.io/pypi/v/SigPro.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/signals-dev/SigPro/actions?query=workflow%3A%22Run+Tests%22+branch%3Amaster"><img alt="Tests" src="https://github.com/signals-dev/SigPro/workflows/Run%20Tests/badge.svg" /></a>
 <a class="reference external image-reference" href="https://pepy.tech/project/sigpro"><img alt="Downloads" src="https://pepy.tech/badge/sigpro" /></a>
-<div class="section" id="sigpro-signal-processing-tools-for-machine-learning">
+<section id="sigpro-signal-processing-tools-for-machine-learning">
 <h1>SigPro: Signal Processing Tools for Machine Learning<a class="headerlink" href="#sigpro-signal-processing-tools-for-machine-learning" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>License: <a class="reference external" href="https://github.com/signals-dev/SigPro/blob/master/LICENSE">MIT</a></p></li>
 <li><p>Development Status: <a class="reference external" href="https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha">Pre-Alpha</a></p></li>
 <li><p>Homepage: <a class="reference external" href="https://github.com/signals-dev/SigPro">https://github.com/signals-dev/SigPro</a></p></li>
 </ul>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>SigPro offers an end-to-end solution to efficiently apply multiple <em>signal processing techniques</em>
 to convert <em>raw time series</em> into <em>feature time series</em> that encode the knowledge of domain experts
 in order to solve time series machine learning problems.</p>
-</div>
-</div>
-<div class="section" id="install">
+</section>
+</section>
+<section id="install">
 <h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="requirements">
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p><strong>SigPro</strong> has been developed and tested on <a class="reference external" href="https://www.python.org/downloads/">Python 3.6, 3.7 and 3.8</a>
 on GNU/Linux and macOS systems.</p>
 <p>Also, although it is not strictly required, the usage of a <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> is highly recommended in order to avoid
 interfering with other software installed in the system where <strong>SigPro</strong> is run.</p>
-</div>
-<div class="section" id="install-with-pip">
+</section>
+<section id="install-with-pip">
 <h2>Install with pip<a class="headerlink" href="#install-with-pip" title="Permalink to this headline">¶</a></h2>
 <p>The easiest and recommended way to install <strong>SigPro</strong> is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sigpro
@@ -262,9 +268,9 @@ interfering with other software installed in the system where <strong>SigPro</st
 <p>This will pull and install the latest stable release from <a class="reference external" href="https://pypi.org/">PyPi</a>.</p>
 <p>If you want to install from source or contribute to the project please read the
 <a class="reference external" href="CONTRIBUTING.md">Contributing Guide</a>.</p>
-</div>
-</div>
-<div class="section" id="user-guides">
+</section>
+</section>
+<section id="user-guides">
 <h1>User Guides<a class="headerlink" href="#user-guides" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">SigPro</span></code> comes with the following user guides:</p>
 <ul class="simple">
@@ -278,15 +284,15 @@ primitive and contribute it to either <code class="docutils literal notranslate"
 </div>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="indices-and-tables">
+</section>
+<section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
+</section>
 
 
            </div>

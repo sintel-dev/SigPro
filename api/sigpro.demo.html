@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.demo module &mdash; SigPro 0.0.2 documentation</title>
+  <title>sigpro.demo module &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -37,7 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SigPro Usage" href="../usage.html" />
+    <link rel="next" title="sigpro.process_signals module" href="sigpro.process_signals.html" />
     <link rel="prev" title="sigpro.contributing module" href="sigpro.contributing.html" /> 
 </head>
 
@@ -94,7 +95,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul>
@@ -111,6 +112,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -148,12 +150,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -226,7 +232,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-sigpro.demo">
+  <section id="module-sigpro.demo">
 <span id="sigpro-demo-module"></span><h1>sigpro.demo module<a class="headerlink" href="#module-sigpro.demo" title="Permalink to this headline">¶</a></h1>
 <p>Functions to load demo data.</p>
 <p><strong>Functions:</strong></p>
@@ -239,7 +245,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.demo.get_amplitude_demo" title="sigpro.demo.get_amplitude_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_amplitude_demo</span></code></a>([index])</p></td>
 <td><p>Get amplitude values and sampling frequency used.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.demo.get_demo_data" title="sigpro.demo.get_demo_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_demo_data</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.demo.get_demo_data" title="sigpro.demo.get_demo_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_demo_data</span></code></a>([nrows])</p></td>
 <td><p>Get a demo <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the accepted data format.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.demo.get_frequency_demo" title="sigpro.demo.get_frequency_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frequency_demo</span></code></a>([index, real])</p></td>
@@ -276,7 +282,7 @@ sampling frequency used.</p>
 
 <dl class="function">
 <dt id="sigpro.demo.get_demo_data">
-<code class="sig-prename descclassname">sigpro.demo.</code><code class="sig-name descname">get_demo_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/demo.html#get_demo_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.demo.get_demo_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">sigpro.demo.</code><code class="sig-name descname">get_demo_data</code><span class="sig-paren">(</span><em class="sig-param">nrows=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/demo.html#get_demo_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.demo.get_demo_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a demo <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the accepted data format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -340,7 +346,7 @@ if it’s set to <code class="docutils literal notranslate"><span class="pre">Fa
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
@@ -350,7 +356,7 @@ if it’s set to <code class="docutils literal notranslate"><span class="pre">Fa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../usage.html" class="btn btn-neutral float-right" title="SigPro Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sigpro.process_signals.html" class="btn btn-neutral float-right" title="sigpro.process_signals module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="sigpro.contributing.html" class="btn btn-neutral float-left" title="sigpro.contributing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

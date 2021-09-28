@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; SigPro 0.0.2 documentation</title>
+  <title>Index &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -93,7 +93,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -110,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -147,12 +148,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -234,6 +239,7 @@
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#V"><strong>V</strong></a>
@@ -264,6 +270,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sigpro.transformations.frequency.fft.html#sigpro.transformations.frequency.fft.fft_real">fft_real() (in module sigpro.transformations.frequency.fft)</a>
 </li>
+      <li><a href="api/sigpro.transformations.frequency.band.html#sigpro.transformations.frequency.band.frequency_band">frequency_band() (in module sigpro.transformations.frequency.band)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -279,8 +287,6 @@
       <li><a href="api/sigpro.demo.html#sigpro.demo.get_frequency_demo">get_frequency_demo() (in module sigpro.demo)</a>
 </li>
       <li><a href="api/sigpro.demo.html#sigpro.demo.get_frequency_time_demo">get_frequency_time_demo() (in module sigpro.demo)</a>
-</li>
-      <li><a href="api/sigpro.html#sigpro.get_primitives">get_primitives() (in module sigpro)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -310,6 +316,18 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.mean">mean() (in module sigpro.aggregations.amplitude.statistical)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sigpro.html#sigpro.process_signals">process_signals() (in module sigpro)</a>
+
+      <ul>
+        <li><a href="api/sigpro.process_signals.html#sigpro.process_signals.process_signals">(in module sigpro.process_signals)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -346,6 +364,8 @@
 </li>
       <li><a href="api/sigpro.demo.html#module-sigpro.demo">sigpro.demo (module)</a>
 </li>
+      <li><a href="api/sigpro.process_signals.html#module-sigpro.process_signals">sigpro.process_signals (module)</a>
+</li>
       <li><a href="api/sigpro.transformations.html#module-sigpro.transformations">sigpro.transformations (module)</a>
 </li>
   </ul></td>
@@ -355,6 +375,8 @@
       <li><a href="api/sigpro.transformations.amplitude.identity.html#module-sigpro.transformations.amplitude.identity">sigpro.transformations.amplitude.identity (module)</a>
 </li>
       <li><a href="api/sigpro.transformations.frequency.html#module-sigpro.transformations.frequency">sigpro.transformations.frequency (module)</a>
+</li>
+      <li><a href="api/sigpro.transformations.frequency.band.html#module-sigpro.transformations.frequency.band">sigpro.transformations.frequency.band (module)</a>
 </li>
       <li><a href="api/sigpro.transformations.frequency.fft.html#module-sigpro.transformations.frequency.fft">sigpro.transformations.frequency.fft (module)</a>
 </li>

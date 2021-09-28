@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.transformations.frequency.fft &mdash; SigPro 0.0.2 documentation</title>
+  <title>sigpro.transformations.frequency.fft &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -92,7 +92,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -109,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -146,12 +147,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -203,8 +208,6 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-          <li><a href="../../../sigpro.html">sigpro</a> &raquo;</li>
-        
       <li>sigpro.transformations.frequency.fft</li>
     
     
@@ -245,9 +248,10 @@
 <span class="sd">            * `frequency_values (numpy.ndarray)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">amplitude_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span>
-    <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="n">sampling_frequency</span><span class="p">)</span>
+    <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sampling_frequency</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span></div>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">frequency_values</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">[:</span><span class="n">length</span><span class="p">],</span> <span class="n">frequency_values</span><span class="p">[:</span><span class="n">length</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="fft_real"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency.fft.html#sigpro.transformations.frequency.fft.fft_real">[docs]</a><span class="k">def</span> <span class="nf">fft_real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
@@ -271,10 +275,9 @@
 <span class="sd">            * `amplitude_values (numpy.ndarray)`</span>
 <span class="sd">            * `frequency_values (numpy.ndarray)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">amplitude_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">))</span>
-    <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="n">sampling_frequency</span><span class="p">)</span>
+    <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">frequency_values</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

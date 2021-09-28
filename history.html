@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>History &mdash; SigPro 0.0.2 documentation</title>
+  <title>History &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -93,7 +94,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -110,6 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -147,12 +149,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -223,19 +229,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="history">
+  <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>0.0.2 - 2021-02-05<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="bug-fixes">
+<section id="id1">
+<h2>0.0.3 - 2021-09-27<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">process_signals</span></code> function to take a collection of primitives and create features for the given data.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>0.0.2 - 2021-02-05<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="bug-fixes">
 <h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>: copy the json files of the primitives with the package installation.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>0.0.1 - 2021-01-26<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="id3">
+<h2>0.0.1 - 2021-01-26<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>First release to PyPI.</p>
 <p>This release comes with the first version of the <code class="docutils literal notranslate"><span class="pre">contributing</span></code> module, which makes it easier
 to create new primitives and to test those with the demo data included in this package.</p>
@@ -249,8 +264,8 @@ to usee the three main functionalities of <code class="docutils literal notransl
 guide about how to write a valid <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> primitive and contribute it to either <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> or
 your own library.</p></li>
 </ul>
-<div class="section" id="features">
-<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<section id="id4">
+<h3>Features<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Demo data: Available demo data to test primitives.</p></li>
 <li><p>First primitives: The following list of primitives were added:</p>
@@ -272,9 +287,9 @@ your own library.</p></li>
 <li><p>Contributing module.</p></li>
 <li><p>Documentation on how to contribute new primitives and how to run those.</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

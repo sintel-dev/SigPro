@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.transformations.amplitude.identity &mdash; SigPro 0.0.3 documentation</title>
+  <title>sigpro.transformations.frequency.band &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -208,7 +208,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>sigpro.transformations.amplitude.identity</li>
+      <li>sigpro.transformations.frequency.band</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -223,13 +223,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sigpro.transformations.amplitude.identity</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Transformations Amplitude Identity module.&quot;&quot;&quot;</span>
+  <h1>Source code for sigpro.transformations.frequency.band</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;SigPro Frequency Band module.&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="identity"><a class="viewcode-back" href="../../../../api/sigpro.transformations.amplitude.identity.html#sigpro.transformations.amplitude.identity.identity">[docs]</a><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the identity of the amplitude values.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">amplitude_values</span></div>
+<div class="viewcode-block" id="frequency_band"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency.band.html#sigpro.transformations.frequency.band.frequency_band">[docs]</a><span class="k">def</span> <span class="nf">frequency_band</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract a specific band.</span>
+
+<span class="sd">    Filter between a high and low band frequency and return the amplitude values and frequency</span>
+<span class="sd">    values for those.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        amplitude_values (np.ndarray):</span>
+<span class="sd">            A numpy array with the signal values.</span>
+<span class="sd">        frequency_values (np.ndarray):</span>
+<span class="sd">            A numpy array with the frequency values.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple:</span>
+<span class="sd">            * `amplitude_values (numpy.ndarray)` for the selected frequency values.</span>
+<span class="sd">            * `frequency_values (numpy.ndarray)` for the selected frequency values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">frequency_values</span> <span class="o">&gt;</span> <span class="n">low</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">frequency_values</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">frequency_values</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

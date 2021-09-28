@@ -11,4 +11,5 @@ Submodules
 
 .. toctree::
 
+   sigpro.transformations.frequency.band
    sigpro.transformations.frequency.fft

@@ -21,3 +21,4 @@ Submodules
 
    sigpro.contributing
    sigpro.demo
+   sigpro.process_signals

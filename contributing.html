@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing to SigPro &mdash; SigPro 0.0.2 documentation</title>
+  <title>Contributing to SigPro &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -94,7 +95,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -111,6 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -148,12 +150,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -224,11 +230,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="contributing-to-sigpro">
+  <section id="contributing-to-sigpro">
 <h1>Contributing to SigPro<a class="headerlink" href="#contributing-to-sigpro" title="Permalink to this headline">¶</a></h1>
 <p>Here you will find a series of steps that describe how to contribute a new implementation, fix or
 update to <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> library.</p>
-<div class="section" id="clone-the-repository">
+<section id="clone-the-repository">
 <h2>1. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h2>
 <p>The first step would be to clone the <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> repository. In order to do so
 make sure that you have access to the repository by accessing it direcly
@@ -252,8 +258,8 @@ mkvirtualenv sigpro
 make install-develop
 </pre></div>
 </div>
-</div>
-<div class="section" id="prepare-your-branch">
+</section>
+<section id="prepare-your-branch">
 <h2>2. Prepare your branch<a class="headerlink" href="#prepare-your-branch" title="Permalink to this headline">¶</a></h2>
 <p>Before going any further, create the new <code class="docutils literal notranslate"><span class="pre">git</span></code> branch to which you will
 be pushing your development.</p>
@@ -265,8 +271,8 @@ be pushing your development.</p>
 the associated issue, such as issue-3-fix-foo-bug. And if you are not
 developing  on your own fork, further prefix the branch with your GitHub
 username, like githubusername/issue-3-fix-foo-bug.</p>
-</div>
-<div class="section" id="code-your-changes">
+</section>
+<section id="code-your-changes">
 <h2>3. Code your changes<a class="headerlink" href="#code-your-changes" title="Permalink to this headline">¶</a></h2>
 <p>Once you have your branch ready and set, you can start coding your changes.</p>
 <p>When doing so, ensure that the code is placed in its corresponding python
@@ -276,8 +282,8 @@ that you find more suitable. However, when it comes to <code class="docutils lit
 <p>Also, while hacking your changes, make sure to follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> style guide for python code
 and our <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> (the main change is that we allow 99 characters per
 line).</p>
-</div>
-<div class="section" id="test-your-changes">
+</section>
+<section id="test-your-changes">
 <h2>4. Test your changes<a class="headerlink" href="#test-your-changes" title="Permalink to this headline">¶</a></h2>
 <p>Now that you have implemented your changes, make sure to  cover all your
 developments with the required unit tests, and that none of the old tests
@@ -294,8 +300,8 @@ including other Python supported versions using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make test-all
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-a-pull-request">
+</section>
+<section id="create-a-pull-request">
 <h2>5. Create a pull request<a class="headerlink" href="#create-a-pull-request" title="Permalink to this headline">¶</a></h2>
 <p>Once you have created and tested your primitive, you can create a pull
 request by doing the following steps:</p>
@@ -306,8 +312,8 @@ request by doing the following steps:</p>
 <li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">&lt;name_of_your_branch&gt;</span></code>.</p></li>
 <li><p>Go to <a class="reference external" href="https://github.com/signals-dev/SigPro/">https://github.com/signals-dev/SigPro/</a> and create a pull request from this branch to the master branch.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

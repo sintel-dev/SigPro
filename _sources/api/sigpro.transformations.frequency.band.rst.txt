@@ -1,0 +1,7 @@
+sigpro.transformations.frequency.band module
+============================================
+
+.. automodule:: sigpro.transformations.frequency.band
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SigPro Usage &mdash; SigPro 0.0.2 documentation</title>
+  <title>SigPro Usage &mdash; SigPro 0.0.3 documentation</title>
   
 
   
@@ -38,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing to SigPro" href="contributing.html" />
-    <link rel="prev" title="sigpro.demo module" href="api/sigpro.demo.html" /> 
+    <link rel="prev" title="sigpro.process_signals module" href="api/sigpro.process_signals.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,7 +95,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#user-guides">User Guides</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api/sigpro.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#subpackages">Subpackages</a><ul>
@@ -111,6 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -148,12 +150,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -224,7 +230,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sigpro-usage">
+  <section id="sigpro-usage">
 <h1>SigPro Usage<a class="headerlink" href="#sigpro-usage" title="Permalink to this headline">¶</a></h1>
 <p>In this document you will find instructions about how to use the three
 main functionalities of the SigPro library:</p>
@@ -234,7 +240,7 @@ main functionalities of the SigPro library:</p>
 <li><p>Create a primitive JSON: How to create a primitive JSON for a python
 function.</p></li>
 </ul>
-<div class="section" id="find-primitives">
+<section id="find-primitives">
 <h2>Find primitives<a class="headerlink" href="#find-primitives" title="Permalink to this headline">¶</a></h2>
 <p>Before you start using any SigPro primitive you will to find the
 ones that are suitable for your task.</p>
@@ -262,7 +268,7 @@ that SigPro is able to find:</p>
  &#39;sigpro.transformations.frequency_time.stft.stft_real&#39;]
 </pre></div>
 </div>
-<div class="section" id="filter-primitives-by-type-and-subtype">
+<section id="filter-primitives-by-type-and-subtype">
 <h3>Filter primitives by Type and Subtype<a class="headerlink" href="#filter-primitives-by-type-and-subtype" title="Permalink to this headline">¶</a></h3>
 <p>In most cases you will want to search for a primitive of a specific
 type or subtype.</p>
@@ -272,8 +278,8 @@ to the <code class="docutils literal notranslate"><span class="pre">get_primitiv
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_primitives</span><span class="p">(</span><span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="filter-primitives-by-name">
+</section>
+<section id="filter-primitives-by-name">
 <h3>Filter primitives by Name<a class="headerlink" href="#filter-primitives-by-name" title="Permalink to this headline">¶</a></h3>
 <p>If you want to narrow the search bases on the name of the primitives
 you can pass a <em>string pattern</em>, and <code class="docutils literal notranslate"><span class="pre">get_primitives</span></code> will return only
@@ -283,9 +289,9 @@ primitives based on <em>fft</em> we can call <code class="docutils literal notra
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_primitives</span><span class="p">(</span><span class="s1">&#39;fft&#39;</span><span class="p">,</span> <span class="n">primitive_type</span><span class="o">=</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="n">primitive_subtype</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="run-a-primitive">
+</section>
+</section>
+<section id="run-a-primitive">
 <h2>Run a Primitive<a class="headerlink" href="#run-a-primitive" title="Permalink to this headline">¶</a></h2>
 <p>SigPro primitives can be run in a standalone mode, which allows exploring
 their behavior for learning or debugging purposes.</p>
@@ -308,7 +314,7 @@ will load the Amplitude Aggregation demo data using the
 loaded demo data.</p></li>
 <li><p>Return the primitive output value (or values).</p></li>
 </ul>
-<div class="section" id="selecting-the-data-which-the-primitive-runs-on">
+<section id="selecting-the-data-which-the-primitive-runs-on">
 <h3>Selecting the data which the primitive runs on<a class="headerlink" href="#selecting-the-data-which-the-primitive-runs-on" title="Permalink to this headline">¶</a></h3>
 <p>In some cases you will want to run the primitive multiple times on the
 same values instead of randomly selecting one row from the demo data.</p>
@@ -328,8 +334,8 @@ as input:</p>
 <span class="n">row</span> <span class="o">=</span> <span class="n">get_amplitude_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="running-the-primitive-with-your-own-data">
+</section>
+<section id="running-the-primitive-with-your-own-data">
 <h3>Running the primitive with your own data<a class="headerlink" href="#running-the-primitive-with-your-own-data" title="Permalink to this headline">¶</a></h3>
 <p>In some cases you will want to run the primitive with your own data.</p>
 <p>In order to do so, you should pass the expected data by the primitive as
@@ -372,8 +378,8 @@ if more data was needed then it has to be passed as well):</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="passing-hyperparameter-values-or-additional-context-values">
+</section>
+<section id="passing-hyperparameter-values-or-additional-context-values">
 <h3>Passing hyperparameter values or additional context values<a class="headerlink" href="#passing-hyperparameter-values-or-additional-context-values" title="Permalink to this headline">¶</a></h3>
 <p>When a primitive accepts hyperparameters or requires additional context
 values, those can be specified at the end of the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function.</p>
@@ -388,8 +394,8 @@ to specify them we use <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 <p>This way we specified those two additional arguments for the primitive.</p>
-</div>
-<div class="section" id="full-run-primitive-arguments-list">
+</section>
+<section id="full-run-primitive-arguments-list">
 <h3>Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list<a class="headerlink" href="#full-run-primitive-arguments-list" title="Permalink to this headline">¶</a></h3>
 <p>The complete list of arguments that this function takes are as follow:</p>
 <ul class="simple">
@@ -446,9 +452,9 @@ if no amplitude values are provided.</p>
 </dl>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="create-a-primitive-json">
+</section>
+</section>
+<section id="create-a-primitive-json">
 <h2>Create a primitive JSON<a class="headerlink" href="#create-a-primitive-json" title="Permalink to this headline">¶</a></h2>
 <p>If you need to create a primitive JSON for a new Python function that you
 implemented you can use the <code class="docutils literal notranslate"><span class="pre">sigpro.contributin.make_primitive</span></code> function,
@@ -514,7 +520,7 @@ has been stored:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="using-your-primitive-path">
+<section id="using-your-primitive-path">
 <h3>Using your primitive path<a class="headerlink" href="#using-your-primitive-path" title="Permalink to this headline">¶</a></h3>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> will store the primitives inside the folder
 <code class="docutils literal notranslate"><span class="pre">sigpro/primitives</span></code> which is located in the project. If you want to store
@@ -532,8 +538,8 @@ the primitives in a different directory you can do so by using the argument
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/path/to/my_primitives/aggregations/amplitude/statistical/mean.json
 </pre></div>
 </div>
-</div>
-<div class="section" id="storing-flat-json-file">
+</section>
+<section id="storing-flat-json-file">
 <h3>Storing flat json file<a class="headerlink" href="#storing-flat-json-file" title="Permalink to this headline">¶</a></h3>
 <p>If you would like to store your primtives without the path tree, you can do
 so by stting the argument <code class="docutils literal notranslate"><span class="pre">primitives_subfolders</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
@@ -550,8 +556,8 @@ so by stting the argument <code class="docutils literal notranslate"><span class
 inside of the folder <code class="docutils literal notranslate"><span class="pre">my_primitives</span></code>, the contents of this <code class="docutils literal notranslate"><span class="pre">json</span></code> file
 are exactly the same as the one created previously, but the nomenclature of
 the file it’s different, we don’t have the subfolder structure.</p>
-</div>
-<div class="section" id="creating-a-primitive-with-tunable-hyperparameters">
+</section>
+<section id="creating-a-primitive-with-tunable-hyperparameters">
 <h3>Creating a primitive with tunable hyperparameters<a class="headerlink" href="#creating-a-primitive-with-tunable-hyperparameters" title="Permalink to this headline">¶</a></h3>
 <p>In some cases our primitives have tunable hyperparameters or fixed ones.
 In order to do so you have to create a dictionary of hyperparameters with
@@ -577,8 +583,8 @@ the tunable hyperparameters <code class="docutils literal notranslate"><span cla
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-a-primitive-with-context-arguments">
+</section>
+<section id="create-a-primitive-with-context-arguments">
 <h3>Create a primitive with context arguments<a class="headerlink" href="#create-a-primitive-with-context-arguments" title="Permalink to this headline">¶</a></h3>
 <p>When a primitive requires of a context argument, we have to use the
 argument <code class="docutils literal notranslate"><span class="pre">context_arguments</span></code> and pass it to <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code>. This
@@ -603,8 +609,8 @@ primitive does not exist.</em></p>
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="full-make-primitive-arguments-list">
+</section>
+<section id="full-make-primitive-arguments-list">
 <h3>Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list<a class="headerlink" href="#full-make-primitive-arguments-list" title="Permalink to this headline">¶</a></h3>
 <p>The complete list of arguments that this function takes are as follow:</p>
 <ul class="simple">
@@ -663,9 +669,9 @@ use a flat primitive name (<code class="docutils literal notranslate"><span clas
 </dl>
 </li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -678,7 +684,7 @@ use a flat primitive name (<code class="docutils literal notranslate"><span clas
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to SigPro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="api/sigpro.demo.html" class="btn btn-neutral float-left" title="sigpro.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api/sigpro.process_signals.html" class="btn btn-neutral float-left" title="sigpro.process_signals module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
