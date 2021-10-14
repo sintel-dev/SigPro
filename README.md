@@ -5,15 +5,15 @@
 
 [![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/SigPro.svg)](https://pypi.python.org/pypi/SigPro)
-[![Tests](https://github.com/signals-dev/SigPro/workflows/Run%20Tests/badge.svg)](https://github.com/signals-dev/SigPro/actions?query=workflow%3A%22Run+Tests%22+branch%3Amaster)
+[![Tests](https://github.com/sintel-dev/SigPro/workflows/Run%20Tests/badge.svg)](https://github.com/sintel-dev/SigPro/actions?query=workflow%3A%22Run+Tests%22+branch%3Amaster)
 [![Downloads](https://pepy.tech/badge/sigpro)](https://pepy.tech/project/sigpro)
 
 
 # SigPro: Signal Processing Tools for Machine Learning
 
-* License: [MIT](https://github.com/signals-dev/SigPro/blob/master/LICENSE)
+* License: [MIT](https://github.com/sintel-dev/SigPro/blob/master/LICENSE)
 * Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-* Homepage: https://github.com/signals-dev/SigPro
+* Homepage: https://github.com/sintel-dev/SigPro
 
 ## Overview
 

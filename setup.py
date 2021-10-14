@@ -99,7 +99,7 @@ setup(
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
-    url='https://github.com/signals-dev/SigPro',
+    url='https://github.com/sintel-dev/SigPro',
     version='0.0.4.dev0',
     zip_safe=False,
 )

@@ -20,11 +20,11 @@ to create new primitives and to test those with the demo data included in this p
 
 This release also includes the following User Guides:
 
-* [PRIMITIVES.md](https://github.com/signals-dev/SigPro/blob/master/PRIMITIVES.md): Information
+* [PRIMITIVES.md](https://github.com/sintel-dev/SigPro/blob/master/PRIMITIVES.md): Information
   about the primitive families, their expected input and output.
-* [USAGE.md](https://github.com/signals-dev/SigPro/blob/master/USAGE.md): Instructions about how
+* [USAGE.md](https://github.com/sintel-dev/SigPro/blob/master/USAGE.md): Instructions about how
   to usee the three main functionalities of `SigPro`.
-* [DEVELOPMENT.md](https://github.com/signals-dev/SigPro/blob/master/DEVELOPMENT.md): Step by step
+* [DEVELOPMENT.md](https://github.com/sintel-dev/SigPro/blob/master/DEVELOPMENT.md): Step by step
   guide about how to write a valid `SigPro` primitive and contribute it to either `SigPro` or
   your own library.
 

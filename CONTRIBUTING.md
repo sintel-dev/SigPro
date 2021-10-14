@@ -7,21 +7,21 @@ update to `SigPro` library.
 
 The first step would be to clone the `SigPro` repository. In order to do so
 make sure that you have access to the repository by accessing it direcly
-[https://github.com/signals-dev/SigPro/](
-https://github.com/signals-dev/SigPro/).
+[https://github.com/sintel-dev/SigPro/](
+https://github.com/sintel-dev/SigPro/).
 
 If you have access to the repository and you have your `ssh` keys configured
 in your github account, you can clone it by using the following command
 
 ```bash
-git clone git@github.com:signals-dev/SigPro.git
+git clone git@github.com:sintel-dev/SigPro.git
 ```
 
 If you don't have your `ssh` keys configured you can clone the repository
 using your login name and password running the following command:
 
 ```bash
-git clone https://github.com/signals-dev/SigPro
+git clone https://github.com/sintel-dev/SigPro
 ```
 
 Next, you can enter your repository folder, create a virtualenv and install
@@ -96,4 +96,4 @@ request by doing the following steps:
 1. Add the new files and the updated ones. By running `git status` you will see the modified and `new/untracked` files. Use `git add` to `add` the files that involve your implementation, such as the new primitive `json` file, the new module with the new transformation or aggregation and other changes that you may have done to existing files (such as `setup.py` if you updated or introduce a new dependency).
 2. Commit your changes using `git commit -m "Implement my new transformation"`.
 3. Push your branch: `git push --set-upstream origin <name_of_your_branch>`.
-4. Go to [https://github.com/signals-dev/SigPro/](https://github.com/signals-dev/SigPro/) and create a pull request from this branch to the master branch.
+4. Go to [https://github.com/sintel-dev/SigPro/](https://github.com/sintel-dev/SigPro/) and create a pull request from this branch to the master branch.
