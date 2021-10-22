@@ -83,7 +83,7 @@ class SigPro:
         Args:
             transformations (list):
                 List of dictionaries containing the transformation primitives.
-            transformations (list):
+            aggregations (list):
                 List of dictionaries containing the aggregation primitives.
 
         Returns:
