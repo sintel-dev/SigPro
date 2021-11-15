@@ -1,5 +1,10 @@
 # History
 
+## 0.1.0 - 2021-11-14
+
+### Features
+* Rework SigPro to be class based
+
 ## 0.0.3 - 2021-09-27
 
 ### Features
