@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlblocks>=0.4.0,<0.5',
+    'mlblocks>=0.4.1,<0.5',
     'pandas>=1,<2',
     'numpy>=1.17.4,<1.19',
     'scipy>=1.3.3,<2',
@@ -99,7 +99,7 @@ setup(
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
-    url='https://github.com/signals-dev/SigPro',
-    version='0.0.3',
+    url='https://github.com/sintel-dev/SigPro',
+    version='0.1.0.dev0',
     zip_safe=False,
 )

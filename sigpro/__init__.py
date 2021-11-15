@@ -4,13 +4,13 @@
 
 __author__ = """MIT Data To AI Lab"""
 __email__ = 'dailabmit@gmail.com'
-__version__ = '0.0.3'
+__version__ = '0.1.0.dev0'
 
 import os
 
 from mlblocks import discovery
 
-from sigpro.process_signals import process_signals
+from sigpro.core import SigPro
 
 _BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 MLBLOCKS_PRIMITIVES = os.path.join(_BASE_PATH, 'primitives')
@@ -46,4 +46,4 @@ def get_primitives(name=None, primitive_type=None, primitive_subtype=None):
     return discovery.find_primitives(name or 'sigpro', filters)
 
 
-__all__ = ('process_signals', )
+__all__ = ('SigPro', )

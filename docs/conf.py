@@ -60,7 +60,7 @@ title = project + ' Documentation',
 copyright = '2020, MIT Data To AI Lab'
 author = 'MIT Data To AI Lab'
 description = 'Signal Processing Tools for Machine Learning'
-user = 'signals-dev'
+user = 'sintel-dev'
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
