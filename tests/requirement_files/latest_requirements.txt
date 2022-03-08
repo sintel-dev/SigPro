@@ -1,0 +1,4 @@
+mlblocks==0.4.1
+numpy==1.18.5
+pandas==1.4.1
+psutil==5.9.0

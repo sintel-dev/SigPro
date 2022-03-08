@@ -255,3 +255,8 @@ release-minor: check-release bumpversion-minor release
 
 .PHONY: release-major
 release-major: check-release bumpversion-major release
+
+.PHONY: checkdeps
+checkdeps:
+	$(eval allow_list='mlblocks|pandas|numpy|psutil')
+	pip freeze | grep -v "sintel-dev/SigPro.git" | grep -E $(allow_list) > $(OUTPUT_PATH)
