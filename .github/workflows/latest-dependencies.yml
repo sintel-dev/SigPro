@@ -1,5 +1,8 @@
 name: Latest Dependency Checker
 on:
+  push:
+    branches:
+      - dependency-checker
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
@@ -20,9 +23,11 @@ jobs:
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3
       with:
-        commit-message: Update latest dependencies
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        commit-message: DO NOT MERGE - Update latest dependencies
         title: Automated Latest Dependency Updates
         body: "This is an auto-generated PR with **latest** dependency updates."
         branch: latest-dep-update
         branch-suffix: short-commit-hash
-        base: master
+        base: dependency-checker
+        reviewers: core
