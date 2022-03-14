@@ -257,6 +257,6 @@ release-minor: check-release bumpversion-minor release
 release-major: check-release bumpversion-major release
 
 .PHONY: checkdeps
-checkdeps:
+checkdeps: # Save the currently installed versions of the dependencies as the latest versions 
 	$(eval allow_list='mlblocks|pandas|numpy|psutil')
 	pip freeze | grep -v "sintel-dev/SigPro.git" | grep -E $(allow_list) > $(OUTPUT_PATH)
