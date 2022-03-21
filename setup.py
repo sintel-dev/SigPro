@@ -12,10 +12,10 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlblocks>=0.4.1,<0.5',
-    'pandas>=1,<2',
-    'numpy>=1.17.4,<1.19',
-    'scipy>=1.3.3,<2',
+    'mlblocks>=0.4.1',
+    'pandas>=1',
+    'numpy>=1.17.4',
+    'scipy>=1.3.3',
 ]
 
 setup_requires = [
