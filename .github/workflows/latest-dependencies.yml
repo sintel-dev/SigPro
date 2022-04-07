@@ -27,4 +27,4 @@ jobs:
         branch: latest-dep-update
         branch-suffix: short-commit-hash
         base: master
-        reviewers: sintel-dev/core
+        team-reviewers: core
