@@ -19,8 +19,36 @@ def get_demo_data(nrows=None):
     """
     demo_path = os.path.join(DEMO_PATH, 'demo_timeseries.csv')
     df = pd.read_csv(demo_path, parse_dates=['timestamp'], nrows=nrows)
+    df['sampling_frequency'] = 1000
     df["values"] = df["values"].apply(json.loads).apply(list)
     return df
+
+
+def get_demo_primitives():
+    """Get a dict of demo transformation and aggregation primitives.
+
+    Returns:
+        A tuple containing the list of transformation primitives and
+        the list aggregation primitives
+    """
+    transformations = [
+        {
+            "name": "fft",
+            "primitive": "sigpro.transformations.frequency.fft.fft"
+        }
+    ]
+    aggregations = [
+        {
+            "name": "mean",
+            "primitive": "sigpro.aggregations.amplitude.statistical.mean"
+        },
+        {
+            "name": "std",
+            "primitive": "sigpro.aggregations.amplitude.statistical.std"
+        }
+    ]
+
+    return transformations, aggregations
 
 
 def get_amplitude_demo(index=None):
