@@ -163,7 +163,7 @@ class SigPro:
         self.input_is_dataframe = input_is_dataframe
         self.pipeline = self._build_pipeline()
 
-    def _apply_pipeline(self, row):
+    def _apply_pipeline(self, window, is_series=False):
         """Apply a ``mlblocks.MLPipeline`` to a row.
 
         Apply a ``MLPipeline`` to a row of a ``pd.DataFrame``, this function can
@@ -174,8 +174,12 @@ class SigPro:
             row (pd.Series):
                 Row used to apply the pipeline to.
         """
-        context = row.to_dict()
-        amplitude_values = context.pop(self.values_column_name)
+        if is_series:
+            context = window.to_dict()
+            amplitude_values = context.pop(self.values_column_name)
+        else:
+            context = {} if window.empty else {k: v for k, v in window.iloc[0].to_dict().items() if k != self.values_column_name}
+            amplitude_values = list(window[self.values_column_name])
         output = self.pipeline.predict(
             amplitude_values=amplitude_values,
             **context,
@@ -187,7 +191,8 @@ class SigPro:
 
         return pd.Series(dict(zip(output_names, output)))
 
-    def process_signal(self, data=None, feature_columns=None, **kwargs):
+
+    def process_signal(self, data, window=None, time_index=None, groupby_index=None, feature_columns=None, **kwargs):
         """Apply multiple transformation and aggregation primitives.
 
         Args:
@@ -206,17 +211,19 @@ class SigPro:
                 list:
                     A list with the feature names generated.
         """
-        if data is None:
-            row = pd.Series(kwargs)
-            values = self._apply_pipeline(row).values
-            return values if len(values) > 1 else values[0]
-
-        features = data.apply(
-            self._apply_pipeline,
-            axis=1
-        )
-        data = pd.concat([data, features], axis=1)
-
+        data = data.copy()
+        if window is not None and groupby_index is not None:
+            features = data.set_index(time_index).groupby(groupby_index).resample(rule=window, **kwargs).apply(
+                self._apply_pipeline
+            ).reset_index()
+            data = features
+        else:
+            features = data.apply(
+                self._apply_pipeline,
+                axis=1,
+                is_series=True
+            )
+            data = pd.concat([data, features], axis=1)
         if feature_columns:
             feature_columns = feature_columns + list(features.columns)
         else:
