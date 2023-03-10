@@ -11,16 +11,30 @@ from scipy.signal import stft
 DEMO_PATH = os.path.join(os.path.dirname(__file__), 'data')
 
 
-def get_demo_data(nrows=None):
-    """Get a demo ``pandas.DataFrame`` containing the accepted data format.
-
-    Returns:
-        A ``pd.DataFrame`` containing as ``values`` the signal values.
-    """
+def _load_demo(nrows=None):
     demo_path = os.path.join(DEMO_PATH, 'demo_timeseries.csv')
     df = pd.read_csv(demo_path, parse_dates=['timestamp'], nrows=nrows)
     df['sampling_frequency'] = 1000
     df["values"] = df["values"].apply(json.loads).apply(list)
+
+    return df
+
+
+def get_demo_data(nrows=None):
+    """Get a demo ``pandas.DataFrame`` containing the accepted data format.
+
+    Args:
+        nrows (int):
+            Number of rows to load from the demo datasets.
+
+    Returns:
+        A ``pd.DataFrame`` containing as ``values`` the signal values.
+    """
+    df = _load_demo(nrows)
+    df = df.explode('values').reset_index(drop=True)
+
+    time_delta = pd.to_timedelta(list(range(400)) * 750, 's')
+    df['timestamp'] = df['timestamp'] + time_delta
     return df
 
 
@@ -71,7 +85,7 @@ def get_amplitude_demo(index=None):
             A tuple with a `np.array` containing amplitude values and as second element the
             sampling frequency used.
     """
-    df = get_demo_data()
+    df = _load_demo()
     if index is None:
         index = random.randint(0, len(df))
 

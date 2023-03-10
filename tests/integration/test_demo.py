@@ -5,7 +5,7 @@ from sigpro.demo import (
     get_amplitude_demo, get_demo_data, get_demo_primitives, get_frequency_demo,
     get_frequency_time_demo)
 
-EXPECTED_SHAPE = (750, 5)
+EXPECTED_SHAPE = (300000, 5)
 EXPECTED_COLUMNS = ['turbine_id', 'signal_id', 'timestamp', 'values', 'sampling_frequency']
 EXPECTED_SAMPLING_FREQUENCY = 10000
 EXPECTED_VALUES_LENGTH = 400
@@ -54,7 +54,7 @@ def test_get_frequency_demo_indexed():
 def test_get_frequency_demo_complex():
     values, frequency_values = get_frequency_demo(real=False)
     value = values[0]
-    assert type(value) == np.complex128
+    assert isinstance(value, np.complex128)
     assert EXPECTED_VALUES_LENGTH // 2 == len(values)
     assert EXPECTED_FREQUENCY_LENGTH // 2 == len(frequency_values)
 
@@ -79,4 +79,4 @@ def test_get_frequency_time_demo_complex():
     assert 129 == len(values)
     assert 129 == len(frequencies)
     assert 5 == len(time_values)
-    assert type(value) == np.complex128
+    assert isinstance(value, np.complex128)
