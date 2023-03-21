@@ -163,19 +163,28 @@ class SigPro:
         self.input_is_dataframe = input_is_dataframe
         self.pipeline = self._build_pipeline()
 
-    def _apply_pipeline(self, row):
+    def _apply_pipeline(self, window, is_series=False):
         """Apply a ``mlblocks.MLPipeline`` to a row.
 
-        Apply a ``MLPipeline`` to a row of a ``pd.DataFrame``, this function can
+        Apply a ``MLPipeline`` to a window of a ``pd.DataFrame``, this function can
         be combined with the ``pd.DataFrame.apply`` method to be applied to the
         entire data frame.
 
         Args:
-            row (pd.Series):
-                Row used to apply the pipeline to.
+            window (pd.Series):
+                Row or multiple rows (window) used to apply the pipeline to.
+            is_series (bool):
+                Indicator whether window is formated as a series or dataframe.
         """
-        context = row.to_dict()
-        amplitude_values = context.pop(self.values_column_name)
+        if is_series:
+            context = window.to_dict()
+            amplitude_values = context.pop(self.values_column_name)
+        else:
+            context = {} if window.empty else {
+                k: v for k, v in window.iloc[0].to_dict().items() if k != self.values_column_name
+            }
+            amplitude_values = list(window[self.values_column_name])
+
         output = self.pipeline.predict(
             amplitude_values=amplitude_values,
             **context,
@@ -187,12 +196,19 @@ class SigPro:
 
         return pd.Series(dict(zip(output_names, output)))
 
-    def process_signal(self, data=None, feature_columns=None, **kwargs):
+    def process_signal(self, data=None, window=None, time_index=None, groupby_index=None,
+                       feature_columns=None, **kwargs):
         """Apply multiple transformation and aggregation primitives.
 
         Args:
             data (pandas.DataFrame):
                 Dataframe with a column that contains signal values.
+            window (str):
+                Duration of window size, e.g. ('1h').
+            time_index (str):
+                Column in ``data`` that represents the time index.
+            groupby_index (str or list[str]):
+                Column(s) to group together and take the window over.
             feature_columns (list):
                 List of column names from the input data frame that must be considered as
                 features and should not be dropped.
@@ -207,15 +223,25 @@ class SigPro:
                     A list with the feature names generated.
         """
         if data is None:
-            row = pd.Series(kwargs)
-            values = self._apply_pipeline(row).values
+            window = pd.Series(kwargs)
+            values = self._apply_pipeline(window, is_series=True).values
             return values if len(values) > 1 else values[0]
 
-        features = data.apply(
-            self._apply_pipeline,
-            axis=1
-        )
-        data = pd.concat([data, features], axis=1)
+        data = data.copy()
+        if window is not None and groupby_index is not None:
+            features = data.set_index(time_index).groupby(groupby_index).resample(
+                rule=window, **kwargs).apply(
+                self._apply_pipeline
+            ).reset_index()
+            data = features
+
+        else:
+            features = data.apply(
+                self._apply_pipeline,
+                axis=1,
+                is_series=True
+            )
+            data = pd.concat([data, features], axis=1)
 
         if feature_columns:
             feature_columns = feature_columns + list(features.columns)
