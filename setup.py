@@ -12,10 +12,10 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlblocks>=0.4.1,<0.5',
-    'pandas>=1,<2',
-    'numpy>=1.17.4,<1.19',
-    'scipy>=1.3.3,<2',
+    'mlblocks>=0.4.1',
+    'pandas>=1',
+    'numpy>=1.17.4',
+    'scipy>=1.3.3',
 ]
 
 setup_requires = [
@@ -40,6 +40,8 @@ development_requires = [
     'Sphinx>=1.7.1,<3',
     'sphinx_rtd_theme>=0.2.4,<0.5',
     'autodocsumm>=0.1.10',
+    'markupsafe<2.1.0',
+    'Jinja2>=2,<3',
 
     # style check
     'flake8>=3.7.7,<4',
@@ -100,6 +102,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/sintel-dev/SigPro',
-    version='0.1.0',
+    version='0.1.1.dev0',
     zip_safe=False,
 )

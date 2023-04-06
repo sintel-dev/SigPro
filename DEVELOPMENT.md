@@ -259,11 +259,12 @@ imported and used like this:
 from sigpro.demo import get_amplitude_demo
 from sigpro.demo import get_frequency_demo
 from sigpro.demo import get_frequency_time_demo
+from sigpro.demo import get_demo_data 
 
 amplitude_values, sampling_frequency = get_amplitude_demo()
 amplitude_values, frequency_values = get_frequency_demo()
 amplitude_values, frequency_values, time_values = get_frequency_time_demo()
-dataframe = get_frequency_time_demo(dataframe=True)
+dataframe = get_demo_data()
 ```
 
 In all cases, the functions will return values that correspond to a
