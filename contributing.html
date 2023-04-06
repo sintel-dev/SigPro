@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing to SigPro &mdash; SigPro 0.0.3 documentation</title>
+  <title>Contributing to SigPro &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -111,8 +111,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -150,16 +150,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +224,7 @@
         
             
             
-              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -238,24 +246,24 @@ update to <code class="docutils literal notranslate"><span class="pre">SigPro</s
 <h2>1. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h2>
 <p>The first step would be to clone the <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> repository. In order to do so
 make sure that you have access to the repository by accessing it direcly
-<a class="reference external" href="https://github.com/signals-dev/SigPro/">https://github.com/signals-dev/SigPro/</a>.</p>
+<a class="reference external" href="https://github.com/sintel-dev/SigPro/">https://github.com/sintel-dev/SigPro/</a>.</p>
 <p>If you have access to the repository and you have your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> keys configured
 in your github account, you can clone it by using the following command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:signals-dev/SigPro.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:sintel-dev/SigPro.git
 </pre></div>
 </div>
 <p>If you don’t have your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> keys configured you can clone the repository
 using your login name and password running the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/signals-dev/SigPro
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sintel-dev/SigPro
 </pre></div>
 </div>
 <p>Next, you can enter your repository folder, create a virtualenv and install
 the project and the development dependencies.
 <strong>Note</strong>: You need to have virtualenv and virtualenvwrapper installed for
 these steps to work</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> SigPro
-mkvirtualenv sigpro
-make install-develop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>SigPro
+mkvirtualenv<span class="w"> </span>sigpro
+make<span class="w"> </span>install-develop
 </pre></div>
 </div>
 </section>
@@ -264,7 +272,7 @@ make install-develop
 <p>Before going any further, create the new <code class="docutils literal notranslate"><span class="pre">git</span></code> branch to which you will
 be pushing your development.</p>
 <p>To do so, type the following command with the desired name for your branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b &lt;name_of_your_branch&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;name_of_your_branch&gt;
 </pre></div>
 </div>
 <p>Try to use the naming scheme of prefixing your branch with issue-X where X is
@@ -289,15 +297,15 @@ line).</p>
 developments with the required unit tests, and that none of the old tests
 fail as consequence of your changes. For this, make sure to run the tests
 suite and check the code coverage by using the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make lint      <span class="c1"># Check code styling</span>
-$ make <span class="nb">test</span>      <span class="c1"># Run the tests</span>
-$ make coverage  <span class="c1"># Get the coverage report</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>lint<span class="w">      </span><span class="c1"># Check code styling</span>
+$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span><span class="w">      </span><span class="c1"># Run the tests</span>
+$<span class="w"> </span>make<span class="w"> </span>coverage<span class="w">  </span><span class="c1"># Get the coverage report</span>
 </pre></div>
 </div>
 <p>Once you have finished coding your changes, make sure to run the following
 command to ensure that your changes pass all the styling checks and tests
 including other Python supported versions using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make test-all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>test-all
 </pre></div>
 </div>
 </section>
@@ -310,7 +318,7 @@ request by doing the following steps:</p>
 <li><p>Add the new files and the updated ones. By running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you will see the modified and <code class="docutils literal notranslate"><span class="pre">new/untracked</span></code> files. Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to <code class="docutils literal notranslate"><span class="pre">add</span></code> the files that involve your implementation, such as the new primitive <code class="docutils literal notranslate"><span class="pre">json</span></code> file, the new module with the new transformation or aggregation and other changes that you may have done to existing files (such as <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> if you updated or introduce a new dependency).</p></li>
 <li><p>Commit your changes using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Implement</span> <span class="pre">my</span> <span class="pre">new</span> <span class="pre">transformation&quot;</span></code>.</p></li>
 <li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">&lt;name_of_your_branch&gt;</span></code>.</p></li>
-<li><p>Go to <a class="reference external" href="https://github.com/signals-dev/SigPro/">https://github.com/signals-dev/SigPro/</a> and create a pull request from this branch to the master branch.</p></li>
+<li><p>Go to <a class="reference external" href="https://github.com/sintel-dev/SigPro/">https://github.com/sintel-dev/SigPro/</a> and create a pull request from this branch to the master branch.</p></li>
 </ol>
 </section>
 </section>

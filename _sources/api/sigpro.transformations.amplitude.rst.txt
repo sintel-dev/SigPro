@@ -12,3 +12,4 @@ Submodules
 .. toctree::
 
    sigpro.transformations.amplitude.identity
+   sigpro.transformations.amplitude.spectrum

@@ -1,0 +1,7 @@
+sigpro.transformations.amplitude.spectrum module
+================================================
+
+.. automodule:: sigpro.transformations.amplitude.spectrum
+   :members:
+   :undoc-members:
+   :show-inheritance:

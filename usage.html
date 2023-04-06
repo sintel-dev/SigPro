@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SigPro Usage &mdash; SigPro 0.0.3 documentation</title>
+  <title>SigPro Usage &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing to SigPro" href="contributing.html" />
-    <link rel="prev" title="sigpro.process_signals module" href="api/sigpro.process_signals.html" /> 
+    <link rel="prev" title="sigpro.demo module" href="api/sigpro.demo.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -111,8 +111,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -150,16 +150,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +224,7 @@
         
             
             
-              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/usage.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/usage.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -493,30 +501,30 @@ has been stored:</p>
 </div>
 <p>If you explore this file, you will see the primitive <code class="docutils literal notranslate"><span class="pre">json</span></code> annotation:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;primitive&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;classifiers&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;aggregation&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;produce&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude_values&quot;</span><span class="p">,</span>
-                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span>
-            <span class="p">}</span>
-        <span class="p">],</span>
-        <span class="nt">&quot;output&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
-                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
-            <span class="p">}</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;hyperparameters&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;fixed&quot;</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="nt">&quot;tunable&quot;</span><span class="p">:</span> <span class="p">{}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;primitive&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;classifiers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aggregation&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;amplitude&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;produce&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;amplitude_values&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;numpy.ndarray&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;hyperparameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">&quot;tunable&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -684,7 +692,7 @@ use a flat primitive name (<code class="docutils literal notranslate"><span clas
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to SigPro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="api/sigpro.process_signals.html" class="btn btn-neutral float-left" title="sigpro.process_signals module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api/sigpro.demo.html" class="btn btn-neutral float-left" title="sigpro.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

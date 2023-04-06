@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.transformations.frequency.fft &mdash; SigPro 0.1.1 documentation</title>
+  <title>sigpro.transformations.amplitude.spectrum &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -216,7 +216,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>sigpro.transformations.frequency.fft</li>
+      <li>sigpro.transformations.amplitude.spectrum</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -231,18 +231,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sigpro.transformations.frequency.fft</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;SigPro Transformations Frequency FFT module.&quot;&quot;&quot;</span>
+  <h1>Source code for sigpro.transformations.amplitude.spectrum</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Build power spectrum from amplitude values.&quot;&quot;&quot;</span>
+
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="fft"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency.fft.html#sigpro.transformations.frequency.fft.fft">[docs]</a><span class="k">def</span> <span class="nf">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply an FFT on the amplitude values and return the real components.</span>
+<div class="viewcode-block" id="power_spectrum"><a class="viewcode-back" href="../../../../api/sigpro.transformations.amplitude.spectrum.html#sigpro.transformations.amplitude.spectrum.power_spectrum">[docs]</a><span class="k">def</span> <span class="nf">power_spectrum</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply an RFFT on the amplitude values and return the real components.</span>
 
-<span class="sd">    This computes the discrete Fourier Transform using the `fft` function</span>
+<span class="sd">    This computes the discrete Fourier Transform using the `rfft` function</span>
 <span class="sd">    from `numpy.fft` module and compute the frequency values using the</span>
-<span class="sd">    `fftfreq` from the same module.</span>
+<span class="sd">    `rfftfreq` from the same module.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        amplitude_values (np.ndarray):</span>
@@ -255,36 +256,10 @@
 <span class="sd">            * `amplitude_values (numpy.ndarray)`</span>
 <span class="sd">            * `frequency_values (numpy.ndarray)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">amplitude_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span>
-    <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sampling_frequency</span><span class="p">)</span>
+    <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sampling_frequency</span><span class="p">)</span>
+    <span class="n">amplitude_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
 
     <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span></div>
-
-
-<div class="viewcode-block" id="fft_real"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency.fft.html#sigpro.transformations.frequency.fft.fft_real">[docs]</a><span class="k">def</span> <span class="nf">fft_real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply an FFT on the amplitude values and return the real components.</span>
-
-<span class="sd">    This computes the discrete Fourier Transform using the `fft` function</span>
-<span class="sd">    from `numpy.fft` module and then extracting the real part of the</span>
-<span class="sd">    returned vector to discard the complex components that represent</span>
-<span class="sd">    the phase values.</span>
-<span class="sd">    Also compute the frequency values using the `fftfreq` from the</span>
-<span class="sd">    same module.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        amplitude_values (np.ndarray):</span>
-<span class="sd">            A numpy array with the signal values.</span>
-<span class="sd">        sampling_frequency (int or float):</span>
-<span class="sd">            Sampling frequency value passed in Hz.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple:</span>
-<span class="sd">            * `amplitude_values (numpy.ndarray)`</span>
-<span class="sd">            * `frequency_values (numpy.ndarray)`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">frequency_values</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

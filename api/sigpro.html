@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro package &mdash; SigPro 0.0.3 documentation</title>
+  <title>sigpro package &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -111,8 +111,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -150,16 +150,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +224,7 @@
         
             
             
-              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/api/sigpro.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -233,22 +241,23 @@
   <section id="module-sigpro">
 <span id="sigpro-package"></span><h1>sigpro package<a class="headerlink" href="#module-sigpro" title="Permalink to this headline">¶</a></h1>
 <p>Top-level package for SigPro.</p>
-<p><strong>Functions:</strong></p>
+<p><strong>Classes:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="sigpro.process_signals.html#module-sigpro.process_signals" title="sigpro.process_signals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_signals</span></code></a>(data, transformations, …)</p></td>
-<td><p>Process Signals.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.SigPro" title="sigpro.SigPro"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SigPro</span></code></a>(transformations, aggregations[, …])</p></td>
+<td><p>SigPro class applies multiple transformation and aggregation primitives.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="function">
-<dt id="sigpro.process_signals">
-<code class="sig-prename descclassname">sigpro.</code><code class="sig-name descname">process_signals</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">transformations</em>, <em class="sig-param">aggregations</em>, <em class="sig-param">values_column_name='values'</em>, <em class="sig-param">keep_values=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/process_signals.html#process_signals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.process_signals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Process Signals.</p>
+<dl class="class">
+<dt id="sigpro.SigPro">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.</code><code class="sig-name descname">SigPro</code><span class="sig-paren">(</span><em class="sig-param">transformations</em>, <em class="sig-param">aggregations</em>, <em class="sig-param">values_column_name='values'</em>, <em class="sig-param">keep_columns=False</em>, <em class="sig-param">input_is_dataframe=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/core.html#SigPro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.SigPro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SigPro class applies multiple transformation and aggregation primitives.</p>
 <p>The Process Signals is responsible for applying a collection of primitives specified by the
 user in order to create features for the given data.</p>
 <p>Given a list of transformations and aggregations which are composed
@@ -281,18 +290,73 @@ by previously applying the transformations and then compute the aggregations.</p
 <li><p><strong>transformations</strong> (<em>list</em>) – List of dictionaries containing the transformation primitives.</p></li>
 <li><p><strong>aggregations</strong> (<em>list</em>) – List of dictionaries containing the aggregation primitives.</p></li>
 <li><p><strong>values_column_name</strong> (<em>str</em>) – The name of the column that contains the signal values. Defaults to <code class="docutils literal notranslate"><span class="pre">values</span></code>.</p></li>
-<li><p><strong>keep_values</strong> (<em>bool</em>) – Whether or not to keep the original signal values or remove them.</p></li>
+<li><p><strong>keep_columns</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>list</em><em>]</em>) – Whether to keep non-feature columns in the output DataFrame or not.
+If a list of column names are passed, those columns are kept.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.SigPro.get_input_args" title="sigpro.SigPro.get_input_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_input_args</span></code></a>()</p></td>
+<td><p>Return the pipeline input args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.SigPro.get_output_args" title="sigpro.SigPro.get_output_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_args</span></code></a>()</p></td>
+<td><p>Return the pipeline output args.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.SigPro.process_signal" title="sigpro.SigPro.process_signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_signal</span></code></a>([data, window, time_index, …])</p></td>
+<td><p>Apply multiple transformation and aggregation primitives.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sigpro.SigPro.get_input_args">
+<code class="sig-name descname">get_input_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/core.html#SigPro.get_input_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.SigPro.get_input_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pipeline input args.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.SigPro.get_output_args">
+<code class="sig-name descname">get_output_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/core.html#SigPro.get_output_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.SigPro.get_output_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pipeline output args.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.SigPro.process_signal">
+<code class="sig-name descname">process_signal</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">window=None</em>, <em class="sig-param">time_index=None</em>, <em class="sig-param">groupby_index=None</em>, <em class="sig-param">feature_columns=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/core.html#SigPro.process_signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.SigPro.process_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply multiple transformation and aggregation primitives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – Dataframe with a column that contains signal values.</p></li>
+<li><p><strong>window</strong> (<em>str</em>) – Duration of window size, e.g. (‘1h’).</p></li>
+<li><p><strong>time_index</strong> (<em>str</em>) – Column in <code class="docutils literal notranslate"><span class="pre">data</span></code> that represents the time index.</p></li>
+<li><p><strong>groupby_index</strong> (<em>str</em><em> or </em><em>list</em><em>[</em><em>str</em><em>]</em>) – Column(s) to group together and take the window over.</p></li>
+<li><p><strong>feature_columns</strong> (<em>list</em>) – List of column names from the input data frame that must be considered as
+features and should not be dropped.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A data frame with new feature columns by applying the previous primitives. If
+<dd class="field-even"><p><dl class="simple">
+<dt>pandas.DataFrame:</dt><dd><p>A data frame with new feature columns by applying the previous primitives. If
 <code class="docutils literal notranslate"><span class="pre">keep_values</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> the original signal values will be conserved in the
 data frame, otherwise the original signal values will be deleted.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dt>list:</dt><dd><p>A list with the feature names generated.</p>
 </dd>
 </dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <section id="subpackages">
@@ -325,6 +389,7 @@ data frame, otherwise the original signal values will be deleted.</p>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.amplitude.html">sigpro.transformations.amplitude package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.amplitude.html#submodules">Submodules</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="sigpro.transformations.amplitude.identity.html">sigpro.transformations.amplitude.identity module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sigpro.transformations.amplitude.spectrum.html">sigpro.transformations.amplitude.spectrum module</a></li>
 </ul>
 </li>
 </ul>
@@ -356,8 +421,8 @@ data frame, otherwise the original signal values will be deleted.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </div>
 </section>

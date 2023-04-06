@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.contributing &mdash; SigPro 0.0.3 documentation</title>
+  <title>sigpro.contributing &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -108,8 +108,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -147,16 +147,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -404,7 +412,7 @@
 
 
 <span class="k">def</span> <span class="nf">_import_object</span><span class="p">(</span><span class="n">object_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Import an object from its Fully Qualified Name.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import an object from its Fully Qualified Name.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">package</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">object_name</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">package</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
@@ -507,7 +515,7 @@
                    <span class="n">context_arguments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fixed_hyperparameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">tunable_hyperparameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primitive_outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">primitives_path</span><span class="o">=</span><span class="s1">&#39;sigpro/primitives&#39;</span><span class="p">,</span> <span class="n">primitives_subfolders</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a primitive JSON.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a primitive JSON.</span>
 
 <span class="sd">    During the JSON creation the primitive function signature is validated to</span>
 <span class="sd">    ensure that it matches the primitive type and subtype implicitly specified</span>
@@ -598,7 +606,7 @@
 <div class="viewcode-block" id="run_primitive"><a class="viewcode-back" href="../../api/sigpro.contributing.html#sigpro.contributing.run_primitive">[docs]</a><span class="k">def</span> <span class="nf">run_primitive</span><span class="p">(</span><span class="n">primitive</span><span class="p">,</span> <span class="n">primitive_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primitive_subtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">amplitude_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">frequency_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">demo_row_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run a given `primitive` with the specified configuration.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a given `primitive` with the specified configuration.</span>
 
 <span class="sd">    Given a primitive and it&#39;s hyperparameters, attempt to run this against either the data</span>
 <span class="sd">    provided by the user or against the demo data. If there is no data provided, the type</span>

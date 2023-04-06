@@ -1,0 +1,7 @@
+sigpro.core module
+==================
+
+.. automodule:: sigpro.core
+   :members:
+   :undoc-members:
+   :show-inheritance:

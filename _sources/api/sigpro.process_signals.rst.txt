@@ -1,7 +1,0 @@
-sigpro.process\_signals module
-==============================
-
-.. automodule:: sigpro.process_signals
-   :members:
-   :undoc-members:
-   :show-inheritance:

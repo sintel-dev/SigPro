@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.aggregations.amplitude package &mdash; SigPro 0.1.1 documentation</title>
+  <title>sigpro.transformations.amplitude.spectrum module &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sigpro.aggregations.amplitude.statistical module" href="sigpro.aggregations.amplitude.statistical.html" />
-    <link rel="prev" title="sigpro.aggregations package" href="sigpro.aggregations.html" /> 
+    <link rel="next" title="sigpro.transformations.frequency package" href="sigpro.transformations.frequency.html" />
+    <link rel="prev" title="sigpro.transformations.amplitude.identity module" href="sigpro.transformations.amplitude.identity.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,12 +99,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
 </ul>
@@ -219,16 +219,18 @@
         
           <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
         
-          <li><a href="sigpro.aggregations.html">sigpro.aggregations package</a> &raquo;</li>
+          <li><a href="sigpro.transformations.html">sigpro.transformations package</a> &raquo;</li>
         
-      <li>sigpro.aggregations.amplitude package</li>
+          <li><a href="sigpro.transformations.amplitude.html">sigpro.transformations.amplitude package</a> &raquo;</li>
+        
+      <li>sigpro.transformations.amplitude.spectrum module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.aggregations.amplitude.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.transformations.amplitude.spectrum.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -242,17 +244,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="module-sigpro.aggregations.amplitude">
-<span id="sigpro-aggregations-amplitude-package"></span><h1>sigpro.aggregations.amplitude package<a class="headerlink" href="#module-sigpro.aggregations.amplitude" title="Permalink to this headline">¶</a></h1>
-<p>SigPro Aggregations Ampltiude module.</p>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sigpro.aggregations.amplitude.statistical.html">sigpro.aggregations.amplitude.statistical module</a></li>
+  <section id="module-sigpro.transformations.amplitude.spectrum">
+<span id="sigpro-transformations-amplitude-spectrum-module"></span><h1>sigpro.transformations.amplitude.spectrum module<a class="headerlink" href="#module-sigpro.transformations.amplitude.spectrum" title="Permalink to this headline">¶</a></h1>
+<p>Build power spectrum from amplitude values.</p>
+<p><strong>Functions:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.transformations.amplitude.spectrum.power_spectrum" title="sigpro.transformations.amplitude.spectrum.power_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">power_spectrum</span></code></a>(amplitude_values, …)</p></td>
+<td><p>Apply an RFFT on the amplitude values and return the real components.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="sigpro.transformations.amplitude.spectrum.power_spectrum">
+<code class="sig-prename descclassname">sigpro.transformations.amplitude.spectrum.</code><code class="sig-name descname">power_spectrum</code><span class="sig-paren">(</span><em class="sig-param">amplitude_values</em>, <em class="sig-param">sampling_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/transformations/amplitude/spectrum.html#power_spectrum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.transformations.amplitude.spectrum.power_spectrum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply an RFFT on the amplitude values and return the real components.</p>
+<p>This computes the discrete Fourier Transform using the <cite>rfft</cite> function
+from <cite>numpy.fft</cite> module and compute the frequency values using the
+<cite>rfftfreq</cite> from the same module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amplitude_values</strong> (<em>np.ndarray</em>) – A numpy array with the signal values.</p></li>
+<li><p><strong>sampling_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Sampling frequency value passed in Hz.</p></li>
 </ul>
-</div>
-</section>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><cite>amplitude_values (numpy.ndarray)</cite></p></li>
+<li><p><cite>frequency_values (numpy.ndarray)</cite></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -263,10 +296,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sigpro.aggregations.amplitude.statistical.html" class="btn btn-neutral float-right" title="sigpro.aggregations.amplitude.statistical module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sigpro.transformations.frequency.html" class="btn btn-neutral float-right" title="sigpro.transformations.frequency package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sigpro.aggregations.html" class="btn btn-neutral float-left" title="sigpro.aggregations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sigpro.transformations.amplitude.identity.html" class="btn btn-neutral float-left" title="sigpro.transformations.amplitude.identity module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

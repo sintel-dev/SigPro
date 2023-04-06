@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.demo module &mdash; SigPro 0.0.3 documentation</title>
+  <title>sigpro.demo module &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sigpro.process_signals module" href="sigpro.process_signals.html" />
-    <link rel="prev" title="sigpro.contributing module" href="sigpro.contributing.html" /> 
+    <link rel="next" title="SigPro Usage" href="../usage.html" />
+    <link rel="prev" title="sigpro.core module" href="sigpro.core.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -111,8 +111,8 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -150,16 +150,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -218,7 +226,7 @@
         
             
             
-              <a href="https://github.com/signals-dev/SigPro/blob/master/docs/api/sigpro.demo.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.demo.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -248,10 +256,13 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#sigpro.demo.get_demo_data" title="sigpro.demo.get_demo_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_demo_data</span></code></a>([nrows])</p></td>
 <td><p>Get a demo <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the accepted data format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.demo.get_frequency_demo" title="sigpro.demo.get_frequency_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frequency_demo</span></code></a>([index, real])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.demo.get_demo_primitives" title="sigpro.demo.get_demo_primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_demo_primitives</span></code></a>()</p></td>
+<td><p>Get a dict of demo transformation and aggregation primitives.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.demo.get_frequency_demo" title="sigpro.demo.get_frequency_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frequency_demo</span></code></a>([index, real])</p></td>
 <td><p>Get amplitude values and the corresponding frequency values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.demo.get_frequency_time_demo" title="sigpro.demo.get_frequency_time_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frequency_time_demo</span></code></a>([index, real])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.demo.get_frequency_time_demo" title="sigpro.demo.get_frequency_time_demo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frequency_time_demo</span></code></a>([index, real])</p></td>
 <td><p>Get amplitude values, frequency values and time values.</p></td>
 </tr>
 </tbody>
@@ -285,8 +296,23 @@ sampling frequency used.</p>
 <code class="sig-prename descclassname">sigpro.demo.</code><code class="sig-name descname">get_demo_data</code><span class="sig-paren">(</span><em class="sig-param">nrows=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/demo.html#get_demo_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.demo.get_demo_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a demo <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the accepted data format.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nrows</strong> (<em>int</em>) – Number of rows to load from the demo datasets.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> containing as <code class="docutils literal notranslate"><span class="pre">values</span></code> the signal values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.demo.get_demo_primitives">
+<code class="sig-prename descclassname">sigpro.demo.</code><code class="sig-name descname">get_demo_primitives</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/demo.html#get_demo_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.demo.get_demo_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dict of demo transformation and aggregation primitives.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> containing as <code class="docutils literal notranslate"><span class="pre">values</span></code> the signal values.</p>
+<dd class="field-odd"><p>A tuple containing the list of transformation primitives and
+the list aggregation primitives</p>
 </dd>
 </dl>
 </dd></dl>
@@ -356,10 +382,10 @@ if it’s set to <code class="docutils literal notranslate"><span class="pre">Fa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sigpro.process_signals.html" class="btn btn-neutral float-right" title="sigpro.process_signals module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../usage.html" class="btn btn-neutral float-right" title="SigPro Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sigpro.contributing.html" class="btn btn-neutral float-left" title="sigpro.contributing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sigpro.core.html" class="btn btn-neutral float-left" title="sigpro.core module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

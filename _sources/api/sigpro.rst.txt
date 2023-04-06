@@ -20,5 +20,5 @@ Submodules
 .. toctree::
 
    sigpro.contributing
+   sigpro.core
    sigpro.demo
-   sigpro.process_signals

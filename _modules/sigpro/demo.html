@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.demo &mdash; SigPro 0.0.3 documentation</title>
+  <title>sigpro.demo &mdash; SigPro 0.1.1 documentation</title>
   
 
   
@@ -108,8 +108,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.demo.html">sigpro.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.process_signals.html">sigpro.process_signals module</a></li>
 </ul>
 </li>
 </ul>
@@ -147,16 +147,24 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id3">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../history.html#id4">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id7">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id8">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -237,20 +245,62 @@
 <span class="n">DEMO_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">_load_demo</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">demo_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DEMO_PATH</span><span class="p">,</span> <span class="s1">&#39;demo_timeseries.csv&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">demo_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sampling_frequency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+
 <div class="viewcode-block" id="get_demo_data"><a class="viewcode-back" href="../../api/sigpro.demo.html#sigpro.demo.get_demo_data">[docs]</a><span class="k">def</span> <span class="nf">get_demo_data</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get a demo ``pandas.DataFrame`` containing the accepted data format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a demo ``pandas.DataFrame`` containing the accepted data format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nrows (int):</span>
+<span class="sd">            Number of rows to load from the demo datasets.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A ``pd.DataFrame`` containing as ``values`` the signal values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">demo_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DEMO_PATH</span><span class="p">,</span> <span class="s1">&#39;demo_timeseries.csv&#39;</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">demo_path</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">_load_demo</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">time_delta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">))</span> <span class="o">*</span> <span class="mi">750</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">time_delta</span>
     <span class="k">return</span> <span class="n">df</span></div>
 
 
+<div class="viewcode-block" id="get_demo_primitives"><a class="viewcode-back" href="../../api/sigpro.demo.html#sigpro.demo.get_demo_primitives">[docs]</a><span class="k">def</span> <span class="nf">get_demo_primitives</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a dict of demo transformation and aggregation primitives.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing the list of transformation primitives and</span>
+<span class="sd">        the list aggregation primitives</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">transformations</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fft&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.transformations.frequency.fft.fft&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+    <span class="n">aggregations</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.mean&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;std&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="s2">&quot;sigpro.aggregations.amplitude.statistical.std&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span></div>
+
+
 <div class="viewcode-block" id="get_amplitude_demo"><a class="viewcode-back" href="../../api/sigpro.demo.html#sigpro.demo.get_amplitude_demo">[docs]</a><span class="k">def</span> <span class="nf">get_amplitude_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get amplitude values and sampling frequency used.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get amplitude values and sampling frequency used.</span>
 
 <span class="sd">    The amplitude demo data is meant to be used for the any ``transformation`` functions</span>
 <span class="sd">    that recieve as an input ``amplitude_values`` and ``sampling_frequency``.</span>
@@ -269,7 +319,7 @@
 <span class="sd">            A tuple with a `np.array` containing amplitude values and as second element the</span>
 <span class="sd">            sampling frequency used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">get_demo_data</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">_load_demo</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 
@@ -277,7 +327,7 @@
 
 
 <div class="viewcode-block" id="get_frequency_demo"><a class="viewcode-back" href="../../api/sigpro.demo.html#sigpro.demo.get_frequency_demo">[docs]</a><span class="k">def</span> <span class="nf">get_frequency_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get amplitude values and the corresponding frequency values.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get amplitude values and the corresponding frequency values.</span>
 
 <span class="sd">    The frequency demo data is meant to be used for the ``frequency aggregations``</span>
 <span class="sd">    functions that recieve as an input ``amplitude_values`` and ``frequency_values``.</span>
@@ -309,7 +359,7 @@
 
 
 <div class="viewcode-block" id="get_frequency_time_demo"><a class="viewcode-back" href="../../api/sigpro.demo.html#sigpro.demo.get_frequency_time_demo">[docs]</a><span class="k">def</span> <span class="nf">get_frequency_time_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get amplitude values, frequency values and time values.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get amplitude values, frequency values and time values.</span>
 
 <span class="sd">    The frequency time demo data is meant to be used for the ``frequency time aggregations``</span>
 <span class="sd">    functions that recieve as an input ``amplitude_values``, ``frequency_values`` and</span>
