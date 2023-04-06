@@ -1,5 +1,11 @@
 # History
 
+## 0.1.1 - 2023-04-06
+
+### Features
+* Accepting single value data frame format - [Issue #36](https://github.com/sintel-dev/SigPro/issues/36) by @frances-h @sarahmish
+* Update demos - [Issue #26](https://github.com/sintel-dev/SigPro/pull/26) by @frances-h
+
 ## 0.1.0 - 2021-11-14
 
 ### Features
