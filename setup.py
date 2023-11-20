@@ -12,10 +12,10 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlblocks>=0.4.1',
-    'pandas>=1',
-    'numpy>=1.17.4',
-    'scipy>=1.3.3',
+    'mlblocks>=0.6.1',
+    'pandas>=1.5.3',
+    'numpy>=1.24.4',
+    'scipy>=1.10.1',
 ]
 
 setup_requires = [
@@ -75,8 +75,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',        
         'Programming Language :: Python :: 3.9',
     ],
@@ -98,7 +96,7 @@ setup(
     long_description_content_type='text/markdown',
     name='sigpro',
     packages=find_packages(include=['sigpro', 'sigpro.*']),
-    python_requires='>=3.6,<=3.9',
+    python_requires='>=3.8,<=3.9',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
