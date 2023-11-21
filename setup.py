@@ -13,9 +13,9 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
 
 install_requires = [
     'mlblocks>=0.6.1',
-    'pandas==1.5.3',
-    'numpy==1.24.4',
-    'scipy==1.10.1',
+    'pandas>=1.5.3',
+    'numpy>=1.24.4',
+    'scipy>=1.10.1',
 ]
 
 setup_requires = [
