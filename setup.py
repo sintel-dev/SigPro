@@ -77,7 +77,6 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',        
         'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
     ],
     description='Signal Processing Tools for Machine Mearning',
     entry_points={
@@ -97,7 +96,7 @@ setup(
     long_description_content_type='text/markdown',
     name='sigpro',
     packages=find_packages(include=['sigpro', 'sigpro.*']),
-    python_requires='>=3.8,<3.11',
+    python_requires='>=3.8,<3.10',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
