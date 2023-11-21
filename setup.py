@@ -96,7 +96,7 @@ setup(
     long_description_content_type='text/markdown',
     name='sigpro',
     packages=find_packages(include=['sigpro', 'sigpro.*']),
-    python_requires='>=3.8,<3.10',
+    python_requires='>=3.8,<3.11',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
