@@ -23,7 +23,7 @@ setup_requires = [
 ]
 
 tests_require = [
-    'pytest==7.4.3',
+    'pytest>=7.2.2',
     'pytest-cov>=4.1.0',
     'jupyter>=1.0.0,<2',
     'rundoc>=0.4.3,<0.5',
@@ -77,6 +77,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',        
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
     description='Signal Processing Tools for Machine Mearning',
     entry_points={
@@ -96,7 +97,7 @@ setup(
     long_description_content_type='text/markdown',
     name='sigpro',
     packages=find_packages(include=['sigpro', 'sigpro.*']),
-    python_requires='>=3.8,<3.10',
+    python_requires='>=3.8,<3.11',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
