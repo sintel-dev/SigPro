@@ -418,7 +418,7 @@ you will need to pass the fixed hyperparameters specification as follows:
 from sigpro.contributing import make_primitive
 
 make_primitive(
-    'sigpro.aggragations.frequency.band.band_mean',
+    'sigpro.aggregations.frequency.band.band_mean',
     fixed_hyperparameters={
         'min_frequency': {
             'type': 'float',
