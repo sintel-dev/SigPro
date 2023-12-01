@@ -25,7 +25,7 @@ in order to solve time series machine learning problems.
 
 ## Requirements
 
-**SigPro** has been developed and tested on [Python 3.6, 3.7 and 3.8](https://www.python.org/downloads/)
+**SigPro** has been developed and tested on [Python 3.8, 3.9, 3.10, and 3.11](https://www.python.org/downloads/)
 on GNU/Linux and macOS systems.
 
 Also, although it is not strictly required, the usage of a [virtualenv](
