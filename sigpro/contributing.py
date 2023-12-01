@@ -88,6 +88,24 @@ PRIMITIVE_INPUTS = {
                 },
             )
         },
+        'comparative': {
+            'args': (
+                {
+                    'name': 'amplitude_values',
+                    'type': 'numpy.ndarray',
+                },
+                {
+                    'name': 'alternative_amplitude_values',
+                    'type': 'numpy.ndarray',
+                }
+            ),
+            'output': (
+                {
+                    'name': 'amplitude_values',
+                    'type': 'numpy.ndarray',
+                },
+            )
+        }
     },
     'aggregation': {
         'amplitude': {
@@ -149,6 +167,24 @@ PRIMITIVE_INPUTS = {
                 },
             )
         },
+        'comparative': {
+            'args': (
+                {
+                    'name': 'amplitude_values',
+                    'type': 'numpy.ndarray',
+                },
+                {
+                    'name': 'alternative_amplitude_values',
+                    'type': 'numpy.ndarray',
+                }
+            ),
+            'output': (
+                {
+                    'name': 'value',
+                    'type': 'float',
+                },
+            )
+        }
     }
 }
 
