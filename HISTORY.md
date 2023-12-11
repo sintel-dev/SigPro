@@ -1,6 +1,6 @@
 # History
 
-## 0.1.2 - 2023-04-06
+## 0.1.2 - 2023-12-11
 
 ### Features
 * Python version update by @andyx13 in https://github.com/sintel-dev/SigPro/pull/43
