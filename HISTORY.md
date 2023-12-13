@@ -1,5 +1,12 @@
 # History
 
+## 0.1.2 - 2023-12-11
+
+### Features
+* Python version update - [Issue #44](https://github.com/sintel-dev/SigPro/issues/44) by @andyx13
+* Add demo notebook and per-primitive documentation - [Issue #47](https://github.com/sintel-dev/SigPro/issues/47) by @andyx13
+
+
 ## 0.1.1 - 2023-04-06
 
 ### Features
