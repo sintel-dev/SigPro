@@ -9,8 +9,10 @@ class Identity(primitive.AmplitudeTransformation):
 
 class PowerSpectrum(primitive.AmplitudeTransformation):
     def __init__(self):
-        #super().__init__('sigpro.transformations.amplitude.spectrum.power_spectrum')
-        Primitive.__init__('sigpro.transformations.amplitude.spectrum.power_spectrum', 'transformation', 'frequency')
+        super().__init__('sigpro.transformations.amplitude.spectrum.power_spectrum')
+        primitive_spec = contributing._get_primitive_spec('transformation', 'frequency')
+        self.set_primitive_inputs(primitive_spec['args'])
+        self.set_primitive_outputs(primitive_spec['output'])
 
 #### Frequency
 
@@ -28,9 +30,8 @@ class FFTReal(primitive.FrequencyTransformation):
 class FrequencyBand(primitive.FrequencyTransformation):
 
     def __init__(self, low, high):
-        Primitive.__init__("sigpro.transformations.frequency.band.frequency_band", 'aggregation', 'frequency', init_params =  {'low': low, 'high': high})
-        primitive_spec = contributing._get_primitive_spec('aggregation', 'frequency')
-        self.set_primitive_inputs(primitive_spec['args'])
+        super.__init__("sigpro.transformations.frequency.band.frequency_band", init_params =  {'low': low, 'high': high})
+        self.set_primitive_inputs([{"name": "amplitude_values", "type": "numpy.ndarray"}, {"name": "frequency_values", "type": "numpy.ndarray"} ])
         self.set_primitive_outputs([{'name': 'amplitude_values', 'type': "numpy.ndarray" }, {'name': 'frequency_values', 'type': "numpy.ndarray" }])
         self.set_fixed_hyperparameters({'low': {'type': 'int'}, 'high': {'type': 'int'}})
         
