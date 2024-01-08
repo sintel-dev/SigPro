@@ -9,26 +9,27 @@ from mlblocks.mlblock import import_object #, MLBlock
 
 
 class Primitive(): #Primitive(MLBlock):
+    """
+    Represents a SigPro primitive.
 
-    def __init__(self, primitive, primitive_type, primitive_subtype, init_params = {}):
+    Each primitive object represents a specific transformation or aggregation. Moreover, 
+    a Primitive maintains all the information in its JSON annotation as well as its 
+    hyperparameter values.
 
-        """
-        Initialize a Primitive object. 
+    Args:
+        primitive (str):
+            The name of the primitive, the python path including the name of the
+            module and the name of the function.
+        primitive_type (str):
+            Type of primitive.
+        primitive_subtype (str):
+            Subtype of the primitive.
+        init_params (dict):
+            Initial (fixed) hyperparameter values of the primitive in 
+            {hyperparam_name: hyperparam_value} format.
+    """
+    def __init__(self, primitive, primitive_type, primitive_subtype, init_params=None):
 
-        Each primitive object represents a specific transformation or aggregation. Moreover, 
-        a Primitive maintains all the information in its JSON annotation as well as its hyperparameter values.
-
-        Args:
-            primitive (str):
-                The name of the primitive, the python path including the name of the
-                module and the name of the function.
-            primitive_type (str):
-                Type of primitive.
-            primitive_subtype (str):
-                Subtype of the primitive.
-            init_params (dict):
-                Initial (fixed) hyperparameter values of the primitive in {hyperparam_name: hyperparam_value} format.
-        """
         self.primitive = primitive
         self.tag = primitive.split('.')[-1]
         self.primitive_type = primitive_type
@@ -43,37 +44,38 @@ class Primitive(): #Primitive(MLBlock):
         _check_primitive_type_and_subtype(primitive_type, primitive_subtype)
 
         self.primitive_function = import_object(primitive)
-        self.hyperparameter_values = init_params 
+        if init_params is None:
+            init_params = dict()
+        self.hyperparameter_values = init_params
 
     def get_name(self):
+        """Get the name of the primitive."""
         return self.primitive
     def get_tag(self):
+        """Get the tag of the primitive."""
         return self.tag
     def get_inputs(self):
+        """Get the inputs of the primitive."""
         return copy.deepcopy(self.primitive_inputs)
     def get_outputs(self):
+        """Get the outputs of the primitive."""
         return copy.deepcopy(self.primitive_outputs)
 
     def get_type_subtype(self):
+        """Get the type and subtype of the primitive."""
         return self.primitive_type, self.primitive_subtype
 
     def _validate_primitive_spec(self): #check compatibility of given parameters.
-        
-        primitive_args = _get_primitive_args(
+        _get_primitive_args(
             self.primitive_function,
             self.primitive_inputs,
             self.context_arguments,
             self.fixed_hyperparameters,
-            self.tunable_hyperparameters
-        )
-    
+            self.tunable_hyperparameters)
     
     def get_hyperparam_dict(self):
-        """
-        Return the dictionary of fixed hyperparameters for use in Pipelines.
-        """
+        """ Return the dictionary of fixed hyperparameters for use in Pipelines."""
         return { 'name': self.get_tag(), 'primitive': self.get_name(), 'init_params': copy.deepcopy(self.hyperparameter_values)}
-
 
     def set_tag(self, tag):
         self.tag = tag
@@ -125,54 +127,55 @@ class Primitive(): #Primitive(MLBlock):
 ## Transformations
 
 class TransformationPrimitive(Primitive):
-
-    def __init__(self, primitive, primitive_subtype,  init_params = {}):
-        super().__init__(primitive, 'transformation',primitive_subtype, init_params = init_params)
+    """ Generic transformation primitive. """
+    def __init__(self, primitive, primitive_subtype,  init_params=None):
+        super().__init__(primitive, 'transformation',primitive_subtype, init_params=init_params)
 
 
 class AmplitudeTransformation(TransformationPrimitive):
-
-    def __init__(self, primitive, init_params = {}):
-        super().__init__(primitive, 'amplitude', init_params = init_params)
+    """ Generic amplitude transformation primitive. """
+    def __init__(self, primitive, init_params=None):
+        super().__init__(primitive, 'amplitude', init_params=init_params)
 
 
 class FrequencyTransformation(TransformationPrimitive):
-
-    def __init__(self, primitive, init_params = {}):
-        super().__init__(primitive,  'frequency', init_params = init_params)
+    """ Generic frequency transformation primitive. """
+    def __init__(self, primitive, init_params=None):
+        super().__init__(primitive,  'frequency', init_params=init_params)
 
 
 class FrequencyTimeTransformation(TransformationPrimitive):
-
-    def __init__(self, primitive, init_params = {}):
-        super().__init__(primitive, 'frequency_time', init_params = init_params)
+    """ Generic frequency-time transformation primitive. """
+    def __init__(self, primitive, init_params=None):
+        super().__init__(primitive, 'frequency_time', init_params=init_params)
 
 
 class ComparativeTransformation(TransformationPrimitive):
-    pass
+    """ Generic comparative transformation primitive. """
 
 ## Aggregations
 
 class AggregationPrimitive(Primitive):
-    def __init__(self, primitive, primitive_subtype, init_params = {}):
-        super().__init__(primitive, 'aggregation', primitive_subtype, init_params = init_params)
+    """ Generic aggregation primitive. """
+    def __init__(self, primitive, primitive_subtype, init_params=None):
+        super().__init__(primitive, 'aggregation', primitive_subtype, init_params=init_params)
 
 
 class AmplitudeAggregation(AggregationPrimitive):
-
-    def __init__(self, primitive,  init_params = {}):
-        super().__init__(primitive, 'amplitude', init_params = init_params)
+    """ Generic amplitude aggregation primitive. """
+    def __init__(self, primitive,  init_params=None):
+        super().__init__(primitive, 'amplitude', init_params=init_params)
 
 class FrequencyAggregation(AggregationPrimitive):
-
-    def __init__(self, primitive,  init_params = {}):
-        super().__init__(primitive,  'frequency',  init_params = init_params)
+    """ Generic frequency aggregation primitive. """
+    def __init__(self, primitive,  init_params=None):
+        super().__init__(primitive,  'frequency',  init_params=init_params)
 
 class FrequencyTimeAggregation(AggregationPrimitive):
-
-    def __init__(self, primitive, init_params = {}):
-        super().__init__(primitive, 'frequency_time', init_params = init_params)
+    """ Generic frequency-time aggregation primitive. """
+    def __init__(self, primitive, init_params=None):
+        super().__init__(primitive, 'frequency_time', init_params=init_params)
 
 
 class ComparativeAggregation(AggregationPrimitive):
-    pass
+    """ Generic comparative aggregation primitive. """

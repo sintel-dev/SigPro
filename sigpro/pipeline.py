@@ -5,7 +5,6 @@ from collections import Counter
 from copy import deepcopy
 from itertools import product
 from abc import ABC
-
 import pandas as pd
 from mlblocks import MLPipeline, load_primitive
 from mlblocks.mlblock import import_object
@@ -99,10 +98,11 @@ class Pipeline(ABC):
     def get_output_features(self):
         raise NotImplementedError
 
-    def process_signal(self, data=None, window=None, values_column_name = 'values', time_index=None, groupby_index=None, 
-                       feature_columns=None,  keep_columns = False, input_is_dataframe = True,  **kwargs):
-        """Apply multiple transformation and aggregation primitives.
-
+    def process_signal(self, data=None, window=None, values_column_name = 'values', 
+                        time_index=None, groupby_index=None, feature_columns=None, 
+                        keep_columns=False, input_is_dataframe=True, **kwargs):
+        """Apply multiple transformation and aggregation primitives. 
+        
         The process_signals method is responsible for applying a Pipeline specified by the
         user in order to create features for the given data.
 
@@ -187,14 +187,14 @@ class Pipeline(ABC):
 class LinearPipeline(Pipeline): 
     """LinearPipeline class applies multiple transformation and aggregation primitives.
 
-    The LinearPipeline class applies a sequence of transformation primitives and applies several aggregation primitives in parallel to produce output features.
+    The LinearPipeline class applies a sequence of transformation primitives and applies several
+    aggregation primitives in parallel to produce output features.
 
     Args:
         transformations (list):
             List of transformation primitive objects.
         aggregations (list):
             List of dictionaries containing the aggregation primitives.
-
     """`
     def __init__(self, transformations, aggregations): 
 
@@ -286,25 +286,28 @@ def build_linear_pipeline(transformations, aggregations):
 
     Returns:
         sigpro.pipeline.LinearPipeline:
-            A ``LinearPipeline`` object that produces the features from applying each aggregation individually to the result of all transformations.
+            A ``LinearPipeline`` object that produces the features from applying each aggregation 
+            individually to the result of applying all transformations to the input data.
     """
     pipeline_object = LinearPipeline(transformations, aggregations)
     return pipeline_object
 
 class LayerPipeline(Pipeline):
 
-    def __init__(self, primitives, primitive_combinations, features_as_strings = False):
+    def __init__(self, primitives, primitive_combinations, features_as_strings=False):
         """
         Initialize a LayerPipeline from a list of primitives and a list of primitive combination features.
         
         Args:
             primitives (list): List of primitive objects. All primitives should have distinct tags.
                 
-            primitive_combinations (list): List of output features to be generated. Each combination in primitive_combinations should be a tuple of primitive objects 
-                found as keys in primitives, or a tuple of their string tags. 
-                All combinations should start with some (possibly zero) number of transformations and end with a single aggregation primitive. 
+            primitive_combinations (list): List of output features to be generated. Each combination 
+                in primitive_combinations should be a tuple of primitive objects found as keys in 
+                primitives, or a tuple of their string tags. All combinations should start with some 
+                (possibly zero) number of transformations and end with a single aggregation primitive. 
 
-            features_as_strings (bool): True if primitive_combinations is defined with string names, False if primitive_combinations is defined with primitive objects (default).
+            features_as_strings (bool): True if primitive_combinations is defined with string names, 
+            False if primitive_combinations is defined with primitive objects (default).
 
         Returns:
             LayerPipeline that generates the primitives in primitive_combinations.
@@ -341,10 +344,10 @@ class LayerPipeline(Pipeline):
 
         for combination in self.primitive_combinations:
 
-            l = len(combination)
-            for i in range(l-1):
+            combo_length = len(combination)
+            for i in range(combo_length-1):
                 if combination[i].get_type_subtype()[0] != 'transformation':
-                    raise ValueError(f'Primitive at non-terminal position #{i+1}/{l} is not a transformation')
+                    raise ValueError(f'Primitive at non-terminal position #{i+1}/{combo_length} is not a transformation')
             
             if combination[-1].get_type_subtype()[0] != 'aggregation':
                 raise ValueError(f'Last primitive is not an aggregation')
@@ -378,9 +381,9 @@ class LayerPipeline(Pipeline):
                 if layer > combination_length:
                     continue
                 if (tuple(combination[:layer]) not in prefixes) or layer == combination_length: 
-
+                    #Since all combinations are T.T.T...T.A, the full combination of one combination should never be a prefix.
                     if layer == combination_length:
-                        assert (tuple(combination[:layer]) not in prefixes) #Since all combinations are T.T.T...T.A, the full combination of one combination should never be a prefix.
+                        assert (tuple(combination[:layer]) not in prefixes) 
 
                     final_primitive = combination[layer - 1] 
                     final_primitive_str = final_primitive.get_tag()
@@ -391,9 +394,7 @@ class LayerPipeline(Pipeline):
                     final_primitives_list.append(final_primitive.get_name()) 
                     primitive_counter[final_primitive_name] += 1
                     numbered_primitive_name = f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
-
                     final_init_params[numbered_primitive_name] = final_primitive.get_hyperparam_dict()['init_params']
-
                     final_primitive_inputs[numbered_primitive_name] = {}
                     final_primitive_outputs[numbered_primitive_name] = {}
 
@@ -408,27 +409,28 @@ class LayerPipeline(Pipeline):
                     output_column_name = '.'.join([prim.get_tag() for prim in combination[:layer]])
 
                     if layer <= combination_length - 1: 
-                        output_column_name +=   '.' + str(layer)
+                        output_column_name += '.' + str(layer)
                         for output_dict in final_primitive.get_outputs(): 
                             final_primitive_outputs[numbered_primitive_name][output_dict['name']] = f'{output_column_name}.' + str(output_dict['name'])
                     else:
                        for output_dict in final_primitive.get_outputs():
                         out_name = output_dict['name']
-                        final_outputs.append({'name':   output_column_name + '.' + str(out_name), 'variable': f'{numbered_primitive_name}.{out_name}' })
-
+                        final_outputs.append({'name': output_column_name + '.' + str(out_name), 'variable': f'{numbered_primitive_name}.{out_name}'})
 
         return MLPipeline( 
-            primitives = final_primitives_list,
-            init_params = final_init_params,
-            input_names = final_primitive_inputs,
-            output_names = final_primitive_outputs,
-            outputs = {'default': final_outputs}
+            primitives=final_primitives_list,
+            init_params=final_init_params,
+            input_names= inal_primitive_inputs,
+            output_names=final_primitive_outputs,
+            outputs={'default': final_outputs}
         )
+
     def get_primitives(self):
         return self.primitives.copy()
 
     def get_output_features(self):
         return [x[:] for x in self.primitive_combinations]
+
 
 def build_tree_pipeline(transformation_layers, aggregation_layer):
     """
@@ -441,7 +443,8 @@ def build_tree_pipeline(transformation_layers, aggregation_layer):
 
     Returns:
         sigpro.pipeline.LayerPipeline:
-            A ``LayerPipeline`` object that produces the features in the Cartesian product of all transformation layers and the aggregation layer.
+            A ``LayerPipeline`` object that produces the features in the Cartesian product 
+            of all transformation layers and the aggregation layer.
     """
     primitives_all = set()
     all_layers = []
@@ -470,33 +473,38 @@ def build_tree_pipeline(transformation_layers, aggregation_layer):
 
 
     primitive_combinations = list(product(*all_layers))
-    return LayerPipeline(primitives = list(primitives_all), primitive_combinations = primitive_combinations)
+    return LayerPipeline(primitives = list(primitives_all), primitive_combinations=primitive_combinations)
 
 
 def build_layer_pipeline(primitives, primitive_combinations):
     """
-    Build a layer pipeline from a list of primitives and a list of combination features, each a tuple of Primitives.
+    Build a layer pipeline from a list of primitives and a list of 
+    combination features, each a tuple of Primitives.
     """
-    return LayerPipeline(primitives = primitives, primitive_combinations = primitive_combinations, features_as_strings = False)
+    return LayerPipeline(primitives=primitives, primitive_combinations=primitive_combinations, features_as_strings=False)
+
 
 def build_layer_pipeline_str(primitives, primitive_combinations):
     """
-    Build a layer pipeline from a list of primitives and a list of combination features, each a tuple of string tags of primitives.
+    Build a layer pipeline from a list of primitives and a list of 
+    combination features, each a tuple of string tags of primitives.
     """
-    return LayerPipeline(primitives = primitives, primitive_combinations = primitive_combinations, features_as_strings = True)
+    return LayerPipeline(primitives=primitives, primitive_combinations=primitive_combinations, features_as_strings=True)
 
 
 def merge_pipelines(pipelines):
 
     """
-    Create a single layer pipeline that is the 'union' of several other pipelines; that is, the pipeline generates all features generated by at least one input pipeline.
+    Create a single layer pipeline that is the 'union' of several other pipelines; 
+    that is, the pipeline generates all features generated by at least one input pipeline.
 
     Args:
         pipelines (list): a list of Pipeline objects whose output features should be merged.
     
     Returns:
         sigpro.pipeline.LayerPipeline:
-            A ``LayerPipeline`` object that produces the features in the union of all features generated by the input pipelines.   
+            A ``LayerPipeline`` object that produces the features in the union of 
+            all features generated by the input pipelines.   
 
     """
     primitives_all = set()

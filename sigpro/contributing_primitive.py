@@ -116,7 +116,8 @@ def make_primitive_class(primitive, primitive_type, primitive_subtype,
     """
     return get_primitive_class(primitive, primitive_type, primitive_subtype,
                    context_arguments, fixed_hyperparameters,
-                   tunable_hyperparameters, primitive_outputs),   make_primitive(primitive, primitive_type, primitive_subtype,
+                   tunable_hyperparameters, primitive_outputs), make_primitive(primitive,
+                   primitive_type, primitive_subtype,
                    context_arguments, fixed_hyperparameters,
                    tunable_hyperparameters, primitive_outputs,
                    primitives_path, primitives_subfolders)
