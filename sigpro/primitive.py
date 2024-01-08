@@ -80,7 +80,6 @@ class Primitive():  # Primitive(MLBlock):
 
     def get_hyperparam_dict(self):
         """Return the dictionary of fixed hyperparameters for use in Pipelines."""
-
         return {'name': self.get_tag(), 'primitive': self.get_name(),
                 'init_params': copy.deepcopy(self.hyperparameter_values)}
 
