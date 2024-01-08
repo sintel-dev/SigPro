@@ -1,5 +1,5 @@
 """Reference class implementations of existing primitives."""
-from sigpro import primitive, contributing
+from sigpro import contributing, primitive
 
 # Transformations
 

@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """Pipeline signal processing functionality."""
 
+from abc import ABC
 from collections import Counter
 from copy import deepcopy
 from itertools import product
-from abc import ABC
+
 import pandas as pd
 from mlblocks import MLPipeline  # , load_primitive
+
 # from mlblocks.mlblock import import_object
 # from sigpro import contributing, primitive
 from sigpro.primitive import Primitive
-
 
 DEFAULT_INPUT = [
     {

@@ -1,12 +1,15 @@
 """SigPro Primitive class."""
 
 import copy
+
+from mlblocks.mlblock import import_object  # , MLBlock
+
+from sigpro.contributing import (
+    _check_primitive_type_and_subtype, _get_primitive_args, _get_primitive_spec)
+
 # import json
 # import inspect
 # from mlblocks.discovery import load_primitive
-from mlblocks.mlblock import import_object  # , MLBlock
-from sigpro.contributing import _get_primitive_args, _get_primitive_spec
-from sigpro.contributing import _check_primitive_type_and_subtype
 
 
 class Primitive():  # Primitive(MLBlock):

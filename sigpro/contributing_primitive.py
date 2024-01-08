@@ -1,9 +1,10 @@
 """Contributing primitive classes."""
 import copy
+
 from sigpro.contributing import make_primitive
-from sigpro.primitive import FrequencyTransformation, AmplitudeTransformation
-from sigpro.primitive import FrequencyTimeTransformation, FrequencyAggregation
-from sigpro.primitive import AmplitudeAggregation, FrequencyTimeAggregation
+from sigpro.primitive import (
+    AmplitudeAggregation, AmplitudeTransformation, FrequencyAggregation, FrequencyTimeAggregation,
+    FrequencyTimeTransformation, FrequencyTransformation)
 
 TAXONOMY = {
     'transformation': {
