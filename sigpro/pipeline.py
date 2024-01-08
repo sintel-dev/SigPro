@@ -432,11 +432,11 @@ class LayerPipeline(Pipeline):
                             final_primitive_outputs[numbered_primitive_name][out_name] = \
                                 f'{output_column_name}.' + str(out_name)
                     else:
+                        npn = numbered_primitive_name[:]  # lint
                         for output_dict in final_primitive.get_outputs():
                             out_name = output_dict['name']
                             final_outputs.append({'name': output_column_name + '.' + str(out_name),
-                                                  'variable': \
-                                                    f'{numbered_primitive_name}.{out_name}'})
+                                                  'variable': f'{npn}.{out_name}'})
 
         return MLPipeline(
             primitives=final_primitives_list,
