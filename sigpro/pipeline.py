@@ -59,7 +59,6 @@ class Pipeline(ABC):
     def _accept_dataframe_input(self, input_is_dataframe):
         self.input_is_dataframe = input_is_dataframe
 
-
     def _apply_pipeline(self, window, is_series=False):
         """Apply a ``mlblocks.MLPipeline`` to a row.
 
@@ -92,8 +91,8 @@ class Pipeline(ABC):
 
         return pd.Series(dict(zip(output_names, output)))
 
-    def get_primitives(self): 
-        raise NotImplementedError 
+    def get_primitives(self):
+        raise NotImplementedError
 
     def get_output_features(self):
         raise NotImplementedError
@@ -286,25 +285,28 @@ def build_linear_pipeline(transformations, aggregations):
 
     Returns:
         sigpro.pipeline.LinearPipeline:
-            A ``LinearPipeline`` object that produces the features from applying each aggregation 
-            individually to the result of applying all transformations to the input data.
+            A ``LinearPipeline`` object that produces the features from applying each
+            aggregation individually to the result of applying all transformations to
+            the input data.
     """
     pipeline_object = LinearPipeline(transformations, aggregations)
     return pipeline_object
+
 
 class LayerPipeline(Pipeline):
 
     def __init__(self, primitives, primitive_combinations, features_as_strings=False):
         """
-        Initialize a LayerPipeline from a list of primitives and a list of primitive combination features.
+        Initialize a LayerPipeline from a list of primitives and a list of primitive combination
+        features.
         
         Args:
             primitives (list): List of primitive objects. All primitives should have distinct tags.
                 
-            primitive_combinations (list): List of output features to be generated. Each combination 
+            primitive_combinations (list): List of output features to be generated. Each feature
                 in primitive_combinations should be a tuple of primitive objects found as keys in 
-                primitives, or a tuple of their string tags. All combinations should start with some 
-                (possibly zero) number of transformations and end with a single aggregation primitive. 
+                primitives, or a tuple of their string tags. All combinations should start w/ some 
+                (possibly zero) number of transformations and end with a single aggregation.
 
             features_as_strings (bool): True if primitive_combinations is defined with string names, 
             False if primitive_combinations is defined with primitive objects (default).
@@ -320,7 +322,8 @@ class LayerPipeline(Pipeline):
                     raise ValueError('Non-primitive specified in list primitives')
 
                 if primitive.get_tag() in primitives_dict:
-                    raise ValueError(f'Tag {primitive.get_tag()} duplicated in list primitives. All primitives must have distinct tags.')
+                    raise ValueError(f'Tag {primitive.get_tag()} duplicated in \
+                                      list primitives. All primitives must have distinct tags.')
 
                 primitives_dict[primitive.get_tag()] = primitive
             self.primitives = primitives.copy() #_dict
@@ -332,7 +335,8 @@ class LayerPipeline(Pipeline):
             raise ValueError('At least one feature must be specified')
         else:
             if features_as_strings:
-                primitive_combinations = [tuple(primitives_dict[tag] for tag in tag_tuple) for tag_tuple in primitive_combinations]
+                primitive_combinations = [tuple(primitives_dict[tag] for tag in tag_tuple) \
+                                          for tag_tuple in primitive_combinations]
 
             self.primitive_combinations = [tuple(combination) for combination in primitive_combinations]
 
@@ -347,14 +351,16 @@ class LayerPipeline(Pipeline):
             combo_length = len(combination)
             for i in range(combo_length-1):
                 if combination[i].get_type_subtype()[0] != 'transformation':
-                    raise ValueError(f'Primitive at non-terminal position #{i+1}/{combo_length} is not a transformation')
+                    raise ValueError(f'Primitive at non-terminal position #{i+1}/{combo_length} \
+                                     is not a transformation')
             
             if combination[-1].get_type_subtype()[0] != 'aggregation':
                 raise ValueError(f'Last primitive is not an aggregation')
 
             for primitive in combination:
                 if primitive not in self.primitives:
-                    raise ValueError(f'Primitive with tag {primitive.get_tag()} not found in the given primitives')
+                    raise ValueError(f'Primitive with tag {primitive.get_tag()} not found in the \
+                                     given primitives')
 
         self.pipeline = self._build_pipeline()
     
@@ -381,7 +387,7 @@ class LayerPipeline(Pipeline):
                 if layer > combination_length:
                     continue
                 if (tuple(combination[:layer]) not in prefixes) or layer == combination_length: 
-                    #Since all combinations are T.T.T...T.A, the full combination of one combination should never be a prefix.
+                    #Since all features are T.T...T.A, no combination should be a prefix of another.
                     if layer == combination_length:
                         assert (tuple(combination[:layer]) not in prefixes) 
 
@@ -393,29 +399,37 @@ class LayerPipeline(Pipeline):
                     final_primitive_name = final_primitive.get_name()
                     final_primitives_list.append(final_primitive.get_name()) 
                     primitive_counter[final_primitive_name] += 1
-                    numbered_primitive_name = f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
-                    final_init_params[numbered_primitive_name] = final_primitive.get_hyperparam_dict()['init_params']
+                    numbered_primitive_name = \
+                        f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
+                    final_init_params[numbered_primitive_name] = \
+                        final_primitive.get_hyperparam_dict()['init_params']
                     final_primitive_inputs[numbered_primitive_name] = {}
                     final_primitive_outputs[numbered_primitive_name] = {}
 
                     for input_dict in final_primitive.get_inputs():
-                        final_primitive_inputs[numbered_primitive_name][input_dict['name']] = f'{final_primitive_str}.' + str(input_dict['name'])
+                        final_primitive_inputs[numbered_primitive_name][input_dict['name']] = \
+                            f'{final_primitive_str}.' + str(input_dict['name'])
                     if layer == 1:
-                        final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = 'amplitude_values'
+                        final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = \
+                            'amplitude_values'
                     else:
-                        input_column_name = '.'.join([prim.get_tag() for prim in combination[:layer - 1]]) + f'.{layer-1}' 
-                        final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = input_column_name + '.amplitude_values'
+                        input_column_name = '.'.join([prim.get_tag() for prim in combination[:layer - 1]]) \
+                            + f'.{layer-1}' 
+                        final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = \
+                            input_column_name + '.amplitude_values'
 
                     output_column_name = '.'.join([prim.get_tag() for prim in combination[:layer]])
 
                     if layer <= combination_length - 1: 
                         output_column_name += '.' + str(layer)
                         for output_dict in final_primitive.get_outputs(): 
-                            final_primitive_outputs[numbered_primitive_name][output_dict['name']] = f'{output_column_name}.' + str(output_dict['name'])
+                            final_primitive_outputs[numbered_primitive_name][output_dict['name']] = \
+                                f'{output_column_name}.' + str(output_dict['name'])
                     else:
                        for output_dict in final_primitive.get_outputs():
                         out_name = output_dict['name']
-                        final_outputs.append({'name': output_column_name + '.' + str(out_name), 'variable': f'{numbered_primitive_name}.{out_name}'})
+                        final_outputs.append({'name': output_column_name + '.' + str(out_name),
+                                              'variable': f'{numbered_primitive_name}.{out_name}'})
 
         return MLPipeline( 
             primitives=final_primitives_list,

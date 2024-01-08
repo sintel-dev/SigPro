@@ -1,25 +1,28 @@
-"""Contributing primitive classes"""
+"""Contributing primitive classes."""
 import copy
 from sigpro.contributing import make_primitive
-from sigpro.primitive import FrequencyTransformation, AmplitudeTransformation, FrequencyTimeTransformation
-from sigpro.primitive import FrequencyAggregation, AmplitudeAggregation, FrequencyTimeAggregation 
+from sigpro.primitive import FrequencyTransformation, AmplitudeTransformation
+from sigpro.primitive import FrequencyTimeTransformation, FrequencyAggregation
+from sigpro.primitive import AmplitudeAggregation, FrequencyTimeAggregation
 
-TAXONOMY =  { 
+TAXONOMY = {
     'transformation' : {
-        'frequency' : FrequencyTransformation,
-        'amplitude' : AmplitudeTransformation,
+        'frequency': FrequencyTransformation,
+        'amplitude': AmplitudeTransformation,
         'frequency_time': FrequencyTimeTransformation,
-    }, 'aggregation' : {
-        'frequency' : FrequencyAggregation,
-        'amplitude' : AmplitudeAggregation,
+    }, 'aggregation': {
+        'frequency': FrequencyAggregation,
+        'amplitude': AmplitudeAggregation,
         'frequency_time': FrequencyTimeAggregation,
     }
 }
 
+
 def get_primitive_class(primitive, primitive_type, primitive_subtype,
-                   context_arguments=None, fixed_hyperparameters=None,
-                   tunable_hyperparameters=None, primitive_outputs=None):
-    """ Get a dynamically generated primitive class.
+                        context_arguments=None, fixed_hyperparameters=None,
+                        tunable_hyperparameters=None, primitive_outputs=None):
+    """ 
+    Get a dynamically generated primitive class.
 
     Args:
         primitive (str):
@@ -51,12 +54,13 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
             Dynamically-generated custom Primitive type.
     """
     primitive_type_class = TAXONOMY[primitive_type][primitive_subtype]
+
     class UserPrimitive(primitive_type_class):
         def __init__(self, **kwargs):
             init_params = {}
             if fixed_hyperparameters is not None:
-                init_params = { param: kwargs[param] for param in fixed_hyperparameters}
-            super().__init__(primitive, init_params =  init_params)
+                init_params = {param: kwargs[param] for param in fixed_hyperparameters}
+            super().__init__(primitive, init_params=init_params)
             if fixed_hyperparameters is not None:
                 self.set_fixed_hyperparameters(copy.deepcopy(fixed_hyperparameters))
             if tunable_hyperparameters is not None:
@@ -64,18 +68,20 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
             if primitive_outputs is not None:
                 self.set_primitive_outputs(copy.deepcopy(primitive_outputs))
             if context_arguments is not None:
-                self.set_context_arguments(copy.deepcopy(context_argments))
+                self.set_context_arguments(copy.deepcopy(context_arguments))
 
     type_name = f'Custom_{primitive}'
 
-    return type(type_name, ( UserPrimitive, ), {})
+    return type(type_name, (UserPrimitive, ), {})
 
 
 def make_primitive_class(primitive, primitive_type, primitive_subtype,
-                   context_arguments=None, fixed_hyperparameters=None,
-                   tunable_hyperparameters=None, primitive_outputs=None,
-                   primitives_path='sigpro/primitives', primitives_subfolders=True):
-    """ Get a dynamically generated primitive class and make the primitive JSON.
+                         context_arguments=None, fixed_hyperparameters=None,
+                         tunable_hyperparameters=None, primitive_outputs=None,
+                         primitives_path='sigpro/primitives', primitives_subfolders=True):
+    """
+    Get a dynamically generated primitive class and make the primitive JSON.
+
     Args:
         primitive (str):
             The name of the primitive, the python path including the name of the
@@ -114,10 +120,10 @@ def make_primitive_class(primitive, primitive_type, primitive_subtype,
         str:
             Path of the generated JSON file.
     """
+    primitive_path = make_primitive(primitive, primitive_type, primitive_subtype,
+                                    context_arguments, fixed_hyperparameters,
+                                    tunable_hyperparameters, primitive_outputs,
+                                    primitives_path, primitives_subfolders)
     return get_primitive_class(primitive, primitive_type, primitive_subtype,
-                   context_arguments, fixed_hyperparameters,
-                   tunable_hyperparameters, primitive_outputs), make_primitive(primitive,
-                   primitive_type, primitive_subtype,
-                   context_arguments, fixed_hyperparameters,
-                   tunable_hyperparameters, primitive_outputs,
-                   primitives_path, primitives_subfolders)
+                               context_arguments, fixed_hyperparameters,
+                               tunable_hyperparameters, primitive_outputs), primitive_path
