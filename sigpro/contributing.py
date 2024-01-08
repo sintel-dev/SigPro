@@ -309,8 +309,8 @@ def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
             If the primitive specification arguments are not valid.
 
     Returns:
-        str:
-            Path of the generated JSON file.
+        dict:
+            Generated JSON file as a Python dict.
     """
     context_arguments = context_arguments or []
     fixed_hyperparameters = fixed_hyperparameters or {}
@@ -404,7 +404,7 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
         str:
             Path of the generated JSON file.
     """
-    primitive_dict = _make_primitive_dict(primitive_type, primitive_subtype,
+    primitive_dict = _make_primitive_dict(primitive, primitive_type, primitive_subtype,
                                           context_arguments, fixed_hyperparameters,
                                           tunable_hyperparameters, primitive_outputs)
 
