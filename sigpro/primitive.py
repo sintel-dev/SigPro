@@ -4,11 +4,11 @@ import copy
 # import json
 # import inspect
 # from mlblocks.discovery import load_primitive
-from mlblocks.mlblock import import_object #, MLBlock
+from mlblocks.mlblock import import_object # , MLBlock
 from sigpro.contributing import _get_primitive_args, _get_primitive_spec
 from sigpro.contributing import _check_primitive_type_and_subtype
 
-class Primitive(): #Primitive(MLBlock):
+class Primitive(): # Primitive(MLBlock):
     """
     Represents a SigPro primitive.
 
@@ -28,6 +28,7 @@ class Primitive(): #Primitive(MLBlock):
             Initial (fixed) hyperparameter values of the primitive in
             {hyperparam_name: hyperparam_value} format.
     """
+
     def __init__(self, primitive, primitive_type, primitive_subtype, init_params=None):
 
         self.primitive = primitive
@@ -51,12 +52,15 @@ class Primitive(): #Primitive(MLBlock):
     def get_name(self):
         """Get the name of the primitive."""
         return self.primitive
+    
     def get_tag(self):
         """Get the tag of the primitive."""
         return self.tag
+    
     def get_inputs(self):
         """Get the inputs of the primitive."""
         return copy.deepcopy(self.primitive_inputs)
+    
     def get_outputs(self):
         """Get the outputs of the primitive."""
         return copy.deepcopy(self.primitive_outputs)
@@ -65,26 +69,31 @@ class Primitive(): #Primitive(MLBlock):
         """Get the type and subtype of the primitive."""
         return self.primitive_type, self.primitive_subtype
 
-    def _validate_primitive_spec(self): #check compatibility of given parameters.
+    def _validate_primitive_spec(self):  # check compatibility of given parameters.
         _get_primitive_args(
             self.primitive_function,
             self.primitive_inputs,
             self.context_arguments,
             self.fixed_hyperparameters,
             self.tunable_hyperparameters)
-    
+
     def get_hyperparam_dict(self):
         """ Return the dictionary of fixed hyperparameters for use in Pipelines."""
-        return { 'name': self.get_tag(), 'primitive': self.get_name(), 'init_params': copy.deepcopy(self.hyperparameter_values)}
+
+        return {'name': self.get_tag(), 'primitive': self.get_name(),
+                'init_params': copy.deepcopy(self.hyperparameter_values)}
 
     def set_tag(self, tag):
+        """Set the tag of a primitive."""
         self.tag = tag
         return self
 
-    def set_primitive_inputs(self, primitive_inputs): 
+    def set_primitive_inputs(self, primitive_inputs):
+        """Set primitive inputs."""
         self.primitive_inputs = primitive_inputs
             
-    def set_primitive_outputs(self, primitive_outputs): 
+    def set_primitive_outputs(self, primitive_outputs):
+        """Set primitive outputs."""
         self.primitive_outputs = primitive_outputs
 
     def _set_primitive_type(self, primitive_type):
@@ -93,38 +102,47 @@ class Primitive(): #Primitive(MLBlock):
         self.primitive_subtype = primitive_subtype
 
     def set_context_arguments(self, context_arguments):
+        """Set context_arguments of a primitive."""
         self.context_arguments = context_arguments
 
     def set_tunable_hyperparameters(self, tunable_hyperparameters):
+        """Set tunable hyperparameters of a primitive."""
         self.tunable_hyperparameters = tunable_hyperparameters
 
     def set_fixed_hyperparameters(self, fixed_hyperparameters):
+        """Set fixed hyperparameters of a primitive."""
         self.fixed_hyperparameters = fixed_hyperparameters
 
     def add_context_arguments(self, context_arguments):
-        for arg in context_argments:
+        """Add context arguments to a primitive."""
+        for arg in context_arguments:
             if arg not in self.context_arguments:
                 context_arguments.append(arg)
 
-    def add_fixed_hyperparameter(self, hyperparams):
-        for hyperparam in hyperparams:
-            self.fixed_hyperparameters[hyperparam] = hyperparams[hyperparam]
+    def add_fixed_hyperparameter(self, hyperparameters):
+        """Add fixed hyperparameters to a primitive."""
+        for hyperparam in hyperparameters:
+            self.fixed_hyperparameters[hyperparam] = hyperparameters[hyperparam]
 
-    def add_tunable_hyperparameter(self, hyperparams):
-        for hyperparam in hyperparams:
-            self.tunable_hyperparameters[hyperparam] = hyperparams[hyperparam]
+    def add_tunable_hyperparameter(self, hyperparameters):
+        """Add tunable hyperparameters to a primitive."""
+        for hyperparam in hyperparameters:
+            self.tunable_hyperparameters[hyperparam] = hyperparameters[hyperparam]
 
     def remove_context_arguments(self, context_arguments):
+        """Remove context arguments from a primitive."""
         for arg in context_arguments:
             if arg in self.context_arguments:
                 context_arguments.remove(arg)
 
-    def remove_fixed_hyperparameter(self, hyperparams):
-        for hyperparam in hyperparams:
+    def remove_fixed_hyperparameters(self, hyperparameters):
+        """Remove fixed hyperparameters from a primitive."""
+        for hyperparam in hyperparameters:
             del self.fixed_hyperparameters[hyperparam]
 
-    def remove_tunable_hyperparameter(self, hyperparams):
-        for hyperparam in hyperparams:
+    def remove_tunable_hyperparameters(self, hyperparameters):
+        """Remove tunable hyperparameters from a primitive."""
+        for hyperparam in hyperparameters:
             del self.tunable_hyperparameters[hyperparam]
 
 # Primitive inheritance subclasses
@@ -163,7 +181,7 @@ class FrequencyTimeTransformation(TransformationPrimitive):
 class ComparativeTransformation(TransformationPrimitive):
     """Generic comparative transformation primitive."""
 
-## Aggregations
+# Aggregations
 
 
 class AggregationPrimitive(Primitive):

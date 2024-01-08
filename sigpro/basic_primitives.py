@@ -1,7 +1,8 @@
 """Reference class implementations of existing primitives."""
-from sigpro import primitive
+from sigpro import primitive, contributing
 
 # Transformations
+
 
 class Identity(primitive.AmplitudeTransformation):
     """Identity primitive class."""
@@ -39,7 +40,7 @@ class FrequencyBand(primitive.FrequencyTransformation):
 
     def __init__(self, low, high):
         super().__init__("sigpro.transformations.frequency.band.frequency_band",
-                            init_params={'low': low, 'high': high})
+                         init_params={'low': low, 'high': high})
         self.set_primitive_inputs([{"name": "amplitude_values", "type": "numpy.ndarray"},
                                    {"name": "frequency_values", "type": "numpy.ndarray"}])
         self.set_primitive_outputs([{'name': 'amplitude_values', 'type': "numpy.ndarray"},
@@ -80,12 +81,12 @@ class CrestFactor(primitive.AmplitudeAggregation):
 class Kurtosis(primitive.AmplitudeAggregation):
     """Kurtosis primitive class."""
 
-    def __init__(self, fisher = True, bias = True):
+    def __init__(self, fisher=True, bias=True):
         super().__init__('sigpro.aggregations.amplitude.statistical.kurtosis',
-            init_params={'fisher': fisher, 'bias': bias})
+                         init_params={'fisher': fisher, 'bias': bias})
         self.set_primitive_outputs([{'name': 'kurtosis_value', 'type': "float"}])
         self.set_fixed_hyperparameters({'fisher': {'type': 'bool', 'default': True},
-            'bias': {'type': 'bool', 'default': True}})
+                                        'bias': {'type': 'bool', 'default': True}})
 
 
 class Mean(primitive.AmplitudeAggregation):
@@ -136,4 +137,3 @@ class BandMean(primitive.FrequencyAggregation):
             'min_frequency': min_frequency, 'max_frequency': max_frequency})
         self.set_fixed_hyperparameters({'min_frequency': {'type': 'float'},
                                         'max_frequency': {'type': 'float'}})
-        

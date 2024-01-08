@@ -6,7 +6,7 @@ from sigpro.primitive import FrequencyTimeTransformation, FrequencyAggregation
 from sigpro.primitive import AmplitudeAggregation, FrequencyTimeAggregation
 
 TAXONOMY = {
-    'transformation' : {
+    'transformation': {
         'frequency': FrequencyTransformation,
         'amplitude': AmplitudeTransformation,
         'frequency_time': FrequencyTimeTransformation,
@@ -21,7 +21,7 @@ TAXONOMY = {
 def get_primitive_class(primitive, primitive_type, primitive_subtype,
                         context_arguments=None, fixed_hyperparameters=None,
                         tunable_hyperparameters=None, primitive_outputs=None):
-    """ 
+    """
     Get a dynamically generated primitive class.
 
     Args:
