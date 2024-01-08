@@ -23,7 +23,7 @@ EXPECTED_PRIMITIVE_DICT = {
         ],
         "output": [
             {
-                "name": "value",
+                "name": "mean_value",
                 "type": "float"
             }
         ]
@@ -39,11 +39,13 @@ def test_make_primitive_class_primitives_subfolders_true():
     with tempfile.TemporaryDirectory('sigpro') as tmp_dir:
         expected_result = ['sigpro', 'aggregations', 'amplitude', 'statistical', 'mean.json']
         expected_result = os.path.join(tmp_dir, *expected_result)
+        primitive_outputs = [{'name': 'mean_value', 'type': 'float'}]
         Mean_dynamic, result = make_primitive_class(
             'sigpro.aggregations.amplitude.statistical.mean',
             'aggregation',
             'amplitude',
             primitives_path=tmp_dir,
+            primitive_outputs=primitive_outputs
         )
         assert result == expected_result
         with open(result, 'rb') as created_primitive:
@@ -59,11 +61,13 @@ def test_make_primitive_class_primitives_subfolders_false():
     with tempfile.TemporaryDirectory('sigpro') as tmp_dir:
         expected_result = 'sigpro.aggregations.amplitude.statistical.mean.json'
         expected_result = os.path.join(tmp_dir, expected_result)
+        primitive_outputs = [{'name': 'mean_value', 'type': 'float'}]
         Mean_dynamic, result = make_primitive_class(
             'sigpro.aggregations.amplitude.statistical.mean',
             'aggregation',
             'amplitude',
             primitives_path=tmp_dir,
+            primitive_outputs=primitive_outputs,
             primitives_subfolders=False
         )
         assert result == expected_result
