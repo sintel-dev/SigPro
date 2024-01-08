@@ -5,14 +5,15 @@ import copy
 from mlblocks.mlblock import import_object  # , MLBlock
 
 from sigpro.contributing import (
-    _check_primitive_type_and_subtype, _get_primitive_args, _get_primitive_spec)
+    _check_primitive_type_and_subtype, _get_primitive_args, _get_primitive_spec,
+    _make_primitive_dict)
 
 # import json
 # import inspect
 # from mlblocks.discovery import load_primitive
 
 
-class Primitive():  # Primitive(MLBlock):
+class Primitive():  # pylint: disable=too-many-instance-attributes
     """
     Represents a SigPro primitive.
 
@@ -50,7 +51,7 @@ class Primitive():  # Primitive(MLBlock):
 
         self.primitive_function = import_object(primitive)
         if init_params is None:
-            init_params = dict()
+            init_params = {}
         self.hyperparameter_values = init_params
 
     def get_name(self):
@@ -149,6 +150,13 @@ class Primitive():  # Primitive(MLBlock):
         for hyperparam in hyperparameters:
             del self.tunable_hyperparameters[hyperparam]
 
+    def make_primitive_json(self):
+        """View the primitive json produced by a Primitive object."""
+        self._validate_primitive_spec()
+        return _make_primitive_dict(self.primitive, self.primitive_type,
+                                    self.primitive_subtype, self.context_arguments,
+                                    self.fixed_hyperparameters, self.tunable_hyperparameters,
+                                    self.primitive_outputs)
 # Primitive inheritance subclasses
 
 # Transformations

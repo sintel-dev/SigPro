@@ -277,6 +277,84 @@ def _write_primitive(primitive_dict, primitive_name, primitives_path, primitives
     return primitive_path
 
 
+def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
+                         context_arguments=None, fixed_hyperparameters=None,
+                         tunable_hyperparameters=None, primitive_outputs=None):
+    """Create a primitive dict.
+
+    Args:
+        primitive (str):
+            The name of the primitive, the python path including the name of the
+            module and the name of the function.
+        primitive_type (str):
+            Type of primitive.
+        primitive_subtype (str):
+            Subtype of the primitive.
+        context_arguments (list or None):
+            A list with dictionaries containing the name and type of the context arguments.
+        fixed_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value that it
+            should take.
+        tunable_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value and the
+            range of values that it can take.
+        primitive_outputs (list or None):
+            A list with dictionaries containing the name and type of the output values. If
+            ``None`` default values for those will be used.
+
+    Raises:
+        ValueError:
+            If the primitive specification arguments are not valid.
+
+    Returns:
+        str:
+            Path of the generated JSON file.
+    """
+    context_arguments = context_arguments or []
+    fixed_hyperparameters = fixed_hyperparameters or {}
+    tunable_hyperparameters = tunable_hyperparameters or {}
+
+    primitive_spec = _get_primitive_spec(primitive_type, primitive_subtype)
+    primitive_inputs = primitive_spec['args']
+    primitive_outputs = primitive_outputs or primitive_spec['output']
+
+    primitive_function = _import_object(primitive)
+    primitive_args = _get_primitive_args(
+        primitive_function,
+        primitive_inputs,
+        context_arguments,
+        fixed_hyperparameters,
+        tunable_hyperparameters
+    )
+
+    primitive_dict = {
+        'name': primitive,
+        'primitive': primitive,
+        'classifiers': {
+            'type': primitive_type,
+            'subtype': primitive_subtype
+        },
+        'produce': {
+            'args': primitive_args,
+            'output': [
+                {
+                    'name': primitive_output['name'],
+                    'type': primitive_output['type'],
+                }
+                for primitive_output in primitive_outputs
+            ],
+        },
+        'hyperparameters': {
+            'fixed': fixed_hyperparameters,
+            'tunable': tunable_hyperparameters
+        }
+    }
+
+    return primitive_dict
+
+
 def make_primitive(primitive, primitive_type, primitive_subtype,
                    context_arguments=None, fixed_hyperparameters=None,
                    tunable_hyperparameters=None, primitive_outputs=None,
@@ -326,45 +404,9 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
         str:
             Path of the generated JSON file.
     """
-    context_arguments = context_arguments or []
-    fixed_hyperparameters = fixed_hyperparameters or {}
-    tunable_hyperparameters = tunable_hyperparameters or {}
-
-    primitive_spec = _get_primitive_spec(primitive_type, primitive_subtype)
-    primitive_inputs = primitive_spec['args']
-    primitive_outputs = primitive_outputs or primitive_spec['output']
-
-    primitive_function = _import_object(primitive)
-    primitive_args = _get_primitive_args(
-        primitive_function,
-        primitive_inputs,
-        context_arguments,
-        fixed_hyperparameters,
-        tunable_hyperparameters
-    )
-
-    primitive_dict = {
-        'name': primitive,
-        'primitive': primitive,
-        'classifiers': {
-            'type': primitive_type,
-            'subtype': primitive_subtype
-        },
-        'produce': {
-            'args': primitive_args,
-            'output': [
-                {
-                    'name': primitive_output['name'],
-                    'type': primitive_output['type'],
-                }
-                for primitive_output in primitive_outputs
-            ],
-        },
-        'hyperparameters': {
-            'fixed': fixed_hyperparameters,
-            'tunable': tunable_hyperparameters
-        }
-    }
+    primitive_dict = _make_primitive_dict(primitive_type, primitive_subtype,
+                                          context_arguments, fixed_hyperparameters,
+                                          tunable_hyperparameters, primitive_outputs)
 
     return _write_primitive(primitive_dict, primitive, primitives_path, primitives_subfolders)
 

@@ -56,7 +56,9 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
     """
     primitive_type_class = TAXONOMY[primitive_type][primitive_subtype]
 
-    class UserPrimitive(primitive_type_class):
+    class UserPrimitive(primitive_type_class):  # pylint: disable=too-few-public-methods
+        """User-defined Dynamic Primitive Class."""
+
         def __init__(self, **kwargs):
             init_params = {}
             if fixed_hyperparameters is not None:

@@ -13,6 +13,9 @@ from mlblocks import MLPipeline  # , load_primitive
 # from sigpro import contributing, primitive
 from sigpro.primitive import Primitive
 
+# Temporary refactor from core, ignore duplicate code.
+# pylint: disable = duplicate-code
+
 DEFAULT_INPUT = [
     {
         'name': 'readings',
@@ -197,7 +200,7 @@ class LinearPipeline(Pipeline):
             List of dictionaries containing the aggregation primitives.
     """
 
-    def __init__(self, transformations, aggregations):
+    def __init__(self, transformations, aggregations):  # pylint: disable=too-many-locals
 
         super().__init__()
         self.transformations = transformations
@@ -320,31 +323,27 @@ class LayerPipeline(Pipeline):
     def __init__(self, primitives, primitive_combinations, features_as_strings=False):
         """Initialize a LayerPipeline."""
         super().__init__()
-        if isinstance(primitives, list):
-            primitives_dict = {}
-            for primitive in primitives:
-                if not isinstance(primitive, Primitive):
-                    raise ValueError('Non-primitive specified in list primitives')
-
-                if primitive.get_tag() in primitives_dict:
-                    raise ValueError(f'Tag {primitive.get_tag()} duplicated in \
-                                      list primitives. All primitives must have distinct tags.')
-
-                primitives_dict[primitive.get_tag()] = primitive
-            self.primitives = primitives.copy()
-        else:
+        if not isinstance(primitives, list):
             raise ValueError('primitives must a list')
+        primitives_dict = {}
+        for primitive in primitives:
+            if not isinstance(primitive, Primitive):
+                raise ValueError('Non-primitive specified in list primitives')
 
+            if primitive.get_tag() in primitives_dict:
+                raise ValueError(f'Tag {primitive.get_tag()} duplicated in \
+                                    list primitives. All primitives must have distinct tags.')
+
+            primitives_dict[primitive.get_tag()] = primitive
+        self.primitives = primitives.copy()
         self.primitive_combinations = None
-        if len(primitive_combinations) == 0:
-            raise ValueError('At least one feature must be specified')
-        else:
-            if features_as_strings:
-                primitive_combinations = [tuple(primitives_dict[tag] for tag in tag_tuple)
-                                          for tag_tuple in primitive_combinations]
 
-            self.primitive_combinations = [tuple(combination) for combination
-                                           in primitive_combinations]
+        if features_as_strings:
+            primitive_combinations = [tuple(primitives_dict[tag] for tag in tag_tuple)
+                                      for tag_tuple in primitive_combinations]
+
+        self.primitive_combinations = [tuple(combination) for combination
+                                       in primitive_combinations]
 
         length = max([len(combination) for combination in primitive_combinations] + [0])
 
@@ -355,9 +354,9 @@ class LayerPipeline(Pipeline):
         for combination in self.primitive_combinations:
 
             combo_length = len(combination)
-            for i in range(combo_length - 1):
-                if combination[i].get_type_subtype()[0] != 'transformation':
-                    raise ValueError(f'Primitive at non-terminal position #{i+1}/{combo_length} \
+            for ind in range(combo_length - 1):
+                if combination[ind].get_type_subtype()[0] != 'transformation':
+                    raise ValueError(f'Primitive at non-terminal position #{ind+1}/{combo_length} \
                                      is not a transformation')
 
             if combination[-1].get_type_subtype()[0] != 'aggregation':
@@ -370,7 +369,7 @@ class LayerPipeline(Pipeline):
 
         self.pipeline = self._build_pipeline()
 
-    def _build_pipeline(self):
+    def _build_pipeline(self):  # pylint: disable=too-many-locals
         """
         Build the layer pipeline.
 
@@ -394,7 +393,7 @@ class LayerPipeline(Pipeline):
                 if (tuple(combination[:layer]) not in prefixes) or layer == combination_length:
                     # Since all features are T.T...T.A, no combo should be a prefix of another.
                     if layer == combination_length:
-                        assert (tuple(combination[:layer]) not in prefixes)
+                        assert tuple(combination[:layer]) not in prefixes
 
                     final_primitive = combination[layer - 1]
                     final_primitive_str = final_primitive.get_tag()
