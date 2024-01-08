@@ -2,8 +2,8 @@
     "name": "sigpro.transformations.frequency.band.frequency_band",
     "primitive": "sigpro.transformations.frequency.band.frequency_band",
     "classifiers": {
-        "type": "aggregation",
-        "subtype": "transformation"
+        "type": "transformation",
+        "subtype": "frequency"
     },
     "produce": {
         "args": [
