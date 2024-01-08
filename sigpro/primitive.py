@@ -1,18 +1,33 @@
+"""SigPro Primitive class"""
+
 from sigpro.contributing import _get_primitive_args, _get_primitive_spec, _check_primitive_type_and_subtype
 import json
 import inspect
 import copy
 from mlblocks.discovery import load_primitive
-from mlblocks.mlblock import import_object, MLBlock
+from mlblocks.mlblock import import_object #, MLBlock
 
 
-class Primitive(): 
+class Primitive(): #Primitive(MLBlock):
 
-    def __init__(self, primitive, primitive_type, primitive_subtype, 
-                primitive_function = None, init_params = {}):
+    def __init__(self, primitive, primitive_type, primitive_subtype, init_params = {}):
 
         """
-        Initialize primitive object. 
+        Initialize a Primitive object. 
+
+        Each primitive object represents a specific transformation or aggregation. Moreover, 
+        a Primitive maintains all the information in its JSON annotation as well as its hyperparameter values.
+
+        Args:
+            primitive (str):
+                The name of the primitive, the python path including the name of the
+                module and the name of the function.
+            primitive_type (str):
+                Type of primitive.
+            primitive_subtype (str):
+                Subtype of the primitive.
+            init_params (dict):
+                Initial (fixed) hyperparameter values of the primitive in {hyperparam_name: hyperparam_value} format.
         """
         self.primitive = primitive
         self.tag = primitive.split('.')[-1]
@@ -27,9 +42,7 @@ class Primitive():
 
         _check_primitive_type_and_subtype(primitive_type, primitive_subtype)
 
-        if primitive_function == None:
-            primitive_function = import_object(primitive)
-        self.primitive_function = primitive_function
+        self.primitive_function = import_object(primitive)
         self.hyperparameter_values = init_params 
 
     def get_name(self):
@@ -55,20 +68,16 @@ class Primitive():
         )
     
     
-    def get_hyperparam_dict(self, name = None):
+    def get_hyperparam_dict(self):
         """
-        Return the dictionary of parameters (for use in larger pipelines such as Linear, etc)
+        Return the dictionary of fixed hyperparameters for use in Pipelines.
         """
-        if name == None:
-            name = self.tag
-        return { 'name': name, 'primitive': self.primitive, 'init_params': self.hyperparameter_values}
+        return { 'name': self.get_tag(), 'primitive': self.get_name(), 'init_params': copy.deepcopy(self.hyperparameter_values)}
 
 
     def set_tag(self, tag):
         self.tag = tag
         return self
-    def set_primitive_function(self, primitive_function):
-        self.primitive_function = primitive_function
 
     def set_primitive_inputs(self, primitive_inputs): 
         self.primitive_inputs = primitive_inputs
@@ -111,21 +120,20 @@ class Primitive():
         for hyperparam in hyperparams:
             del self.tunable_hyperparameters[hyperparam]
 
+#### Primitive inheritance subclasses
 
+## Transformations
 
 class TransformationPrimitive(Primitive):
 
     def __init__(self, primitive, primitive_subtype,  init_params = {}):
         super().__init__(primitive, 'transformation',primitive_subtype, init_params = init_params)
 
-    pass
 
 class AmplitudeTransformation(TransformationPrimitive):
 
     def __init__(self, primitive, init_params = {}):
         super().__init__(primitive, 'amplitude', init_params = init_params)
-
-    pass
 
 
 class FrequencyTransformation(TransformationPrimitive):
@@ -133,7 +141,6 @@ class FrequencyTransformation(TransformationPrimitive):
     def __init__(self, primitive, init_params = {}):
         super().__init__(primitive,  'frequency', init_params = init_params)
 
-    pass
 
 class FrequencyTimeTransformation(TransformationPrimitive):
 
@@ -141,11 +148,10 @@ class FrequencyTimeTransformation(TransformationPrimitive):
         super().__init__(primitive, 'frequency_time', init_params = init_params)
 
 
-
-
 class ComparativeTransformation(TransformationPrimitive):
     pass
 
+## Aggregations
 
 class AggregationPrimitive(Primitive):
     def __init__(self, primitive, primitive_subtype, init_params = {}):

@@ -1,3 +1,4 @@
+"""Reference class implementations of existing primitives."""
 from sigpro import primitive
 
 ###### Transformations

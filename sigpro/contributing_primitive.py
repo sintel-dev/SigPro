@@ -1,3 +1,4 @@
+"""Contributing primitive classes"""
 import copy
 from sigpro.contributing import make_primitive
 from sigpro.primitive import FrequencyTransformation, AmplitudeTransformation, FrequencyTimeTransformation
@@ -48,8 +49,6 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
     Returns:
         type:
             Dynamically-generated custom Primitive type.
-        str:
-            Path of the generated JSON file.
     """
     primitive_type_class = TAXONOMY[primitive_type][primitive_subtype]
     class UserPrimitive(primitive_type_class):
@@ -76,15 +75,7 @@ def make_primitive_class(primitive, primitive_type, primitive_subtype,
                    context_arguments=None, fixed_hyperparameters=None,
                    tunable_hyperparameters=None, primitive_outputs=None,
                    primitives_path='sigpro/primitives', primitives_subfolders=True):
-    """Create a primitive JSON.
-
-    During the JSON creation the primitive function signature is validated to
-    ensure that it matches the primitive type and subtype implicitly specified
-    by the primitive name.
-
-    Any additional function arguments are also validated to ensure that the
-    function does actually expect them.
-
+    """ Get a dynamically generated primitive class and make the primitive JSON.
     Args:
         primitive (str):
             The name of the primitive, the python path including the name of the
