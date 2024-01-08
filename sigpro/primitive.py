@@ -4,11 +4,12 @@ import copy
 # import json
 # import inspect
 # from mlblocks.discovery import load_primitive
-from mlblocks.mlblock import import_object # , MLBlock
+from mlblocks.mlblock import import_object  # , MLBlock
 from sigpro.contributing import _get_primitive_args, _get_primitive_spec
 from sigpro.contributing import _check_primitive_type_and_subtype
 
-class Primitive(): # Primitive(MLBlock):
+
+class Primitive():  # Primitive(MLBlock):
     """
     Represents a SigPro primitive.
 
@@ -52,15 +53,15 @@ class Primitive(): # Primitive(MLBlock):
     def get_name(self):
         """Get the name of the primitive."""
         return self.primitive
-    
+
     def get_tag(self):
         """Get the tag of the primitive."""
         return self.tag
-    
+
     def get_inputs(self):
         """Get the inputs of the primitive."""
         return copy.deepcopy(self.primitive_inputs)
-    
+
     def get_outputs(self):
         """Get the outputs of the primitive."""
         return copy.deepcopy(self.primitive_outputs)
@@ -78,7 +79,7 @@ class Primitive(): # Primitive(MLBlock):
             self.tunable_hyperparameters)
 
     def get_hyperparam_dict(self):
-        """ Return the dictionary of fixed hyperparameters for use in Pipelines."""
+        """Return the dictionary of fixed hyperparameters for use in Pipelines."""
 
         return {'name': self.get_tag(), 'primitive': self.get_name(),
                 'init_params': copy.deepcopy(self.hyperparameter_values)}
@@ -91,13 +92,14 @@ class Primitive(): # Primitive(MLBlock):
     def set_primitive_inputs(self, primitive_inputs):
         """Set primitive inputs."""
         self.primitive_inputs = primitive_inputs
-            
+
     def set_primitive_outputs(self, primitive_outputs):
         """Set primitive outputs."""
         self.primitive_outputs = primitive_outputs
 
     def _set_primitive_type(self, primitive_type):
         self.primitive_type = primitive_type
+
     def _set_primitive_subtype(self, primitive_subtype):
         self.primitive_subtype = primitive_subtype
 
