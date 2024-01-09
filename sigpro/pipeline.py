@@ -130,8 +130,9 @@ class Pipeline(ABC):
             tuple:
                 pandas.DataFrame:
                     A data frame with new feature columns by applying the previous primitives. If
-                    ``keep_values`` is ``True`` the original signal values will be conserved in the
-                    data frame, otherwise the original signal values will be deleted.
+                    ``keep_columns`` is ``True`` the original signal values and non-feature
+                    columns will be conserved in the data frame, otherwise any columns
+                    not named in ``keep_columns`` will be deleted.
                 list:
                     A list with the feature names generated.
         """
