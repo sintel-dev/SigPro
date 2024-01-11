@@ -7,7 +7,7 @@ def test_linear_pipeline():
     """build_linear_pipeline test."""
 
     transformations = [basic_primitives.Identity(), basic_primitives.FFTReal()]
-    aggregations = [basic_primitives.Mean(), basic_primitives.Kurtosis(fisher=True,bias=True)]
+    aggregations = [basic_primitives.Mean(), basic_primitives.Kurtosis(fisher=True, bias=True)]
 
     assert isinstance(transformations[0], primitive.Primitive)
 
@@ -23,4 +23,9 @@ def test_tree_pipeline():
 
 def test_layer_pipeline():
     """build_layer_pipeline test."""
+    assert True
+
+
+def test_merge_pipelines():
+    """marge_pipelines test."""
     assert True

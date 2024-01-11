@@ -6,7 +6,7 @@ from mlblocks.mlblock import import_object  # , MLBlock
 
 from sigpro.contributing import (
     _check_primitive_type_and_subtype, _get_primitive_args, _get_primitive_spec,
-    _make_primitive_dict)
+    _make_primitive_dict, _write_primitive)
 
 # import json
 # import inspect
@@ -157,6 +157,13 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
                                     self.primitive_subtype, self.context_arguments,
                                     self.fixed_hyperparameters, self.tunable_hyperparameters,
                                     self.primitive_outputs)
+
+    def write_primitive_json(self, primitives_path='sigpro/primitives',
+                             primitives_subfolders=True):
+        """Write the primitive json produced by a Primtiive oject and return the path."""
+        return _write_primitive(self.make_primitive_json(), self.primitive,
+                                primitives_path, primitives_subfolders)
+
 # Primitive inheritance subclasses
 
 # Transformations
