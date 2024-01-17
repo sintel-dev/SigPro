@@ -3,7 +3,7 @@
 
 from abc import ABC
 from collections import Counter
-from copy import deepcopy
+from copy import copy, deepcopy
 from itertools import product
 
 import pandas as pd
@@ -136,6 +136,7 @@ class Pipeline(ABC):
                 list:
                     A list with the feature names generated.
         """
+        # Error messages are hard to interpret.
         self._set_values_column_name(values_column_name)
         self._accept_dataframe_input(input_is_dataframe)
 
@@ -275,7 +276,7 @@ class LinearPipeline(Pipeline):
 
     def get_primitives(self):
         """Get a list of primitives in the pipeline."""
-        return self.transformations.copy() + self.aggregations.copy()
+        return copy(self.transformations.copy() + self.aggregations.copy())
 
     def get_output_features(self):
         """Get a list of output feature tuples produced by the pipeline."""
@@ -336,7 +337,7 @@ class LayerPipeline(Pipeline):
                                     list primitives. All primitives must have distinct tags.')
 
             primitives_dict[primitive.get_tag()] = primitive
-        self.primitives = primitives.copy()
+        self.primitives = copy(primitives[:])
         self.primitive_combinations = None
 
         if features_as_strings:
@@ -391,6 +392,7 @@ class LayerPipeline(Pipeline):
                 combination_length = len(combination)
                 if layer > combination_length:
                     continue
+
                 if (tuple(combination[:layer]) not in prefixes) or layer == combination_length:
                     # Since all features are T.T...T.A, no combo should be a prefix of another.
                     if layer == combination_length:
@@ -406,8 +408,12 @@ class LayerPipeline(Pipeline):
                     primitive_counter[final_primitive_name] += 1
                     numbered_primitive_name = \
                         f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
+
                     final_init_params[numbered_primitive_name] = \
                         final_primitive.get_hyperparam_dict()['init_params']
+
+                    # Map primitive inputs and outputs.
+
                     final_primitive_inputs[numbered_primitive_name] = {}
                     final_primitive_outputs[numbered_primitive_name] = {}
 
@@ -429,8 +435,10 @@ class LayerPipeline(Pipeline):
                                 continue
                             prev_prim = None
                             prev_ind = None
+
                             # Approach: find the most recent predecessor primitive in the feature
                             # that could have generated the specific input_name.
+
                             for p in reversed(range(0, layer)):  # pylint: disable=invalid-name
                                 prev_prim_cand = combination[p - 1]
                                 test_ops = [op['name'] for op in prev_prim_cand.get_outputs()]
@@ -441,9 +449,10 @@ class LayerPipeline(Pipeline):
 
                             if prev_prim is None and layer > 1:
                                 # If we can't find the predecessor, assume that the value is given.
+
                                 final_primitive_inputs[numbered_primitive_name][in_name] = \
                                     f'{final_primitive_str}.' + str(in_name)
-
+                                # warn user?
                                 # fps = final_primitive_str  # lint
                                 # raise ValueError(f'Arg {in_name} of primitive {fps} \
                                 # not produced by any predecessor primitive.')
