@@ -428,16 +428,17 @@ class LayerPipeline(Pipeline):
                                 continue
                             prev_prim = None
                             prev_ind = None
-                            for p in reversed(range(0, layer - 1)):  # pylint: disable=invalid-name
-                                prev_prim_cand = combination[p]
+                            for p in reversed(range(0, layer)):  # pylint: disable=invalid-name
+                                prev_prim_cand = combination[p - 1]
                                 test_ops = [op['name'] for op in prev_prim_cand.get_outputs()]
                                 if in_name in test_ops:
                                     prev_prim = prev_prim_cand
-                                    prev_ind = p + 1
+                                    prev_ind = p
                                     break
 
                             if prev_prim is None and layer > 1:
-                                raise ValueError(f'Arg {in_name} of primitive {final_primitive} \
+                                fps = final_primitive_str  # lint
+                                raise ValueError(f'Arg {in_name} of primitive {fps} \
                                                  not produced by any predecessor primitive.')
                             assert layer > 1
                             clpi = combination[:prev_ind]

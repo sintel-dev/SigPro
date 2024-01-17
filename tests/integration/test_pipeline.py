@@ -6,8 +6,6 @@ from sigpro.basic_primitives import FFT, BandMean, FFTReal, Identity, Kurtosis, 
 
 TEST_INPUT = pd.DataFrame({'timestamp': pd.to_datetime(['2020-01-01 00:00:00']),
                            'values': [[1, 2, 3, 4, 5, 6]],
-                           'fft.sampling_frequency': [10000],
-                           'fftr.sampling_frequency': [10000],
                            'sampling_frequency': [10000],
                            'dummy': [1], })
 
@@ -33,7 +31,7 @@ def _verify_pipeline_outputs(sigpro_pipeline, input_data, output_data, columns_t
     assert columns_to_check != []
 
     processed_signal, feature_list = sigpro_pipeline.process_signal(input_data)
-    if columns_to_check is not None:
+    if columns_to_check is None:
         columns_to_check = feature_list[:]
     for column in columns_to_check:
         assert column in feature_list
@@ -63,7 +61,7 @@ def test_tree_pipeline():
     t_layer1 = [FFTReal().set_tag('fftr'), FFT()]
     t_layer2 = [Identity().set_tag('id1'), Identity().set_tag('id2')]
 
-    a_layer = [BandMean(200, 500).set_tag('bm'), Mean(), Kurtosis(fisher=False)]
+    a_layer = [BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)]
 
     sample_pipeline = pipeline.build_tree_pipeline([t_layer1, t_layer2], a_layer)
 
@@ -78,12 +76,12 @@ def test_layer_pipeline():
 
     p1, p2 = FFTReal().set_tag('fftr'), FFT()
     p3, p4 = Identity().set_tag('id1'), Identity().set_tag('id2')
-    p5, p6, p7 = BandMean(200, 500).set_tag('bm'), Mean(), Kurtosis(fisher=False)
+    p5, p6, p7 = BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)
     p8 = Identity().set_tag('id3')  # unused primitive
 
     all_primitives = [p1, p2, p3, p4, p5, p6, p7, p8]
 
-    features = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p1, p2, p7)]
+    features = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p2, p4, p7)]
 
     sample_pipeline = pipeline.build_layer_pipeline(all_primitives, features)
 
@@ -100,12 +98,12 @@ def test_merge_pipelines():
     """marge_pipelines test."""
     p1, p2 = FFTReal().set_tag('fftr'), FFT()
     p3, p4 = Identity().set_tag('id1'), Identity().set_tag('id2')
-    p5, p6, p7 = BandMean(200, 500).set_tag('bm'), Mean(), Kurtosis(fisher=False)
+    p5, p6, p7 = BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)
     p8 = Identity().set_tag('id3')  # unused primitive
 
     all_primitives = [p1, p2, p3, p4, p5, p6, p7, p8]
 
-    features1 = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p1, p2, p7)]
+    features1 = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p2, p4, p7)]
 
     sample_pipeline1 = pipeline.build_layer_pipeline(all_primitives, features1)
 
