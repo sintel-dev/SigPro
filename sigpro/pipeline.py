@@ -469,8 +469,6 @@ class LayerPipeline(Pipeline):
                             out_name = output_dict['name']
                             final_outputs.append({'name': output_column_name + '.' + str(out_name),
                                                   'variable': f'{npn}.{out_name}'})
-        print('FPI: ', final_primitive_inputs)
-        print('FPO: ', final_primitive_outputs)
         return MLPipeline(
             primitives=final_primitives_list,
             init_params=final_init_params,
