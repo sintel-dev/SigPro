@@ -74,6 +74,10 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         """Get the type and subtype of the primitive."""
         return self.primitive_type, self.primitive_subtype
 
+    def get_context_arguments(self):
+        """Get the context arguments of the primitive."""
+        return copy.deepcopy(self.context_arguments)
+
     def _validate_primitive_spec(self):  # check compatibility of given parameters.
         _get_primitive_args(
             self.primitive_function,
