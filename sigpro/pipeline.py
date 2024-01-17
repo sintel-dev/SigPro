@@ -7,7 +7,7 @@ from copy import deepcopy
 from itertools import product
 
 import pandas as pd
-from mlblocks import MLPipeline  # , load_primitive
+from mlblocks import MLPipeline
 
 # from mlblocks.mlblock import import_object
 # from sigpro import contributing, primitive
@@ -419,6 +419,7 @@ class LayerPipeline(Pipeline):
                             is_required = not input_dict['optional']
                         else:
                             is_required = True
+                        # Context arguments should be named properly in the input data.
                         if in_name not in final_primitive.get_context_arguments() and \
                                 in_name != 'amplitude_values' and is_required:
                             # We need to hook up the primitive input to the proper output in chain
@@ -428,6 +429,8 @@ class LayerPipeline(Pipeline):
                                 continue
                             prev_prim = None
                             prev_ind = None
+                            # Approach: find the most recent predecessor primitive in the feature
+                            # that could have generated the specific input_name.
                             for p in reversed(range(0, layer)):  # pylint: disable=invalid-name
                                 prev_prim_cand = combination[p - 1]
                                 test_ops = [op['name'] for op in prev_prim_cand.get_outputs()]
@@ -437,14 +440,18 @@ class LayerPipeline(Pipeline):
                                     break
 
                             if prev_prim is None and layer > 1:
-                                fps = final_primitive_str  # lint
-                                raise ValueError(f'Arg {in_name} of primitive {fps} \
-                                                 not produced by any predecessor primitive.')
-                            assert layer > 1
-                            clpi = combination[:prev_ind]
-                            icn = '.'.join([pr.get_tag() for pr in clpi]) + f'.{prev_ind}'
-                            final_primitive_inputs[numbered_primitive_name][in_name] = \
-                                f'{icn}.{in_name}'
+                                # If we can't find the predecessor, assume that the value is given.
+                                final_primitive_inputs[numbered_primitive_name][in_name] = \
+                                    f'{final_primitive_str}.' + str(in_name)
+
+                                # fps = final_primitive_str  # lint
+                                # raise ValueError(f'Arg {in_name} of primitive {fps} \
+                                # not produced by any predecessor primitive.')
+                            else:
+                                clpi = combination[:prev_ind]
+                                icn = '.'.join([pr.get_tag() for pr in clpi]) + f'.{prev_ind}'
+                                final_primitive_inputs[numbered_primitive_name][in_name] = \
+                                    f'{icn}.{in_name}'
 
                     if layer == 1:
                         final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = \

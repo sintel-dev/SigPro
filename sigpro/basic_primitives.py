@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Reference class implementations of existing primitives."""
 from sigpro import contributing, primitive
 

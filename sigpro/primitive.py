@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """SigPro Primitive class."""
 
 import copy
