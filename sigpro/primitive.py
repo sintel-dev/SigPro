@@ -122,38 +122,6 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         """Set fixed hyperparameters of a primitive."""
         self.fixed_hyperparameters = fixed_hyperparameters
 
-    def add_context_arguments(self, context_arguments):
-        """Add context arguments to a primitive."""
-        for arg in context_arguments:
-            if arg not in self.context_arguments:
-                context_arguments.append(arg)
-
-    def add_fixed_hyperparameter(self, hyperparameters):
-        """Add fixed hyperparameters to a primitive."""
-        for hyperparam in hyperparameters:
-            self.fixed_hyperparameters[hyperparam] = hyperparameters[hyperparam]
-
-    def add_tunable_hyperparameter(self, hyperparameters):
-        """Add tunable hyperparameters to a primitive."""
-        for hyperparam in hyperparameters:
-            self.tunable_hyperparameters[hyperparam] = hyperparameters[hyperparam]
-
-    def remove_context_arguments(self, context_arguments):
-        """Remove context arguments from a primitive."""
-        for arg in context_arguments:
-            if arg in self.context_arguments:
-                context_arguments.remove(arg)
-
-    def remove_fixed_hyperparameters(self, hyperparameters):
-        """Remove fixed hyperparameters from a primitive."""
-        for hyperparam in hyperparameters:
-            del self.fixed_hyperparameters[hyperparam]
-
-    def remove_tunable_hyperparameters(self, hyperparameters):
-        """Remove tunable hyperparameters from a primitive."""
-        for hyperparam in hyperparameters:
-            del self.tunable_hyperparameters[hyperparam]
-
     def make_primitive_json(self):
         """View the primitive json produced by a Primitive object."""
         self._validate_primitive_spec()
