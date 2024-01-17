@@ -14,7 +14,7 @@ from mlblocks import MLPipeline  # , load_primitive
 from sigpro.primitive import Primitive
 
 # Temporary refactor from core, ignore duplicate code.
-# pylint: disable = duplicate-code
+# pylint: disable = duplicate-code, too-many-statements, too-many-nested-blocks
 
 DEFAULT_INPUT = [
     {
@@ -370,7 +370,7 @@ class LayerPipeline(Pipeline):
 
         self.pipeline = self._build_pipeline()
 
-    def _build_pipeline(self):  # pylint: disable=too-many-locals
+    def _build_pipeline(self):  # pylint: disable=too-many-locals, too-many-branches
         """
         Build the layer pipeline.
 
@@ -414,6 +414,37 @@ class LayerPipeline(Pipeline):
                     for input_dict in final_primitive.get_inputs():
                         final_primitive_inputs[numbered_primitive_name][input_dict['name']] = \
                             f'{final_primitive_str}.' + str(input_dict['name'])
+                        in_name = input_dict['name']
+                        if 'optional' in input_dict:
+                            is_required = not input_dict['optional']
+                        else:
+                            is_required = True
+                        if in_name not in final_primitive.get_context_arguments() and \
+                                in_name != 'amplitude_values' and is_required:
+                            # We need to hook up the primitive input to the proper output in chain
+                            if layer == 1:
+                                npn = numbered_primitive_name[:]  # lint
+                                final_primitive_inputs[npn][in_name] = str(in_name)
+                                continue
+                            prev_prim = None
+                            prev_ind = None
+                            for p in reversed(range(0, layer - 1)):  # pylint: disable=invalid-name
+                                prev_prim_cand = combination[p]
+                                test_ops = [op['name'] for op in prev_prim_cand.get_outputs()]
+                                if in_name in test_ops:
+                                    prev_prim = prev_prim_cand
+                                    prev_ind = p + 1
+                                    break
+
+                            if prev_prim is None and layer > 1:
+                                raise ValueError(f'Arg {in_name} of primitive {final_primitive} \
+                                                 not produced by any predecessor primitive.')
+                            assert layer > 1
+                            clpi = combination[:prev_ind]
+                            icn = '.'.join([pr.get_tag() for pr in clpi]) + f'.{prev_ind}'
+                            final_primitive_inputs[numbered_primitive_name][in_name] = \
+                                f'{icn}.{in_name}'
+
                     if layer == 1:
                         final_primitive_inputs[numbered_primitive_name]['amplitude_values'] = \
                             'amplitude_values'
@@ -438,7 +469,8 @@ class LayerPipeline(Pipeline):
                             out_name = output_dict['name']
                             final_outputs.append({'name': output_column_name + '.' + str(out_name),
                                                   'variable': f'{npn}.{out_name}'})
-
+        print('FPI: ', final_primitive_inputs)
+        print('FPO: ', final_primitive_outputs)
         return MLPipeline(
             primitives=final_primitives_list,
             init_params=final_init_params,
