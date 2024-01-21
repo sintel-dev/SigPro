@@ -21,7 +21,8 @@ TAXONOMY = {
 
 def get_primitive_class(primitive, primitive_type, primitive_subtype,
                         context_arguments=None, fixed_hyperparameters=None,
-                        tunable_hyperparameters=None, primitive_outputs=None):
+                        tunable_hyperparameters=None, primitive_inputs=None,
+                        primitive_outputs=None):
     """
     Get a dynamically generated primitive class.
 
@@ -43,6 +44,9 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
             A dictionary containing as key the name of the hyperparameter and as
             value a dictionary containing the type and the default value and the
             range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
@@ -68,6 +72,8 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
                 self.set_fixed_hyperparameters(copy.deepcopy(fixed_hyperparameters))
             if tunable_hyperparameters is not None:
                 self.set_tunable_hyperparameters(copy.deepcopy(tunable_hyperparameters))
+            if primitive_inputs is not None:
+                self.set_primitive_inputs(copy.deepcopy(primitive_inputs))
             if primitive_outputs is not None:
                 self.set_primitive_outputs(copy.deepcopy(primitive_outputs))
             if context_arguments is not None:
@@ -77,11 +83,14 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
 
     return type(type_name, (UserPrimitive, ), {})
 
+# pylint: disable = too-many-arguments
+
 
 def make_primitive_class(primitive, primitive_type, primitive_subtype,
                          context_arguments=None, fixed_hyperparameters=None,
-                         tunable_hyperparameters=None, primitive_outputs=None,
-                         primitives_path='sigpro/primitives', primitives_subfolders=True):
+                         tunable_hyperparameters=None, primitive_inputs=None,
+                         primitive_outputs=None, primitives_path='sigpro/primitives',
+                         primitives_subfolders=True):
     """
     Get a dynamically generated primitive class and make the primitive JSON.
 
@@ -103,6 +112,9 @@ def make_primitive_class(primitive, primitive_type, primitive_subtype,
             A dictionary containing as key the name of the hyperparameter and as
             value a dictionary containing the type and the default value and the
             range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
@@ -125,8 +137,10 @@ def make_primitive_class(primitive, primitive_type, primitive_subtype,
     """
     primitive_path = make_primitive(primitive, primitive_type, primitive_subtype,
                                     context_arguments, fixed_hyperparameters,
-                                    tunable_hyperparameters, primitive_outputs,
-                                    primitives_path, primitives_subfolders)
+                                    tunable_hyperparameters, primitive_inputs,
+                                    primitive_outputs, primitives_path,
+                                    primitives_subfolders)
     return get_primitive_class(primitive, primitive_type, primitive_subtype,
                                context_arguments, fixed_hyperparameters,
-                               tunable_hyperparameters, primitive_outputs), primitive_path
+                               tunable_hyperparameters, primitive_inputs,
+                               primitive_outputs), primitive_path
