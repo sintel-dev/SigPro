@@ -63,7 +63,7 @@ class STFT(primitive.FrequencyTimeTransformation):
     """STFT primitive class."""
 
     def __init__(self):
-        super().__init__('sigpro.transformations.frequency.stft.stft')
+        super().__init__('sigpro.transformations.frequency_time.stft.stft')
         self.set_primitive_outputs([{"name": "amplitude_values", "type": "numpy.ndarray"},
                                     {"name": "frequency_values", "type": "numpy.ndarray"},
                                     {"name": "time_values", "type": "numpy.ndarray"}])
@@ -73,7 +73,7 @@ class STFTReal(primitive.FrequencyTimeTransformation):
     """STFTReal primitive class."""
 
     def __init__(self):
-        super().__init__('sigpro.transformations.frequency.stft.stft_real')
+        super().__init__('sigpro.transformations.frequency_time.stft.stft_real')
         self.set_primitive_outputs([{"name": "real_amplitude_values", "type": "numpy.ndarray"},
                                     {"name": "frequency_values", "type": "numpy.ndarray"},
                                     {"name": "time_values", "type": "numpy.ndarray"}])
