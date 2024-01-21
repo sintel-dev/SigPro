@@ -329,7 +329,9 @@ class LayerPipeline(Pipeline):
 
         features_as_strings (bool): True if primitive_combinations is defined w/ string names,
         False if primitive_combinations is defined with primitive objects (default).
-
+    Raises:
+        ValueError:
+            If the pipeline specification is invalid.
     Returns:
         LayerPipeline that generates the primitives in primitive_combinations.
     """
@@ -337,19 +339,20 @@ class LayerPipeline(Pipeline):
     def __init__(self, primitives, primitive_combinations, features_as_strings=False):
         """Initialize a LayerPipeline."""
         super().__init__()
-        if not isinstance(primitives, list):
-            raise ValueError('primitives must a list')
+
         primitives_dict = {}
         for primitive in primitives:
-            if not isinstance(primitive, Primitive):
-                raise ValueError('Non-primitive specified in list primitives')
-
             if primitive.get_tag() in primitives_dict:
                 raise ValueError(f'Tag {primitive.get_tag()} duplicated in \
                                     list primitives. All primitives must have distinct tags.')
 
             primitives_dict[primitive.get_tag()] = primitive
-        self.primitives = copy(primitives[:])
+
+        length = max([len(combination) for combination in primitive_combinations] + [0])
+        if length == 0:
+            raise ValueError('At least one non-empty output feature must be specified')
+        self.num_layers = length
+        self.primitives = copy(primitives[:])  # Will need to adjust API to remove primitives arg
         self.primitive_combinations = None
 
         if features_as_strings:
@@ -358,12 +361,6 @@ class LayerPipeline(Pipeline):
 
         self.primitive_combinations = [tuple(combination) for combination
                                        in primitive_combinations]
-
-        length = max([len(combination) for combination in primitive_combinations] + [0])
-
-        if length == 0:
-            raise ValueError('At least one non-empty output feature must be specified')
-        self.num_layers = length
 
         for combination in self.primitive_combinations:
 

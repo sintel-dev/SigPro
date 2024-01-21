@@ -37,7 +37,17 @@ class FFTReal(primitive.FrequencyTransformation):
 
 
 class FrequencyBand(primitive.FrequencyTransformation):
-    """FrequencyBand primitive class."""
+    """
+    FrequencyBand primitive class.
+
+    Filter between a high and low band frequency and return the amplitude values and
+    frequency values for those.
+
+    Args:
+        low (int): Lower band frequency of filter.
+
+        high (int): Higher band frequency of filter.
+    """
 
     def __init__(self, low, high):
         super().__init__("sigpro.transformations.frequency.band.frequency_band",
@@ -80,7 +90,21 @@ class CrestFactor(primitive.AmplitudeAggregation):
 
 
 class Kurtosis(primitive.AmplitudeAggregation):
-    """Kurtosis primitive class."""
+    """
+    Kurtosis primitive class.
+
+    Computes the kurtosis value of the input array. If all values are equal, return
+           `-3` for Fisher's definition and `0` for Pearson's definition.
+
+    Args:
+        fisher (bool):
+            If ``True``, Fisher’s definition is used (normal ==> 0.0). If ``False``,
+            Pearson’s definition is used (normal ==> 3.0). Defaults to ``True``.
+
+        bias (bool):
+            If ``False``, then the calculations are corrected for statistical bias.
+            Defaults to ``True``.
+    """
 
     def __init__(self, fisher=True, bias=True):
         super().__init__('sigpro.aggregations.amplitude.statistical.kurtosis',
@@ -131,7 +155,17 @@ class Var(primitive.AmplitudeAggregation):
 
 
 class BandMean(primitive.FrequencyAggregation):
-    """BandMean primitive class."""
+    """
+    BandMean primitive class.
+
+    Filters between a high and low band and compute the mean value for this specific band.
+
+    Args:
+        min_frequency (int or float):
+            Band minimum.
+        max_frequency (int or float):
+            Band maximum.
+    """
 
     def __init__(self, min_frequency, max_frequency):
         super().__init__('sigpro.aggregations.frequency.band.band_mean', init_params={

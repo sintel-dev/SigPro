@@ -124,7 +124,16 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         self.fixed_hyperparameters = fixed_hyperparameters
 
     def make_primitive_json(self):
-        """View the primitive json produced by a Primitive object."""
+        """
+        View the primitive json produced by a Primitive object.
+
+        Raises:
+            ValueError:
+                If the primitive specification arguments are not valid (as in sigpro.contributing).
+        Returns:
+            dict:
+                Dictionary containing the JSON annotation for the primitive.
+        """
         self._validate_primitive_spec()
         return _make_primitive_dict(self.primitive, self.primitive_type,
                                     self.primitive_subtype, self.context_arguments,
@@ -133,7 +142,21 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
 
     def write_primitive_json(self, primitives_path='sigpro/primitives',
                              primitives_subfolders=True):
-        """Write the primitive json produced by a Primtiive oject and return the path."""
+        """
+        Write the primitive json produced by a Primitive object and return the path.
+
+        Args:
+            primitives_path (str):
+                Path to the root of the primitives folder, in which the primitives JSON will be
+                stored. Defaults to `sigpro/primitives`.
+            primitives_subfolders (bool):
+                Whether to store the primitive JSON in a subfolder tree (``True``) or to use a flat
+                primitive name (``False``). Defaults to ``True``.
+
+        Returns:
+            str:
+                Path of the generated JSON file.
+        """
         return _write_primitive(self.make_primitive_json(), self.primitive,
                                 primitives_path, primitives_subfolders)
 
