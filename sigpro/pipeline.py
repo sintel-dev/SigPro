@@ -95,9 +95,21 @@ class Pipeline(ABC):
         """Get a list of primitives in the pipeline."""
         raise NotImplementedError
 
-    def get_output_features(self):
+    def get_output_combinations(self):
         """Get a list of output feature tuples produced by the pipeline."""
         raise NotImplementedError
+
+    def get_output_features(self):
+        """Get a list of output feature strings produced by the pipeline."""
+        combinations = self.get_output_combinations()
+        output_features = []
+        for combination in combinations:
+            tags = [prim.get_tag() for prim in combination]
+            final_primitive_outputs = combination[-1].get_outputs()
+            for output_dict in final_primitive_outputs:
+                out_name = output_dict['name']
+                output_features.append('.'.join(tags) + '.' + out_name)
+        return output_features
 
     def process_signal(self, data=None, window=None, values_column_name='values',
                        time_index=None, groupby_index=None, feature_columns=None,
@@ -278,7 +290,7 @@ class LinearPipeline(Pipeline):
         """Get a list of primitives in the pipeline."""
         return copy(self.transformations.copy() + self.aggregations.copy())
 
-    def get_output_features(self):
+    def get_output_combinations(self):
         """Get a list of output feature tuples produced by the pipeline."""
         return [tuple(self.transformations.copy() + [aggregation])
                 for aggregation in self.aggregations]
@@ -498,7 +510,7 @@ class LayerPipeline(Pipeline):
         """Get a list of primitives in the pipeline."""
         return self.primitives.copy()
 
-    def get_output_features(self):
+    def get_output_combinations(self):
         """Get a list of output feature tuples produced by the pipeline."""
         return [x[:] for x in self.primitive_combinations]
 
@@ -592,7 +604,7 @@ def merge_pipelines(pipelines):
     for pipeline in (pipelines)[::-1]:
 
         primitives_all.update(pipeline.get_primitives())
-        primitive_combinations.update(pipeline.get_output_features())
+        primitive_combinations.update(pipeline.get_output_combinations())
 
     return LayerPipeline(primitives=list(primitives_all),
                          primitive_combinations=list(primitive_combinations))

@@ -87,7 +87,7 @@ def test_layer_pipeline():
 
     assert isinstance(sample_pipeline, pipeline.LayerPipeline)
 
-    out_features = sample_pipeline.get_output_features()
+    out_features = sample_pipeline.get_output_combinations()
     for feature in features:
         assert feature in out_features
 
@@ -118,6 +118,6 @@ def test_merge_pipelines():
 
     assert isinstance(sample_pipeline, pipeline.LayerPipeline)
 
-    out_features = sample_pipeline.get_output_features()
+    out_features = sample_pipeline.get_output_combinations()
     for feature in features:
         assert feature in out_features
