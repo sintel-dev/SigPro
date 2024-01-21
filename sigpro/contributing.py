@@ -279,7 +279,8 @@ def _write_primitive(primitive_dict, primitive_name, primitives_path, primitives
 
 def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
                          context_arguments=None, fixed_hyperparameters=None,
-                         tunable_hyperparameters=None, primitive_outputs=None):
+                         tunable_hyperparameters=None, primitive_inputs=None,
+                         primitive_outputs=None):
     """Create a primitive dict.
 
     Args:
@@ -300,6 +301,9 @@ def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
             A dictionary containing as key the name of the hyperparameter and as
             value a dictionary containing the type and the default value and the
             range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
@@ -317,7 +321,7 @@ def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
     tunable_hyperparameters = tunable_hyperparameters or {}
 
     primitive_spec = _get_primitive_spec(primitive_type, primitive_subtype)
-    primitive_inputs = primitive_spec['args']
+    primitive_inputs = primitive_inputs or primitive_spec['args']
     primitive_outputs = primitive_outputs or primitive_spec['output']
 
     primitive_function = _import_object(primitive)
@@ -354,11 +358,14 @@ def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
 
     return primitive_dict
 
+# pylint: disable = too-many-arguments
+
 
 def make_primitive(primitive, primitive_type, primitive_subtype,
                    context_arguments=None, fixed_hyperparameters=None,
-                   tunable_hyperparameters=None, primitive_outputs=None,
-                   primitives_path='sigpro/primitives', primitives_subfolders=True):
+                   tunable_hyperparameters=None, primitive_inputs=None,
+                   primitive_outputs=None, primitives_path='sigpro/primitives',
+                   primitives_subfolders=True):
     """Create a primitive JSON.
 
     During the JSON creation the primitive function signature is validated to
@@ -386,6 +393,9 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
             A dictionary containing as key the name of the hyperparameter and as
             value a dictionary containing the type and the default value and the
             range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
@@ -406,7 +416,8 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
     """
     primitive_dict = _make_primitive_dict(primitive, primitive_type, primitive_subtype,
                                           context_arguments, fixed_hyperparameters,
-                                          tunable_hyperparameters, primitive_outputs)
+                                          tunable_hyperparameters, primitive_inputs,
+                                          primitive_outputs)
 
     return _write_primitive(primitive_dict, primitive, primitives_path, primitives_subfolders)
 

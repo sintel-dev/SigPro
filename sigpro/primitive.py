@@ -129,7 +129,7 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         return _make_primitive_dict(self.primitive, self.primitive_type,
                                     self.primitive_subtype, self.context_arguments,
                                     self.fixed_hyperparameters, self.tunable_hyperparameters,
-                                    self.primitive_outputs)
+                                    self.primitive_inputs, self.primitive_outputs)
 
     def write_primitive_json(self, primitives_path='sigpro/primitives',
                              primitives_subfolders=True):
