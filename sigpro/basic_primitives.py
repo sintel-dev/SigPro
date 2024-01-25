@@ -45,7 +45,6 @@ class FrequencyBand(primitive.FrequencyTransformation):
 
     Args:
         low (int): Lower band frequency of filter.
-
         high (int): Higher band frequency of filter.
     """
 
@@ -94,13 +93,12 @@ class Kurtosis(primitive.AmplitudeAggregation):
     Kurtosis primitive class.
 
     Computes the kurtosis value of the input array. If all values are equal, return
-           `-3` for Fisher's definition and `0` for Pearson's definition.
+    `-3` for Fisher's definition and `0` for Pearson's definition.
 
     Args:
         fisher (bool):
             If ``True``, Fisher’s definition is used (normal ==> 0.0). If ``False``,
             Pearson’s definition is used (normal ==> 3.0). Defaults to ``True``.
-
         bias (bool):
             If ``False``, then the calculations are corrected for statistical bias.
             Defaults to ``True``.

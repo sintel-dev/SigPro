@@ -1,16 +1,5 @@
 # History
 
-## 0.1.3 - 2024-1-22
-
-### Features
-* Add `Primitive` and `Pipeline` base classes - [Issue #51](https://github.com/sintel-dev/SigPro/issues/51) by @andyx13
-* Added `contributing_primitive` and `basic_primitives` module to assist with new primitive creation/usage
-* Refactor `sigpro.SigPro` into `pipeline` module as `sigpro.pipeline.LinearPipeline` - [Issue #41](https://github.com/sintel-dev/SigPro/issues/41) by @andyx13
-* Added tree and layer pipeline creation - [Issue #52](https://github.com/sintel-dev/SigPro/issues/52) by @andyx13
-* Fix existing primitive JSONs - [Issue #53](https://github.com/sintel-dev/SigPro/issues/53) by @andyx13
-* Updated demo notebook and documentation 
-
-
 ## 0.1.2 - 2023-12-11
 
 ### Features

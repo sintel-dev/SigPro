@@ -3,15 +3,11 @@
 
 import copy
 
-from mlblocks.mlblock import import_object  # , MLBlock
+from mlblocks.mlblock import import_object
 
 from sigpro.contributing import (
     _check_primitive_type_and_subtype, _get_primitive_args, _get_primitive_spec,
     _make_primitive_dict, _write_primitive)
-
-# import json
-# import inspect
-# from mlblocks.discovery import load_primitive
 
 
 class Primitive():  # pylint: disable=too-many-instance-attributes
@@ -161,7 +157,7 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
                                 primitives_path, primitives_subfolders)
 
 # Primitive inheritance subclasses
-
+# pylint: disable=super-init-not-called
 # Transformations
 
 
@@ -196,6 +192,8 @@ class FrequencyTimeTransformation(TransformationPrimitive):
 class ComparativeTransformation(TransformationPrimitive):
     """Generic comparative transformation primitive."""
 
+    def __init__(self, primitive, init_params=None):
+        raise NotImplementedError
 # Aggregations
 
 
@@ -229,3 +227,6 @@ class FrequencyTimeAggregation(AggregationPrimitive):
 
 class ComparativeAggregation(AggregationPrimitive):
     """Generic comparative aggregation primitive."""
+
+    def __init__(self, primitive, init_params=None):
+        raise NotImplementedError

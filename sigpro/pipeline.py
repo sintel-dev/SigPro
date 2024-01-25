@@ -9,8 +9,6 @@ from itertools import product
 import pandas as pd
 from mlblocks import MLPipeline
 
-# from mlblocks.mlblock import import_object
-# from sigpro import contributing, primitive
 from sigpro.primitive import Primitive
 
 # Temporary refactor from core, ignore duplicate code.
@@ -80,6 +78,7 @@ class Pipeline(ABC):
                 k: v for k, v in window.iloc[0].to_dict().items() if k != self.values_column_name
             }
             amplitude_values = list(window[self.values_column_name])
+
         output = self.pipeline.predict(
             amplitude_values=amplitude_values,
             **context,
@@ -91,8 +90,12 @@ class Pipeline(ABC):
 
         return pd.Series(dict(zip(output_names, output)))
 
+    def get_primitive_names(self):
+        """Get a list of names of primitives in the pipeline."""
+        return self.pipeline.primitives
+
     def get_primitives(self):
-        """Get a list of primitives in the pipeline."""
+        """Get a list of Primitive objects in the pipeline."""
         raise NotImplementedError
 
     def get_output_combinations(self):
@@ -109,6 +112,7 @@ class Pipeline(ABC):
             for output_dict in final_primitive_outputs:
                 out_name = output_dict['name']
                 output_features.append('.'.join(tags) + '.' + out_name)
+
         return output_features
 
     def process_signal(self, data=None, window=None, values_column_name='values',
