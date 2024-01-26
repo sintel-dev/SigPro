@@ -230,50 +230,37 @@ class LinearPipeline(Pipeline):
         outputs = []
         counter = Counter()
 
-        for transformation_ in self.transformations:
-            transformation_._validate_primitive_spec()
-            transformation = transformation_.get_hyperparam_dict()
-
-            name = transformation.get('name')
-            if name is None:
-                name = transformation['primitive'].split('.')[-1]
-
+        for transformation in self.transformations:
+            transformation._validate_primitive_spec()
+            name = transformation.get_tag()
             prefix.append(name)
-            primitive = transformation['primitive']
+            primitive = transformation.get_name()
             counter[primitive] += 1
             primitive_name = f'{primitive}#{counter[primitive]}'
             primitives.append(primitive)
-            params = transformation.get('init_params')
+            params = transformation.get_hyperparam_dict().get('init_params')
             if params:
                 init_params[primitive_name] = params
 
         prefix = '.'.join(prefix) if prefix else ''
 
-        for aggregation_ in self.aggregations:
-            aggregation_._validate_primitive_spec()
-            aggregation = aggregation_.get_hyperparam_dict()
-
-            name = aggregation.get('name')
-            if name is None:
-                name = aggregation['primitive'].split('.')[-1]
+        for aggregation in self.aggregations:
+            aggregation._validate_primitive_spec()
+            name = aggregation.get_tag()
 
             aggregation_name = f'{prefix}.{name}' if prefix else name
 
-            primitive = aggregation['primitive']
+            primitive = aggregation.get_name()
             counter[primitive] += 1
             primitive_name = f'{primitive}#{counter[primitive]}'
             primitives.append(primitive)
 
-            primitive = aggregation_.make_primitive_json()
-            primitive_outputs = primitive['produce']['output']
+            primitive_json = aggregation.make_primitive_json()
+            primitive_outputs = primitive_json['produce']['output']
 
-            params = aggregation.get('init_params')
+            params = aggregation.get_hyperparam_dict().get('init_params')
             if params:
                 init_params[primitive_name] = params
-
-            if name.lower() == 'sigpro':
-                primitive = MLPipeline([primitive], init_params={'sigpro.SigPro#1': params})
-                primitive_outputs = primitive.get_outputs()
 
             if not isinstance(primitive_outputs, str):
                 for output in primitive_outputs:
