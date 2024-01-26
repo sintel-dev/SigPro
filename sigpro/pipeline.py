@@ -232,8 +232,7 @@ class LinearPipeline(Pipeline):
 
         for transformation in self.transformations:
             transformation._validate_primitive_spec()
-            name = transformation.get_tag()
-            prefix.append(name)
+            prefix.append(transformation.get_tag())
             primitive = transformation.get_name()
             counter[primitive] += 1
             primitive_name = f'{primitive}#{counter[primitive]}'
@@ -246,9 +245,8 @@ class LinearPipeline(Pipeline):
 
         for aggregation in self.aggregations:
             aggregation._validate_primitive_spec()
-            name = aggregation.get_tag()
-
-            aggregation_name = f'{prefix}.{name}' if prefix else name
+            aggregation_name = f'{prefix}.{aggregation.get_tag()}' if prefix \
+                else aggregation.get_tag()
 
             primitive = aggregation.get_name()
             counter[primitive] += 1
