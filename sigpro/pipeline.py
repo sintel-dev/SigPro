@@ -346,8 +346,9 @@ class LayerPipeline(Pipeline):
         primitives_dict = {}
         for primitive in primitives:
             if primitive.get_tag() in primitives_dict:
-                raise ValueError(f'Tag {primitive.get_tag()} duplicated in \
-                                    list primitives. All primitives must have distinct tags.')
+                error_str = f'Tag {primitive.get_tag()} is duplicated.'
+                error_str += ' All primitives must have distinct tags.'
+                raise ValueError(error_str)
 
             primitives_dict[primitive.get_tag()] = primitive
 
@@ -370,16 +371,18 @@ class LayerPipeline(Pipeline):
             combo_length = len(combination)
             for ind in range(combo_length - 1):
                 if combination[ind].get_type_subtype()[0] != 'transformation':
-                    raise ValueError(f'Primitive at non-terminal position #{ind+1}/{combo_length} \
-                                     is not a transformation')
+                    error_str = f'Primitive at non-terminal position #{ind+1}/{combo_length}'
+                    error_str += ' is not a transformation'
+                    raise ValueError(error_str)
 
             if combination[-1].get_type_subtype()[0] != 'aggregation':
                 raise ValueError('Last primitive is not an aggregation')
 
             for primitive in combination:
                 if primitive not in self.primitives:
-                    raise ValueError(f'Primitive with tag {primitive.get_tag()} not found in the \
-                                     given primitives')
+                    error_str = f'Primitive with tag {primitive.get_tag()} not found in the'
+                    error_str += ' given primitives'
+                    raise ValueError(error_str)
 
         self.pipeline = self._build_pipeline()
 
@@ -411,19 +414,19 @@ class LayerPipeline(Pipeline):
                         assert tuple(combination[:layer]) not in prefixes
 
                     final_primitive = combination[layer - 1]
-                    final_primitive_str = final_primitive.get_tag()
-
                     prefixes[(tuple(combination[:layer]))] = final_primitive
 
+                    final_primitive_str = final_primitive.get_tag()
                     final_primitive_name = final_primitive.get_name()
-                    final_primitives_list.append(final_primitive.get_name())
+                    final_primitive_params = final_primitive.get_hyperparam_dict()
+
                     primitive_counter[final_primitive_name] += 1
                     numbered_primitive_name = \
                         f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
 
                     final_init_params[numbered_primitive_name] = \
-                        final_primitive.get_hyperparam_dict()['init_params']
-
+                        final_primitive_params['init_params']
+                    final_primitives_list.append(final_primitive_name)
                     # Map primitive inputs and outputs.
 
                     final_primitive_inputs[numbered_primitive_name] = {}
