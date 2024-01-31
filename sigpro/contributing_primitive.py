@@ -50,6 +50,7 @@ def get_primitive_class(primitive, primitive_type, primitive_subtype,
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
+
     Raises:
         ValueError:
             If the primitive specification arguments are not valid.

@@ -40,6 +40,18 @@ DEFAULT_OUTPUT = [
 LOGGER = logging.getLogger(__name__)
 
 
+def _get_primitive_metadata(primitive_object):
+    """
+    Return the tag, name, and initial fixed hyperparameters of the primitive.
+
+    Same information as get_hyperparam_dict but in a different format.
+    """
+    hyperparam_dict = primitive_object.get_hyperparam_dict()
+    return (hyperparam_dict.get('name'),
+            hyperparam_dict.get('primitive'),
+            hyperparam_dict.get('init_params'))
+
+
 class Pipeline(ABC):
     """Abstract Pipeline class to apply multiple transformation and aggregation primitives."""
 
@@ -416,16 +428,15 @@ class LayerPipeline(Pipeline):
                     final_primitive = combination[layer - 1]
                     prefixes[(tuple(combination[:layer]))] = final_primitive
 
-                    final_primitive_str = final_primitive.get_tag()
-                    final_primitive_name = final_primitive.get_name()
-                    final_primitive_params = final_primitive.get_hyperparam_dict()
+                    final_primitive_str, final_primitive_name, final_primitive_params = \
+                        _get_primitive_metadata(final_primitive)
 
                     primitive_counter[final_primitive_name] += 1
                     numbered_primitive_name = \
                         f'{final_primitive_name}#{primitive_counter[final_primitive_name]}'
 
                     final_init_params[numbered_primitive_name] = \
-                        final_primitive_params['init_params']
+                        final_primitive_params
                     final_primitives_list.append(final_primitive_name)
                     # Map primitive inputs and outputs.
 
