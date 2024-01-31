@@ -136,7 +136,7 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         Raises:
             ValueError:
                 If the primitive specification arguments are not valid (as in sigpro.contributing).
-    
+
         Returns:
             dict:
                 Dictionary containing the JSON annotation for the primitive.
