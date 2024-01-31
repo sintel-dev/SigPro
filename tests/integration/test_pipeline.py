@@ -1,5 +1,6 @@
 """Test module for SigPro pipeline module."""
 import pandas as pd
+import pytest
 
 from sigpro import pipeline, primitive
 from sigpro.basic_primitives import FFT, BandMean, FFTReal, Identity, Kurtosis, Mean
@@ -11,6 +12,7 @@ TEST_INPUT = pd.DataFrame({'timestamp': pd.to_datetime(['2020-01-01 00:00:00']),
 
 TEST_OUTPUT = pd.DataFrame({'fftr.id1.bm.value': [(-3 + 0j)],
                             'fftr.id1.mean.mean_value': [(1 + 0j)],
+                            'fftr.mean.mean_value': [(1 + 0j)],
                             'fftr.id1.kurtosis.kurtosis_value': [(4.2 + 0j)],
                             'fftr.id2.bm.value': [(-3 + 0j)],
                             'fftr.id2.mean.mean_value': [(1 + 0j)],
@@ -81,7 +83,7 @@ def test_layer_pipeline():
 
     all_primitives = [p1, p2, p3, p4, p5, p6, p7, p8]
 
-    features = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p2, p4, p7)]
+    features = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p2, p4, p7), (p1, p6)]
 
     sample_pipeline = pipeline.build_layer_pipeline(all_primitives, features)
 
@@ -95,7 +97,7 @@ def test_layer_pipeline():
 
 
 def test_merge_pipelines():
-    """marge_pipelines test."""
+    """merge_pipelines test."""
     p1, p2 = FFTReal().set_tag('fftr'), FFT()
     p3, p4 = Identity().set_tag('id1'), Identity().set_tag('id2')
     p5, p6, p7 = BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)
@@ -121,3 +123,74 @@ def test_merge_pipelines():
     out_features = sample_pipeline.get_output_combinations()
     for feature in features:
         assert feature in out_features
+
+
+def test_invalid_tree_pipelines():
+    """Test invalid tree pipelines."""
+
+    p1, p2, p2_duplicate = FFTReal().set_tag('fftr'), FFT(), FFT()
+    p3, p4 = Identity().set_tag('id1'), Identity().set_tag('id2')
+    p5, p6, p7 = BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)
+
+    t_layer1 = [p1, p2]
+    t_layer2 = [p3, p4]
+
+    a_layer = [p5, p6, p7]
+
+    # Empty Cartesian product
+    with pytest.raises(ValueError):
+        pipeline.build_tree_pipeline([t_layer1, []], a_layer)
+    with pytest.raises(ValueError):
+        pipeline.build_tree_pipeline([[], t_layer2], a_layer)
+    with pytest.raises(ValueError):
+        pipeline.build_tree_pipeline([t_layer1, t_layer2], [])
+
+    # Duplicate tags
+    with pytest.raises(ValueError):
+        pipeline.build_tree_pipeline([t_layer1 + [p2_duplicate], t_layer2], a_layer)
+
+    # Incorrect primitive order
+    with pytest.raises(ValueError):
+        pipeline.build_tree_pipeline([t_layer1, a_layer], t_layer2)
+
+
+def test_invalid_layer_pipelines():
+    """Test invalid pipeline formation."""
+
+    p1, p2, p2_duplicate = FFTReal().set_tag('fftr'), FFT(), FFT()
+    p3, p4 = Identity().set_tag('id1'), Identity().set_tag('id2')
+    p5, p6, p7 = BandMean(200, 50000).set_tag('bm'), Mean(), Kurtosis(fisher=False)
+    p8 = Identity().set_tag('id3')  # unused primitive
+
+    all_primitives = [p1, p2, p3, p4, p5, p6, p7, p8]
+
+    all_primitives_duplicate = all_primitives + [p2_duplicate]
+
+    features = [(p1, p3, p5), (p1, p3, p6), (p2, p3, p6), (p2, p4, p6), (p2, p4, p7)]
+
+    no_agg_end = (p1, p3, p4)
+    intermediate_agg = (p1, p6, p7)
+
+    blank_features = [tuple(), tuple()]
+
+    # Primitive in combination not contained in primitives
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline([p1, p2, p3, p5, p6, p7, p8], features)
+
+    # Duplicate primitive
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline(all_primitives_duplicate, features)
+
+    # No nontrivial features
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline([p1, p3, p5], blank_features)
+
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline([p1, p3, p5], [])
+
+    # At least one feature in incorrect format
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline(all_primitives, features + [no_agg_end])
+
+    with pytest.raises(ValueError):
+        pipeline.build_layer_pipeline(all_primitives, features + [intermediate_agg])
