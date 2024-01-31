@@ -364,7 +364,10 @@ class LayerPipeline(Pipeline):
 
             primitives_dict[primitive.get_tag()] = primitive
 
-        length = max([len(combination) for combination in primitive_combinations] + [0])
+        if not primitive_combinations:  # check if list is empty
+            raise ValueError('At least one non-empty output feature must be specified')
+
+        length = max(len(combination) for combination in primitive_combinations)
         if length == 0:
             raise ValueError('At least one non-empty output feature must be specified')
 
