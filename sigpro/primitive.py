@@ -88,6 +88,16 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         return {'name': self.get_tag(), 'primitive': self.get_name(),
                 'init_params': copy.deepcopy(self.hyperparameter_values)}
 
+    def get_primitive_metadata(self):
+        """
+        Return the tag, name, and initial fixed hyperparameters of the primitive.
+
+        Same information as get_hyperparam_dict but in a different format.
+        """
+        return (self.get_name()[:],
+                self.get_tag()[:],
+                copy.deepcopy(self.hyperparameter_values))
+
     def set_tag(self, tag):
         """Set the tag of a primitive."""
         self.tag = tag
@@ -126,6 +136,7 @@ class Primitive():  # pylint: disable=too-many-instance-attributes
         Raises:
             ValueError:
                 If the primitive specification arguments are not valid (as in sigpro.contributing).
+    
         Returns:
             dict:
                 Dictionary containing the JSON annotation for the primitive.
