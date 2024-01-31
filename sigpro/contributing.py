@@ -277,18 +277,11 @@ def _write_primitive(primitive_dict, primitive_name, primitives_path, primitives
     return primitive_path
 
 
-def make_primitive(primitive, primitive_type, primitive_subtype,
-                   context_arguments=None, fixed_hyperparameters=None,
-                   tunable_hyperparameters=None, primitive_outputs=None,
-                   primitives_path='sigpro/primitives', primitives_subfolders=True):
-    """Create a primitive JSON.
-
-    During the JSON creation the primitive function signature is validated to
-    ensure that it matches the primitive type and subtype implicitly specified
-    by the primitive name.
-
-    Any additional function arguments are also validated to ensure that the
-    function does actually expect them.
+def _make_primitive_dict(primitive, primitive_type, primitive_subtype,
+                         context_arguments=None, fixed_hyperparameters=None,
+                         tunable_hyperparameters=None, primitive_inputs=None,
+                         primitive_outputs=None):
+    """Create a primitive dict.
 
     Args:
         primitive (str):
@@ -308,30 +301,27 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
             A dictionary containing as key the name of the hyperparameter and as
             value a dictionary containing the type and the default value and the
             range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
         primitive_outputs (list or None):
             A list with dictionaries containing the name and type of the output values. If
             ``None`` default values for those will be used.
-        primitives_path (str):
-            Path to the root of the primitives folder, in which the primitives JSON will be stored.
-            Defaults to `sigpro/primitives`.
-        primitives_subfolders (bool):
-            Whether to store the primitive JSON in a subfolder tree (``True``) or to use a flat
-            primitive name (``False``). Defaults to ``True``.
 
     Raises:
         ValueError:
             If the primitive specification arguments are not valid.
 
     Returns:
-        str:
-            Path of the generated JSON file.
+        dict:
+            Generated JSON file as a Python dict.
     """
     context_arguments = context_arguments or []
     fixed_hyperparameters = fixed_hyperparameters or {}
     tunable_hyperparameters = tunable_hyperparameters or {}
 
     primitive_spec = _get_primitive_spec(primitive_type, primitive_subtype)
-    primitive_inputs = primitive_spec['args']
+    primitive_inputs = primitive_inputs or primitive_spec['args']
     primitive_outputs = primitive_outputs or primitive_spec['output']
 
     primitive_function = _import_object(primitive)
@@ -365,6 +355,69 @@ def make_primitive(primitive, primitive_type, primitive_subtype,
             'tunable': tunable_hyperparameters
         }
     }
+
+    return primitive_dict
+
+# pylint: disable = too-many-arguments
+
+
+def make_primitive(primitive, primitive_type, primitive_subtype,
+                   context_arguments=None, fixed_hyperparameters=None,
+                   tunable_hyperparameters=None, primitive_inputs=None,
+                   primitive_outputs=None, primitives_path='sigpro/primitives',
+                   primitives_subfolders=True):
+    """Create a primitive JSON.
+
+    During the JSON creation the primitive function signature is validated to
+    ensure that it matches the primitive type and subtype implicitly specified
+    by the primitive name.
+
+    Any additional function arguments are also validated to ensure that the
+    function does actually expect them.
+
+    Args:
+        primitive (str):
+            The name of the primitive, the python path including the name of the
+            module and the name of the function.
+        primitive_type (str):
+            Type of primitive.
+        primitive_subtype (str):
+            Subtype of the primitive.
+        context_arguments (list or None):
+            A list with dictionaries containing the name and type of the context arguments.
+        fixed_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value that it
+            should take.
+        tunable_hyperparameters (dict or None):
+            A dictionary containing as key the name of the hyperparameter and as
+            value a dictionary containing the type and the default value and the
+            range of values that it can take.
+        primitive_inputs (list or None):
+            A list with dictionaries containing the name and type of the input values. If
+            ``None`` default values for those will be used.
+        primitive_outputs (list or None):
+            A list with dictionaries containing the name and type of the output values. If
+            ``None`` default values for those will be used.
+        primitives_path (str):
+            Path to the root of the primitives folder, in which the primitives JSON will be stored.
+            Defaults to `sigpro/primitives`.
+        primitives_subfolders (bool):
+            Whether to store the primitive JSON in a subfolder tree (``True``) or to use a flat
+            primitive name (``False``). Defaults to ``True``.
+
+    Raises:
+        ValueError:
+            If the primitive specification arguments are not valid.
+
+    Returns:
+        str:
+            Path of the generated JSON file.
+    """
+    primitive_dict = _make_primitive_dict(primitive, primitive_type, primitive_subtype,
+                                          context_arguments, fixed_hyperparameters,
+                                          tunable_hyperparameters, primitive_inputs,
+                                          primitive_outputs)
 
     return _write_primitive(primitive_dict, primitive, primitives_path, primitives_subfolders)
 

@@ -1,6 +1,6 @@
 {
-    "name": "sigpro.transformations.frequency.stft.stft",
-    "primitive": "sigpro.transformations.frequency.stft.stft",
+    "name": "sigpro.transformations.frequency_time.stft.stft",
+    "primitive": "sigpro.transformations.frequency_time.stft.stft",
     "classifiers": {
         "type": "transformation",
         "subtype": "frequency_time"
