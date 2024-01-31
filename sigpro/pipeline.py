@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Pipeline signal processing functionality."""
 
+import logging
 from abc import ABC
 from collections import Counter
 from copy import copy, deepcopy
@@ -13,7 +14,6 @@ from sigpro.primitive import Primitive
 
 # Temporary refactor from core, ignore duplicate code.
 # pylint: disable = duplicate-code, too-many-statements, too-many-nested-blocks
-
 DEFAULT_INPUT = [
     {
         'name': 'readings',
@@ -37,6 +37,7 @@ DEFAULT_OUTPUT = [
         'type': 'list'
     }
 ]
+LOGGER = logging.getLogger(__name__)
 
 
 class Pipeline(ABC):
@@ -432,10 +433,9 @@ class LayerPipeline(Pipeline):
                         final_primitive_inputs[numbered_primitive_name][input_dict['name']] = \
                             f'{final_primitive_str}.' + str(input_dict['name'])
                         in_name = input_dict['name']
+                        is_required = True
                         if 'optional' in input_dict:
                             is_required = not input_dict['optional']
-                        else:
-                            is_required = True
                         # Context arguments should be named properly in the input data.
                         if in_name not in final_primitive.get_context_arguments() and \
                                 in_name != 'amplitude_values' and is_required:
@@ -463,7 +463,7 @@ class LayerPipeline(Pipeline):
 
                                 final_primitive_inputs[numbered_primitive_name][in_name] = \
                                     f'{final_primitive_str}.' + str(in_name)
-                                # warn user?
+                                LOGGER.warning(f'expecting {in_name} to be given by the user.')
                                 # fps = final_primitive_str  # lint
                                 # raise ValueError(f'Arg {in_name} of primitive {fps} \
                                 # not produced by any predecessor primitive.')
