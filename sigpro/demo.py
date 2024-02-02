@@ -87,7 +87,7 @@ def get_amplitude_demo(index=None):
     """
     df = _load_demo()
     if index is None:
-        index = random.randint(0, len(df))
+        index = random.randint(0, len(df) - 1)
 
     return np.array(df.iloc[index]['values']), 10000
 
