@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sigpro.pipeline &mdash; SigPro 0.2.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="../../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#user-guides">User Guides</a></li>
+</ul>
+<p><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/sigpro.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.basic_primitives.html">sigpro.basic_primitives module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.core.html">sigpro.core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.pipeline.html">sigpro.pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.primitive.html">sigpro.primitive module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.2.0 - 2023-02-02</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id7">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id9">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id10">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id11">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id12">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sigpro.pipeline</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sigpro.pipeline</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Pipeline signal processing functionality.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">mlblocks</span> <span class="kn">import</span> <span class="n">MLPipeline</span>
+
+<span class="kn">from</span> <span class="nn">sigpro.primitive</span> <span class="kn">import</span> <span class="n">Primitive</span>
+
+<span class="c1"># Temporary refactor from core, ignore duplicate code.</span>
+<span class="c1"># pylint: disable = duplicate-code, too-many-statements, too-many-nested-blocks</span>
+<span class="n">DEFAULT_INPUT</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;readings&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;pandas.DataFrame&#39;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;feature_columns&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">DEFAULT_OUTPUT</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;readings&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;pandas.DataFrame&#39;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;feature_columns&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_primitive_metadata</span><span class="p">(</span><span class="n">primitive_object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the tag, name, and initial fixed hyperparameters of the primitive.</span>
+
+<span class="sd">    Same information as get_hyperparam_dict but in a different format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hyperparam_dict</span> <span class="o">=</span> <span class="n">primitive_object</span><span class="o">.</span><span class="n">get_hyperparam_dict</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">hyperparam_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="n">hyperparam_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;primitive&#39;</span><span class="p">),</span>
+            <span class="n">hyperparam_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init_params&#39;</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="Pipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline">[docs]</a><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract Pipeline class to apply multiple transformation and aggregation primitives.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values_column_name</span> <span class="o">=</span> <span class="s1">&#39;values&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Pipeline.get_pipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_pipeline">[docs]</a>    <span class="k">def</span> <span class="nf">get_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the MLPipeline in self.pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_values_column_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values_column_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values_column_name</span> <span class="o">=</span> <span class="n">values_column_name</span>
+
+    <span class="k">def</span> <span class="nf">_accept_dataframe_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_is_dataframe</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span> <span class="o">=</span> <span class="n">input_is_dataframe</span>
+
+    <span class="k">def</span> <span class="nf">_apply_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">is_series</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a ``mlblocks.MLPipeline`` to a row.</span>
+
+<span class="sd">        Apply a ``MLPipeline`` to a window of a ``pd.DataFrame``, this function can</span>
+<span class="sd">        be combined with the ``pd.DataFrame.apply`` method to be applied to the</span>
+<span class="sd">        entire data frame.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            window (pd.Series):</span>
+<span class="sd">                Row or multiple rows (window) used to apply the pipeline to.</span>
+<span class="sd">            is_series (bool):</span>
+<span class="sd">                Indicator whether window is formated as a series or dataframe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_series</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="n">amplitude_values</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values_column_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">window</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">window</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_column_name</span>
+            <span class="p">}</span>
+            <span class="n">amplitude_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">window</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">values_column_name</span><span class="p">])</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">amplitude_values</span><span class="o">=</span><span class="n">amplitude_values</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">context</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_output_names</span><span class="p">()</span>
+
+        <span class="c1"># ensure that we can iterate over output</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">output_names</span><span class="p">,</span> <span class="n">output</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="Pipeline.get_primitive_names"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_primitive_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_primitive_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of names of primitives in the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">primitives</span></div>
+
+<div class="viewcode-block" id="Pipeline.get_primitives"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_primitives">[docs]</a>    <span class="k">def</span> <span class="nf">get_primitives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of Primitive objects in the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Pipeline.get_output_combinations"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_output_combinations">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of output feature tuples produced by the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Pipeline.get_output_features"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_output_features">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of output feature strings produced by the pipeline.&quot;&quot;&quot;</span>
+        <span class="n">combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_combinations</span><span class="p">()</span>
+        <span class="n">output_features</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">prim</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span> <span class="k">for</span> <span class="n">prim</span> <span class="ow">in</span> <span class="n">combination</span><span class="p">]</span>
+            <span class="n">final_primitive_outputs</span> <span class="o">=</span> <span class="n">combination</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">output_dict</span> <span class="ow">in</span> <span class="n">final_primitive_outputs</span><span class="p">:</span>
+                <span class="n">out_name</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                <span class="n">output_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">out_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">output_features</span></div>
+
+<div class="viewcode-block" id="Pipeline.process_signal"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.process_signal">[docs]</a>    <span class="k">def</span> <span class="nf">process_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">values_column_name</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span>
+                       <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groupby_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feature_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">keep_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_is_dataframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply multiple transformation and aggregation primitives.</span>
+
+<span class="sd">        The process_signals method is responsible for applying a Pipeline specified by the</span>
+<span class="sd">        user in order to create features for the given data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (pandas.DataFrame):</span>
+<span class="sd">                Dataframe with a column that contains signal values.</span>
+<span class="sd">            window (str):</span>
+<span class="sd">                Duration of window size, e.g. (&#39;1h&#39;).</span>
+<span class="sd">            values_column_name (str):</span>
+<span class="sd">                Column in ``data`` that represents the signal values.</span>
+<span class="sd">            time_index (str):</span>
+<span class="sd">                Column in ``data`` that represents the time index.</span>
+<span class="sd">            groupby_index (str or list[str]):</span>
+<span class="sd">                Column(s) to group together and take the window over.</span>
+<span class="sd">            feature_columns (list):</span>
+<span class="sd">                List of column names from the input data frame that must be considered as</span>
+<span class="sd">                features and should not be dropped.</span>
+<span class="sd">            keep_columns (Union[bool, list]):</span>
+<span class="sd">                Whether to keep non-feature columns in the output DataFrame or not.</span>
+<span class="sd">                If a list of column names are passed, those columns are kept.</span>
+<span class="sd">            input_is_dataframe (bool):</span>
+<span class="sd">                Whether the input data is a Dataframe. Used for MLBlocks integration.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple:</span>
+<span class="sd">                pandas.DataFrame:</span>
+<span class="sd">                    A data frame with new feature columns by applying the previous primitives. If</span>
+<span class="sd">                    ``keep_columns`` is ``True`` the original signal values and non-feature</span>
+<span class="sd">                    columns will be conserved in the data frame, otherwise any columns</span>
+<span class="sd">                    not named in ``keep_columns`` will be deleted.</span>
+<span class="sd">                list:</span>
+<span class="sd">                    A list with the feature names generated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Error messages are hard to interpret.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_values_column_name</span><span class="p">(</span><span class="n">values_column_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_accept_dataframe_input</span><span class="p">(</span><span class="n">input_is_dataframe</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_pipeline</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">is_series</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">return</span> <span class="n">values</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">groupby_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby_index</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
+                <span class="n">rule</span><span class="o">=</span><span class="n">window</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_pipeline</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">features</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_pipeline</span><span class="p">,</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">is_series</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">feature_columns</span><span class="p">:</span>
+            <span class="n">feature_columns</span> <span class="o">=</span> <span class="n">feature_columns</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">feature_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keep_columns</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">keep_columns</span> <span class="o">+</span> <span class="n">feature_columns</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">keep_columns</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">feature_columns</span></div>
+
+<div class="viewcode-block" id="Pipeline.get_input_args"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_input_args">[docs]</a>    <span class="k">def</span> <span class="nf">get_input_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pipeline input args.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_INPUT</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_predict_args</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Pipeline.get_output_args"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.Pipeline.get_output_args">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pipeline output args.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_OUTPUT</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="LinearPipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LinearPipeline">[docs]</a><span class="k">class</span> <span class="nc">LinearPipeline</span><span class="p">(</span><span class="n">Pipeline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    LinearPipeline class applies multiple transformation and aggregation primitives.</span>
+
+<span class="sd">    The LinearPipeline class applies a sequence of transformation primitives and applies several</span>
+<span class="sd">    aggregation primitives in parallel to produce output features.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transformations (list):</span>
+<span class="sd">            List of transformation primitive objects.</span>
+<span class="sd">        aggregations (list):</span>
+<span class="sd">            List of dictionaries containing the aggregation primitives.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        sigpro.pipeline.LinearPipeline:</span>
+<span class="sd">            A ``LinearPipeline`` object that produces the features from applying each</span>
+<span class="sd">            aggregation individually to the result of applying all transformations to</span>
+<span class="sd">            the input data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span><span class="p">):</span>  <span class="c1"># pylint: disable=too-many-locals</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformations</span> <span class="o">=</span> <span class="n">transformations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregations</span> <span class="o">=</span> <span class="n">aggregations</span>
+
+        <span class="n">primitives</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">init_params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">transformation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformations</span><span class="p">:</span>
+            <span class="n">transformation</span><span class="o">.</span><span class="n">_validate_primitive_spec</span><span class="p">()</span>
+            <span class="n">prefix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transformation</span><span class="o">.</span><span class="n">get_tag</span><span class="p">())</span>
+            <span class="n">primitive</span> <span class="o">=</span> <span class="n">transformation</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+            <span class="n">counter</span><span class="p">[</span><span class="n">primitive</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">primitive_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">primitive</span><span class="si">}</span><span class="s1">#</span><span class="si">{</span><span class="n">counter</span><span class="p">[</span><span class="n">primitive</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="n">primitives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">primitive</span><span class="p">)</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">transformation</span><span class="o">.</span><span class="n">get_hyperparam_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init_params&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">init_params</span><span class="p">[</span><span class="n">primitive_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
+
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">for</span> <span class="n">aggregation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregations</span><span class="p">:</span>
+            <span class="n">aggregation</span><span class="o">.</span><span class="n">_validate_primitive_spec</span><span class="p">()</span>
+            <span class="n">aggregation_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">aggregation</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">prefix</span> \
+                <span class="k">else</span> <span class="n">aggregation</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span>
+
+            <span class="n">primitive</span> <span class="o">=</span> <span class="n">aggregation</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+            <span class="n">counter</span><span class="p">[</span><span class="n">primitive</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">primitive_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">primitive</span><span class="si">}</span><span class="s1">#</span><span class="si">{</span><span class="n">counter</span><span class="p">[</span><span class="n">primitive</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="n">primitives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">primitive</span><span class="p">)</span>
+
+            <span class="n">primitive_json</span> <span class="o">=</span> <span class="n">aggregation</span><span class="o">.</span><span class="n">make_primitive_json</span><span class="p">()</span>
+            <span class="n">primitive_outputs</span> <span class="o">=</span> <span class="n">primitive_json</span><span class="p">[</span><span class="s1">&#39;produce&#39;</span><span class="p">][</span><span class="s1">&#39;output&#39;</span><span class="p">]</span>
+
+            <span class="n">params</span> <span class="o">=</span> <span class="n">aggregation</span><span class="o">.</span><span class="n">get_hyperparam_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init_params&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">init_params</span><span class="p">[</span><span class="n">primitive_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">primitive_outputs</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">primitive_outputs</span><span class="p">:</span>
+                    <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                    <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">aggregation_name</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">primitive_name</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="p">})</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">outputs</span><span class="p">}</span> <span class="k">if</span> <span class="n">outputs</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">MLPipeline</span><span class="p">(</span>
+            <span class="n">primitives</span><span class="p">,</span>
+            <span class="n">init_params</span><span class="o">=</span><span class="n">init_params</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LinearPipeline.get_primitives"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LinearPipeline.get_primitives">[docs]</a>    <span class="k">def</span> <span class="nf">get_primitives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of primitives in the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregations</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="LinearPipeline.get_output_combinations"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LinearPipeline.get_output_combinations">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of output feature tuples produced by the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="n">aggregation</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">aggregation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregations</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="build_linear_pipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.build_linear_pipeline">[docs]</a><span class="k">def</span> <span class="nf">build_linear_pipeline</span><span class="p">(</span><span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a linear pipeline with given transformation and aggregation layers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transformations (list):</span>
+<span class="sd">            List of transformation primitives.</span>
+<span class="sd">        aggregations (list):</span>
+<span class="sd">            List of aggregation primitives.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        sigpro.pipeline.LinearPipeline:</span>
+<span class="sd">            A ``LinearPipeline`` object that produces the features from applying each</span>
+<span class="sd">            aggregation individually to the result of applying all transformations to</span>
+<span class="sd">            the input data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pipeline_object</span> <span class="o">=</span> <span class="n">LinearPipeline</span><span class="p">(</span><span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pipeline_object</span></div>
+
+
+<div class="viewcode-block" id="LayerPipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LayerPipeline">[docs]</a><span class="k">class</span> <span class="nc">LayerPipeline</span><span class="p">(</span><span class="n">Pipeline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Layer pipelines in SigPro.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        primitives (list):</span>
+<span class="sd">            List of primitive objects. All primitives should have distinct tags.</span>
+
+<span class="sd">        primitive_combinations (list):</span>
+<span class="sd">            List of output features to be generated. Each feature</span>
+<span class="sd">            in primitive_combinations should be a tuple of primitive objects found as keys in</span>
+<span class="sd">            primitives, or a tuple of their string tags. All combinations should start w/ some</span>
+<span class="sd">            (possibly zero) number of transformations and end with a single aggregation.</span>
+
+<span class="sd">        features_as_strings (bool):</span>
+<span class="sd">            True if primitive_combinations is defined w/ string names,</span>
+<span class="sd">            False if primitive_combinations is defined with primitive objects (default).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If the pipeline specification is invalid.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LayerPipeline that generates the primitives in primitive_combinations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primitives</span><span class="p">,</span> <span class="n">primitive_combinations</span><span class="p">,</span> <span class="n">features_as_strings</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a LayerPipeline.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">primitives_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">primitive</span> <span class="ow">in</span> <span class="n">primitives</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">primitive</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span> <span class="ow">in</span> <span class="n">primitives_dict</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Tag </span><span class="si">{</span><span class="n">primitive</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span><span class="si">}</span><span class="s1"> is duplicated.&#39;</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s1">&#39; All primitives must have distinct tags.&#39;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_str</span><span class="p">)</span>
+
+            <span class="n">primitives_dict</span><span class="p">[</span><span class="n">primitive</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()]</span> <span class="o">=</span> <span class="n">primitive</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">primitive_combinations</span><span class="p">:</span>  <span class="c1"># check if list is empty</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least one non-empty output feature must be specified&#39;</span><span class="p">)</span>
+
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">combination</span><span class="p">)</span> <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">primitive_combinations</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least one non-empty output feature must be specified&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primitives</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">primitives</span><span class="p">[:])</span>  <span class="c1"># Will need to adjust API to remove primitives arg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primitive_combinations</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">features_as_strings</span><span class="p">:</span>
+            <span class="n">primitive_combinations</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">primitives_dict</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tag_tuple</span><span class="p">)</span>
+                                      <span class="k">for</span> <span class="n">tag_tuple</span> <span class="ow">in</span> <span class="n">primitive_combinations</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">primitive_combinations</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">combination</span><span class="p">)</span> <span class="k">for</span> <span class="n">combination</span>
+                                       <span class="ow">in</span> <span class="n">primitive_combinations</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">primitive_combinations</span><span class="p">:</span>
+            <span class="n">combo_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">combination</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">combo_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">combination</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">get_type_subtype</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;transformation&#39;</span><span class="p">:</span>
+                    <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Primitive at non-terminal position #</span><span class="si">{</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">combo_length</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="n">error_str</span> <span class="o">+=</span> <span class="s1">&#39; is not a transformation&#39;</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_str</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">combination</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_type_subtype</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;aggregation&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Last primitive is not an aggregation&#39;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">primitive</span> <span class="ow">in</span> <span class="n">combination</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">primitive</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">primitives</span><span class="p">:</span>
+                    <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Primitive with tag </span><span class="si">{</span><span class="n">primitive</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span><span class="si">}</span><span class="s1"> not found in the&#39;</span>
+                    <span class="n">error_str</span> <span class="o">+=</span> <span class="s1">&#39; given primitives&#39;</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_str</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_pipeline</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_build_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=too-many-locals, too-many-branches</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build the layer pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            mlblocks.MLPipeline:</span>
+<span class="sd">                An ``MLPipeline`` object that produces the features in primitives_combinations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prefixes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">primitive_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="n">final_primitives_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">final_init_params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">final_primitive_inputs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">final_primitive_outputs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">final_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">primitive_combinations</span><span class="p">:</span>
+                <span class="n">combination_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">combination</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">layer</span> <span class="o">&gt;</span> <span class="n">combination_length</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">combination</span><span class="p">[:</span><span class="n">layer</span><span class="p">])</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prefixes</span><span class="p">)</span> <span class="ow">or</span> <span class="n">layer</span> <span class="o">==</span> <span class="n">combination_length</span><span class="p">:</span>
+                    <span class="c1"># Since all features are T.T...T.A, no combo should be a prefix of another.</span>
+                    <span class="k">if</span> <span class="n">layer</span> <span class="o">==</span> <span class="n">combination_length</span><span class="p">:</span>
+                        <span class="k">assert</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">combination</span><span class="p">[:</span><span class="n">layer</span><span class="p">])</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prefixes</span>
+
+                    <span class="n">final_primitive</span> <span class="o">=</span> <span class="n">combination</span><span class="p">[</span><span class="n">layer</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="n">prefixes</span><span class="p">[(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">combination</span><span class="p">[:</span><span class="n">layer</span><span class="p">]))]</span> <span class="o">=</span> <span class="n">final_primitive</span>
+
+                    <span class="n">final_primitive_str</span><span class="p">,</span> <span class="n">final_primitive_name</span><span class="p">,</span> <span class="n">final_primitive_params</span> <span class="o">=</span> \
+                        <span class="n">_get_primitive_metadata</span><span class="p">(</span><span class="n">final_primitive</span><span class="p">)</span>
+
+                    <span class="n">primitive_counter</span><span class="p">[</span><span class="n">final_primitive_name</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">numbered_primitive_name</span> <span class="o">=</span> \
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">final_primitive_name</span><span class="si">}</span><span class="s1">#</span><span class="si">{</span><span class="n">primitive_counter</span><span class="p">[</span><span class="n">final_primitive_name</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+
+                    <span class="n">final_init_params</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">]</span> <span class="o">=</span> \
+                        <span class="n">final_primitive_params</span>
+                    <span class="n">final_primitives_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final_primitive_name</span><span class="p">)</span>
+                    <span class="c1"># Map primitive inputs and outputs.</span>
+
+                    <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="n">final_primitive_outputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+                    <span class="k">for</span> <span class="n">input_dict</span> <span class="ow">in</span> <span class="n">final_primitive</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">():</span>
+                        <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">final_primitive_str</span><span class="si">}</span><span class="s1">.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+                        <span class="n">in_name</span> <span class="o">=</span> <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                        <span class="n">is_required</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">if</span> <span class="s1">&#39;optional&#39;</span> <span class="ow">in</span> <span class="n">input_dict</span><span class="p">:</span>
+                            <span class="n">is_required</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;optional&#39;</span><span class="p">]</span>
+
+                        <span class="c1"># Context arguments should be named properly in the input data.</span>
+                        <span class="k">if</span> <span class="n">in_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">final_primitive</span><span class="o">.</span><span class="n">get_context_arguments</span><span class="p">()</span> <span class="ow">and</span> \
+                                <span class="n">in_name</span> <span class="o">!=</span> <span class="s1">&#39;amplitude_values&#39;</span> <span class="ow">and</span> <span class="n">is_required</span><span class="p">:</span>
+
+                            <span class="c1"># We need to hook up the primitive input to the proper output in chain</span>
+                            <span class="k">if</span> <span class="n">layer</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                                <span class="n">npn</span> <span class="o">=</span> <span class="n">numbered_primitive_name</span><span class="p">[:]</span>  <span class="c1"># lint</span>
+                                <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">npn</span><span class="p">][</span><span class="n">in_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">in_name</span><span class="p">)</span>
+                                <span class="k">continue</span>
+                            <span class="n">prev_prim</span> <span class="o">=</span> <span class="kc">None</span>
+                            <span class="n">prev_ind</span> <span class="o">=</span> <span class="kc">None</span>
+
+                            <span class="c1"># Approach: find the most recent predecessor primitive in the feature</span>
+                            <span class="c1"># that could have generated the specific input_name.</span>
+
+                            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">layer</span><span class="p">)):</span>  <span class="c1"># pylint: disable=invalid-name</span>
+                                <span class="n">prev_prim_cand</span> <span class="o">=</span> <span class="n">combination</span><span class="p">[</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                                <span class="n">test_ops</span> <span class="o">=</span> <span class="p">[</span><span class="n">op</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">prev_prim_cand</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">()]</span>
+                                <span class="k">if</span> <span class="n">in_name</span> <span class="ow">in</span> <span class="n">test_ops</span><span class="p">:</span>
+                                    <span class="n">prev_prim</span> <span class="o">=</span> <span class="n">prev_prim_cand</span>
+                                    <span class="n">prev_ind</span> <span class="o">=</span> <span class="n">p</span>
+                                    <span class="k">break</span>
+
+                            <span class="k">if</span> <span class="n">prev_prim</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">layer</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                                <span class="c1"># If we can&#39;t find the predecessor, assume that the value is given.</span>
+
+                                <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="n">in_name</span><span class="p">]</span> <span class="o">=</span> \
+                                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">final_primitive_str</span><span class="si">}</span><span class="s1">.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">in_name</span><span class="p">)</span>
+                                <span class="n">warning_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;expecting </span><span class="si">{</span><span class="n">in_name</span><span class="si">}</span><span class="s1"> to be given by the user.&#39;</span>
+                                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">warning_str</span><span class="p">)</span>
+                                <span class="c1"># fps = final_primitive_str  # lint</span>
+                                <span class="c1"># raise ValueError(f&#39;Arg {in_name} of primitive {fps} \</span>
+                                <span class="c1"># not produced by any predecessor primitive.&#39;)</span>
+
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">previous_comb</span> <span class="o">=</span> <span class="n">combination</span><span class="p">[:</span><span class="n">prev_ind</span><span class="p">]</span>
+                                <span class="n">previous_comb_str</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">pr</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span> <span class="k">for</span> <span class="n">pr</span> <span class="ow">in</span>
+                                                              <span class="n">previous_comb</span><span class="p">])</span>
+                                <span class="n">previous_comb_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">prev_ind</span><span class="si">}</span><span class="s1">&#39;</span>
+                                <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="n">in_name</span><span class="p">]</span> <span class="o">=</span> \
+                                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">previous_comb_str</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">in_name</span><span class="si">}</span><span class="s1">&#39;</span>
+
+                    <span class="k">if</span> <span class="n">layer</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="s1">&#39;amplitude_values&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                            <span class="s1">&#39;amplitude_values&#39;</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">input_column_name</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">pr</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span> <span class="k">for</span> <span class="n">pr</span> <span class="ow">in</span>
+                                                      <span class="n">combination</span><span class="p">[:</span><span class="n">layer</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]])</span>
+                        <span class="n">input_column_name</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">layer</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+                        <span class="n">final_primitive_inputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="s1">&#39;amplitude_values&#39;</span><span class="p">]</span> <span class="o">=</span> \
+                            <span class="n">input_column_name</span> <span class="o">+</span> <span class="s1">&#39;.amplitude_values&#39;</span>
+
+                    <span class="n">output_column_name</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">prim</span><span class="o">.</span><span class="n">get_tag</span><span class="p">()</span> <span class="k">for</span> <span class="n">prim</span> <span class="ow">in</span> <span class="n">combination</span><span class="p">[:</span><span class="n">layer</span><span class="p">]])</span>
+
+                    <span class="k">if</span> <span class="n">layer</span> <span class="o">&lt;=</span> <span class="n">combination_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">output_column_name</span> <span class="o">+=</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">output_dict</span> <span class="ow">in</span> <span class="n">final_primitive</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">():</span>
+                            <span class="n">out_name</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                            <span class="n">final_primitive_outputs</span><span class="p">[</span><span class="n">numbered_primitive_name</span><span class="p">][</span><span class="n">out_name</span><span class="p">]</span> <span class="o">=</span> \
+                                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">output_column_name</span><span class="si">}</span><span class="s1">.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_name</span><span class="p">)</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">npn</span> <span class="o">=</span> <span class="n">numbered_primitive_name</span><span class="p">[:]</span>  <span class="c1"># lint</span>
+                        <span class="k">for</span> <span class="n">output_dict</span> <span class="ow">in</span> <span class="n">final_primitive</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">():</span>
+                            <span class="n">out_name</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                            <span class="n">final_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">output_column_name</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_name</span><span class="p">),</span>
+                                                  <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">npn</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">out_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">MLPipeline</span><span class="p">(</span>
+            <span class="n">primitives</span><span class="o">=</span><span class="n">final_primitives_list</span><span class="p">,</span>
+            <span class="n">init_params</span><span class="o">=</span><span class="n">final_init_params</span><span class="p">,</span>
+            <span class="n">input_names</span><span class="o">=</span><span class="n">final_primitive_inputs</span><span class="p">,</span>
+            <span class="n">output_names</span><span class="o">=</span><span class="n">final_primitive_outputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">final_outputs</span><span class="p">}</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="LayerPipeline.get_primitives"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LayerPipeline.get_primitives">[docs]</a>    <span class="k">def</span> <span class="nf">get_primitives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of primitives in the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">primitives</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LayerPipeline.get_output_combinations"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.LayerPipeline.get_output_combinations">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of output feature tuples produced by the pipeline.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">primitive_combinations</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="build_tree_pipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.build_tree_pipeline">[docs]</a><span class="k">def</span> <span class="nf">build_tree_pipeline</span><span class="p">(</span><span class="n">transformation_layers</span><span class="p">,</span> <span class="n">aggregation_layer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a tree pipeline using given transformation and aggregation layers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transformation_layers (list):</span>
+<span class="sd">            List of transformation layers, each a list of transformation primitives.</span>
+<span class="sd">        aggregation_layer (list):</span>
+<span class="sd">            List of aggregation primitives.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If the pipeline specification is invalid.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        sigpro.pipeline.LayerPipeline:</span>
+<span class="sd">            A ``LayerPipeline`` object that produces the features in the Cartesian product</span>
+<span class="sd">            of all transformation layers and the aggregation layer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">primitives_all</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">all_layers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transformation_layers</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;transformation_layers must be a list&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">transformation_layers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">primitive_</span> <span class="ow">in</span> <span class="n">layer</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">primitive_</span><span class="p">,</span> <span class="n">Primitive</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Non-primitive specified in transformation_layers&#39;</span><span class="p">)</span>
+
+            <span class="n">all_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="n">primitives_all</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Each layer in transformation_layers must be a list&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">aggregation_layer</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">primitive_</span> <span class="ow">in</span> <span class="n">aggregation_layer</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">primitive_</span><span class="p">,</span> <span class="n">Primitive</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Non-primitive specified in aggregation_layer&#39;</span><span class="p">)</span>
+
+        <span class="n">all_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aggregation_layer</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="n">primitives_all</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">aggregation_layer</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;aggregation_layer must be a list&#39;</span><span class="p">)</span>
+
+    <span class="n">primitive_combinations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">all_layers</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LayerPipeline</span><span class="p">(</span><span class="n">primitives</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">primitives_all</span><span class="p">),</span>
+                         <span class="n">primitive_combinations</span><span class="o">=</span><span class="n">primitive_combinations</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="build_layer_pipeline"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.build_layer_pipeline">[docs]</a><span class="k">def</span> <span class="nf">build_layer_pipeline</span><span class="p">(</span><span class="n">primitives</span><span class="p">,</span> <span class="n">primitive_combinations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Layer pipeline building.</span>
+
+<span class="sd">    Build a layer pipeline from a list of primitives and a list of</span>
+<span class="sd">    combination features, each a tuple of Primitives.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        primitives (list):</span>
+<span class="sd">            List of primitive objects. All primitives should have distinct tags.</span>
+<span class="sd">        primitive_combinations (list):</span>
+<span class="sd">            List of output features to be generated. Each feature</span>
+<span class="sd">            in primitive_combinations should be a tuple of primitive objects found as keys in</span>
+<span class="sd">            primitives, or a tuple of their string tags. All combinations should start w/ some</span>
+<span class="sd">            (possibly zero) number of transformations and end with a single aggregation.</span>
+
+<span class="sd">        features_as_strings (bool):</span>
+<span class="sd">            True if primitive_combinations is defined w/ string names,</span>
+<span class="sd">            False if primitive_combinations is defined with primitive objects (default).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If the pipeline specification is invalid.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LayerPipeline that generates the primitives in primitive_combinations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">LayerPipeline</span><span class="p">(</span><span class="n">primitives</span><span class="o">=</span><span class="n">primitives</span><span class="p">,</span>
+                         <span class="n">primitive_combinations</span><span class="o">=</span><span class="n">primitive_combinations</span><span class="p">,</span>
+                         <span class="n">features_as_strings</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="build_layer_pipeline_str"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.build_layer_pipeline_str">[docs]</a><span class="k">def</span> <span class="nf">build_layer_pipeline_str</span><span class="p">(</span><span class="n">primitives</span><span class="p">,</span> <span class="n">primitive_combinations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Layer pipeline building.</span>
+
+<span class="sd">    Build a layer pipeline from a list of primitives and a list of</span>
+<span class="sd">    combination features, each a tuple of string tags of primitives.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        primitives (list):</span>
+<span class="sd">            List of primitive objects. All primitives should have distinct tags.</span>
+<span class="sd">        primitive_combinations (list):</span>
+<span class="sd">            List of output features to be generated. Each feature</span>
+<span class="sd">            in primitive_combinations should be a tuple of string primitive tags.</span>
+<span class="sd">            All combinations should start w/ some (possibly zero) number of transformations</span>
+<span class="sd">            and end with a single aggregation.</span>
+<span class="sd">        features_as_strings (bool):</span>
+<span class="sd">            True if primitive_combinations is defined w/ string names,</span>
+<span class="sd">            False if primitive_combinations is defined with primitive objects (default).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError:</span>
+<span class="sd">            If the pipeline specification is invalid.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LayerPipeline that generates the primitives in primitive_combinations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">LayerPipeline</span><span class="p">(</span><span class="n">primitives</span><span class="o">=</span><span class="n">primitives</span><span class="p">,</span>
+                         <span class="n">primitive_combinations</span><span class="o">=</span><span class="n">primitive_combinations</span><span class="p">,</span>
+                         <span class="n">features_as_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="merge_pipelines"><a class="viewcode-back" href="../../api/sigpro.pipeline.html#sigpro.pipeline.merge_pipelines">[docs]</a><span class="k">def</span> <span class="nf">merge_pipelines</span><span class="p">(</span><span class="n">pipelines</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a single layer pipeline that is the &#39;union&#39; of several other pipelines.</span>
+
+<span class="sd">    In other words, the pipeline generates all features generated by</span>
+<span class="sd">    at least one input pipeline.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pipelines (list):</span>
+<span class="sd">            A list of Pipeline objects whose output features should be merged.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        sigpro.pipeline.LayerPipeline:</span>
+<span class="sd">            A ``LayerPipeline`` object that produces the features in the union of</span>
+<span class="sd">            all features generated by the input pipelines.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">primitives_all</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">primitive_combinations</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pipelines</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">primitives_all</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_primitives</span><span class="p">())</span>
+        <span class="n">primitive_combinations</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_output_combinations</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">LayerPipeline</span><span class="p">(</span><span class="n">primitives</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">primitives_all</span><span class="p">),</span>
+                         <span class="n">primitive_combinations</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">primitive_combinations</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

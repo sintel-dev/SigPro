@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sigpro.basic_primitives &mdash; SigPro 0.2.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="../../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#user-guides">User Guides</a></li>
+</ul>
+<p><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/sigpro.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.basic_primitives.html">sigpro.basic_primitives module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.core.html">sigpro.core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.pipeline.html">sigpro.pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sigpro.primitive.html">sigpro.primitive module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.2.0 - 2023-02-02</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id7">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id9">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id10">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id11">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id12">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sigpro.basic_primitives</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sigpro.basic_primitives</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Reference class implementations of existing primitives.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">sigpro</span> <span class="kn">import</span> <span class="n">contributing</span><span class="p">,</span> <span class="n">primitive</span>
+
+<span class="c1"># Transformations</span>
+
+
+<div class="viewcode-block" id="Identity"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Identity">[docs]</a><span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identity primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.transformations.amplitude.identity.identity&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PowerSpectrum"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.PowerSpectrum">[docs]</a><span class="k">class</span> <span class="nc">PowerSpectrum</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;PowerSpectrum primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.transformations.amplitude.spectrum.power_spectrum&#39;</span><span class="p">)</span>
+        <span class="n">primitive_spec</span> <span class="o">=</span> <span class="n">contributing</span><span class="o">.</span><span class="n">_get_primitive_spec</span><span class="p">(</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_inputs</span><span class="p">(</span><span class="n">primitive_spec</span><span class="p">[</span><span class="s1">&#39;args&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">(</span><span class="n">primitive_spec</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="FFT"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.FFT">[docs]</a><span class="k">class</span> <span class="nc">FFT</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;FFT primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;sigpro.transformations.frequency.fft.fft&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FFTReal"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.FFTReal">[docs]</a><span class="k">class</span> <span class="nc">FFTReal</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;FFTReal primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;sigpro.transformations.frequency.fft.fft_real&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FrequencyBand"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.FrequencyBand">[docs]</a><span class="k">class</span> <span class="nc">FrequencyBand</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    FrequencyBand primitive class.</span>
+
+<span class="sd">    Filter between a high and low band frequency and return the amplitude values and</span>
+<span class="sd">    frequency values for those.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        low (int): Lower band frequency of filter.</span>
+<span class="sd">        high (int): Higher band frequency of filter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;sigpro.transformations.frequency.band.frequency_band&quot;</span><span class="p">,</span>
+                         <span class="n">init_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="n">low</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="n">high</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_inputs</span><span class="p">([{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                   <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;frequency_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">}])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;amplitude_values&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;frequency_values&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">}])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_fixed_hyperparameters</span><span class="p">({</span><span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">},</span> <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">}})</span></div>
+
+
+<div class="viewcode-block" id="STFT"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.STFT">[docs]</a><span class="k">class</span> <span class="nc">STFT</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyTimeTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;STFT primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.transformations.frequency_time.stft.stft&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;amplitude_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;frequency_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;time_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="STFTReal"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.STFTReal">[docs]</a><span class="k">class</span> <span class="nc">STFTReal</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyTimeTransformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;STFTReal primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.transformations.frequency_time.stft.stft_real&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;real_amplitude_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;frequency_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">},</span>
+                                    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;time_values&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;numpy.ndarray&quot;</span><span class="p">}])</span></div>
+
+<span class="c1"># Aggregations</span>
+
+
+<div class="viewcode-block" id="CrestFactor"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.CrestFactor">[docs]</a><span class="k">class</span> <span class="nc">CrestFactor</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CrestFactor primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.crest_factor&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;crest_factor_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="Kurtosis"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Kurtosis">[docs]</a><span class="k">class</span> <span class="nc">Kurtosis</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Kurtosis primitive class.</span>
+
+<span class="sd">    Computes the kurtosis value of the input array. If all values are equal, return</span>
+<span class="sd">    `-3` for Fisher&#39;s definition and `0` for Pearson&#39;s definition.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fisher (bool):</span>
+<span class="sd">            If ``True``, Fisher’s definition is used (normal ==&gt; 0.0). If ``False``,</span>
+<span class="sd">            Pearson’s definition is used (normal ==&gt; 3.0). Defaults to ``True``.</span>
+<span class="sd">        bias (bool):</span>
+<span class="sd">            If ``False``, then the calculations are corrected for statistical bias.</span>
+<span class="sd">            Defaults to ``True``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.kurtosis&#39;</span><span class="p">,</span>
+                         <span class="n">init_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fisher&#39;</span><span class="p">:</span> <span class="n">fisher</span><span class="p">,</span> <span class="s1">&#39;bias&#39;</span><span class="p">:</span> <span class="n">bias</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;kurtosis_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_fixed_hyperparameters</span><span class="p">({</span><span class="s1">&#39;fisher&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+                                        <span class="s1">&#39;bias&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}})</span></div>
+
+
+<div class="viewcode-block" id="Mean"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Mean">[docs]</a><span class="k">class</span> <span class="nc">Mean</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mean_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="RMS"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.RMS">[docs]</a><span class="k">class</span> <span class="nc">RMS</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;RMS primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.rms&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;rms_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="Skew"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Skew">[docs]</a><span class="k">class</span> <span class="nc">Skew</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Skew primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.skew&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;skew_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="Std"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Std">[docs]</a><span class="k">class</span> <span class="nc">Std</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Std primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.std&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;std_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="Var"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.Var">[docs]</a><span class="k">class</span> <span class="nc">Var</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">AmplitudeAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Var primitive class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.var&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_primitive_outputs</span><span class="p">([{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;var_value&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">}])</span></div>
+
+
+<div class="viewcode-block" id="BandMean"><a class="viewcode-back" href="../../api/sigpro.basic_primitives.html#sigpro.basic_primitives.BandMean">[docs]</a><span class="k">class</span> <span class="nc">BandMean</span><span class="p">(</span><span class="n">primitive</span><span class="o">.</span><span class="n">FrequencyAggregation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    BandMean primitive class.</span>
+
+<span class="sd">    Filters between a high and low band and compute the mean value for this specific band.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        min_frequency (int or float):</span>
+<span class="sd">            Band minimum.</span>
+<span class="sd">        max_frequency (int or float):</span>
+<span class="sd">            Band maximum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_frequency</span><span class="p">,</span> <span class="n">max_frequency</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.frequency.band.band_mean&#39;</span><span class="p">,</span> <span class="n">init_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;min_frequency&#39;</span><span class="p">:</span> <span class="n">min_frequency</span><span class="p">,</span> <span class="s1">&#39;max_frequency&#39;</span><span class="p">:</span> <span class="n">max_frequency</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_fixed_hyperparameters</span><span class="p">({</span><span class="s1">&#39;min_frequency&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;float&#39;</span><span class="p">},</span>
+                                        <span class="s1">&#39;max_frequency&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;float&#39;</span><span class="p">}})</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sigpro.basic_primitives module &mdash; SigPro 0.2.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sigpro.contributing module" href="sigpro.contributing.html" />
+    <link rel="prev" title="sigpro.transformations.frequency_time.stft module" href="sigpro.transformations.frequency_time.stft.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#user-guides">User Guides</a></li>
+</ul>
+<p><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.basic_primitives module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.pipeline.html">sigpro.pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.primitive.html">sigpro.primitive module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.2.0 - 2023-02-02</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id9">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id10">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id11">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id12">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
+        
+      <li>sigpro.basic_primitives module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.basic_primitives.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-sigpro.basic_primitives">
+<span id="sigpro-basic-primitives-module"></span><h1>sigpro.basic_primitives module<a class="headerlink" href="#module-sigpro.basic_primitives" title="Permalink to this headline">¶</a></h1>
+<p>Reference class implementations of existing primitives.</p>
+<p><strong>Classes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.BandMean" title="sigpro.basic_primitives.BandMean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BandMean</span></code></a>(min_frequency, max_frequency)</p></td>
+<td><p>BandMean primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.CrestFactor" title="sigpro.basic_primitives.CrestFactor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CrestFactor</span></code></a>()</p></td>
+<td><p>CrestFactor primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFT" title="sigpro.basic_primitives.FFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFT</span></code></a>()</p></td>
+<td><p>FFT primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFTReal" title="sigpro.basic_primitives.FFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFTReal</span></code></a>()</p></td>
+<td><p>FFTReal primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FrequencyBand" title="sigpro.basic_primitives.FrequencyBand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyBand</span></code></a>(low, high)</p></td>
+<td><p>FrequencyBand primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Identity" title="sigpro.basic_primitives.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>()</p></td>
+<td><p>Identity primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Kurtosis" title="sigpro.basic_primitives.Kurtosis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kurtosis</span></code></a>([fisher, bias])</p></td>
+<td><p>Kurtosis primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Mean" title="sigpro.basic_primitives.Mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mean</span></code></a>()</p></td>
+<td><p>Mean primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.PowerSpectrum" title="sigpro.basic_primitives.PowerSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerSpectrum</span></code></a>()</p></td>
+<td><p>PowerSpectrum primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.RMS" title="sigpro.basic_primitives.RMS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RMS</span></code></a>()</p></td>
+<td><p>RMS primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFT" title="sigpro.basic_primitives.STFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFT</span></code></a>()</p></td>
+<td><p>STFT primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFTReal" title="sigpro.basic_primitives.STFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFTReal</span></code></a>()</p></td>
+<td><p>STFTReal primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Skew" title="sigpro.basic_primitives.Skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Skew</span></code></a>()</p></td>
+<td><p>Skew primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Std" title="sigpro.basic_primitives.Std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Std</span></code></a>()</p></td>
+<td><p>Std primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Var" title="sigpro.basic_primitives.Var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Var</span></code></a>()</p></td>
+<td><p>Var primitive class.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="sigpro.basic_primitives.BandMean">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">BandMean</code><span class="sig-paren">(</span><em class="sig-param">min_frequency</em>, <em class="sig-param">max_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#BandMean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.BandMean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyAggregation" title="sigpro.primitive.FrequencyAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyAggregation</span></code></a></p>
+<p>BandMean primitive class.</p>
+<p>Filters between a high and low band and compute the mean value for this specific band.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Band minimum.</p></li>
+<li><p><strong>max_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Band maximum.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.CrestFactor">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">CrestFactor</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#CrestFactor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.CrestFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>CrestFactor primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.FFT">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">FFT</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#FFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.FFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTransformation" title="sigpro.primitive.FrequencyTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTransformation</span></code></a></p>
+<p>FFT primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.FFTReal">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">FFTReal</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#FFTReal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.FFTReal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTransformation" title="sigpro.primitive.FrequencyTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTransformation</span></code></a></p>
+<p>FFTReal primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.FrequencyBand">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">FrequencyBand</code><span class="sig-paren">(</span><em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#FrequencyBand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.FrequencyBand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTransformation" title="sigpro.primitive.FrequencyTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTransformation</span></code></a></p>
+<p>FrequencyBand primitive class.</p>
+<p>Filter between a high and low band frequency and return the amplitude values and
+frequency values for those.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>low</strong> (<em>int</em>) – Lower band frequency of filter.</p></li>
+<li><p><strong>high</strong> (<em>int</em>) – Higher band frequency of filter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Identity">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Identity</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeTransformation" title="sigpro.primitive.AmplitudeTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeTransformation</span></code></a></p>
+<p>Identity primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Kurtosis">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Kurtosis</code><span class="sig-paren">(</span><em class="sig-param">fisher=True</em>, <em class="sig-param">bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Kurtosis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Kurtosis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>Kurtosis primitive class.</p>
+<p>Computes the kurtosis value of the input array. If all values are equal, return
+<cite>-3</cite> for Fisher’s definition and <cite>0</cite> for Pearson’s definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fisher</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, Fisher’s definition is used (normal ==&gt; 0.0). If <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+Pearson’s definition is used (normal ==&gt; 3.0). Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>bias</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, then the calculations are corrected for statistical bias.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Mean">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Mean</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>Mean primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.PowerSpectrum">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">PowerSpectrum</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#PowerSpectrum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.PowerSpectrum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeTransformation" title="sigpro.primitive.AmplitudeTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeTransformation</span></code></a></p>
+<p>PowerSpectrum primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.RMS">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">RMS</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#RMS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.RMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>RMS primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.STFT">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">STFT</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#STFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.STFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTimeTransformation" title="sigpro.primitive.FrequencyTimeTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTimeTransformation</span></code></a></p>
+<p>STFT primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.STFTReal">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">STFTReal</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#STFTReal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.STFTReal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTimeTransformation" title="sigpro.primitive.FrequencyTimeTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTimeTransformation</span></code></a></p>
+<p>STFTReal primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Skew">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Skew</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Skew"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Skew" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>Skew primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Std">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Std</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Std"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Std" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>Std primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.Var">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">Var</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#Var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.Var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.AmplitudeAggregation" title="sigpro.primitive.AmplitudeAggregation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.AmplitudeAggregation</span></code></a></p>
+<p>Var primitive class.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sigpro.contributing.html" class="btn btn-neutral float-right" title="sigpro.contributing module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sigpro.transformations.frequency_time.stft.html" class="btn btn-neutral float-left" title="sigpro.transformations.frequency_time.stft module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

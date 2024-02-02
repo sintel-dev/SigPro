@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.transformations.amplitude.identity module &mdash; SigPro 0.2.0 documentation</title>
+  <title>sigpro.contributing_primitive module &mdash; SigPro 0.2.0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sigpro.transformations.amplitude.spectrum module" href="sigpro.transformations.amplitude.spectrum.html" />
-    <link rel="prev" title="sigpro.transformations.amplitude package" href="sigpro.transformations.amplitude.html" /> 
+    <link rel="next" title="sigpro.core module" href="sigpro.core.html" />
+    <link rel="prev" title="sigpro.contributing module" href="sigpro.contributing.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,21 +98,21 @@
 <p><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="sigpro.basic_primitives.html">sigpro.basic_primitives module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.contributing_primitive module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sigpro.pipeline.html">sigpro.pipeline module</a></li>
@@ -231,18 +231,14 @@
         
           <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
         
-          <li><a href="sigpro.transformations.html">sigpro.transformations package</a> &raquo;</li>
-        
-          <li><a href="sigpro.transformations.amplitude.html">sigpro.transformations.amplitude package</a> &raquo;</li>
-        
-      <li>sigpro.transformations.amplitude.identity module</li>
+      <li>sigpro.contributing_primitive module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.transformations.amplitude.identity.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.contributing_primitive.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -256,9 +252,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="module-sigpro.transformations.amplitude.identity">
-<span id="sigpro-transformations-amplitude-identity-module"></span><h1>sigpro.transformations.amplitude.identity module<a class="headerlink" href="#module-sigpro.transformations.amplitude.identity" title="Permalink to this headline">¶</a></h1>
-<p>Transformations Amplitude Identity module.</p>
+  <section id="module-sigpro.contributing_primitive">
+<span id="sigpro-contributing-primitive-module"></span><h1>sigpro.contributing_primitive module<a class="headerlink" href="#module-sigpro.contributing_primitive" title="Permalink to this headline">¶</a></h1>
+<p>Contributing primitive classes.</p>
 <p><strong>Functions:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -266,15 +262,93 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.transformations.amplitude.identity.identity" title="sigpro.transformations.amplitude.identity.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>(amplitude_values)</p></td>
-<td><p>Return the identity of the amplitude values.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.contributing_primitive.get_primitive_class" title="sigpro.contributing_primitive.get_primitive_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_primitive_class</span></code></a>(primitive, …[, …])</p></td>
+<td><p>Get a dynamically generated primitive class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.contributing_primitive.make_primitive_class" title="sigpro.contributing_primitive.make_primitive_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_primitive_class</span></code></a>(primitive, …[, …])</p></td>
+<td><p>Get a dynamically generated primitive class and make the primitive JSON.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
-<dt id="sigpro.transformations.amplitude.identity.identity">
-<code class="sig-prename descclassname">sigpro.transformations.amplitude.identity.</code><code class="sig-name descname">identity</code><span class="sig-paren">(</span><em class="sig-param">amplitude_values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/transformations/amplitude/identity.html#identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.transformations.amplitude.identity.identity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the identity of the amplitude values.</p>
+<dt id="sigpro.contributing_primitive.get_primitive_class">
+<code class="sig-prename descclassname">sigpro.contributing_primitive.</code><code class="sig-name descname">get_primitive_class</code><span class="sig-paren">(</span><em class="sig-param">primitive</em>, <em class="sig-param">primitive_type</em>, <em class="sig-param">primitive_subtype</em>, <em class="sig-param">context_arguments=None</em>, <em class="sig-param">fixed_hyperparameters=None</em>, <em class="sig-param">tunable_hyperparameters=None</em>, <em class="sig-param">primitive_inputs=None</em>, <em class="sig-param">primitive_outputs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/contributing_primitive.html#get_primitive_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.contributing_primitive.get_primitive_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dynamically generated primitive class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitive</strong> (<em>str</em>) – The name of the primitive, the python path including the name of the
+module and the name of the function.</p></li>
+<li><p><strong>primitive_type</strong> (<em>str</em>) – Type of primitive.</p></li>
+<li><p><strong>primitive_subtype</strong> (<em>str</em>) – Subtype of the primitive.</p></li>
+<li><p><strong>context_arguments</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the context arguments.</p></li>
+<li><p><strong>fixed_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value that it
+should take.</p></li>
+<li><p><strong>tunable_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value and the
+range of values that it can take.</p></li>
+<li><p><strong>primitive_inputs</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the input values. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p></li>
+<li><p><strong>primitive_outputs</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the output values. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the primitive specification arguments are not valid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dynamically-generated custom Primitive type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.contributing_primitive.make_primitive_class">
+<code class="sig-prename descclassname">sigpro.contributing_primitive.</code><code class="sig-name descname">make_primitive_class</code><span class="sig-paren">(</span><em class="sig-param">primitive</em>, <em class="sig-param">primitive_type</em>, <em class="sig-param">primitive_subtype</em>, <em class="sig-param">context_arguments=None</em>, <em class="sig-param">fixed_hyperparameters=None</em>, <em class="sig-param">tunable_hyperparameters=None</em>, <em class="sig-param">primitive_inputs=None</em>, <em class="sig-param">primitive_outputs=None</em>, <em class="sig-param">primitives_path='sigpro/primitives'</em>, <em class="sig-param">primitives_subfolders=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/contributing_primitive.html#make_primitive_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.contributing_primitive.make_primitive_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dynamically generated primitive class and make the primitive JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitive</strong> (<em>str</em>) – The name of the primitive, the python path including the name of the
+module and the name of the function.</p></li>
+<li><p><strong>primitive_type</strong> (<em>str</em>) – Type of primitive.</p></li>
+<li><p><strong>primitive_subtype</strong> (<em>str</em>) – Subtype of the primitive.</p></li>
+<li><p><strong>context_arguments</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the context arguments.</p></li>
+<li><p><strong>fixed_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value that it
+should take.</p></li>
+<li><p><strong>tunable_hyperparameters</strong> (<em>dict</em><em> or </em><em>None</em>) – A dictionary containing as key the name of the hyperparameter and as
+value a dictionary containing the type and the default value and the
+range of values that it can take.</p></li>
+<li><p><strong>primitive_inputs</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the input values. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p></li>
+<li><p><strong>primitive_outputs</strong> (<em>list</em><em> or </em><em>None</em>) – A list with dictionaries containing the name and type of the output values. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> default values for those will be used.</p></li>
+<li><p><strong>primitives_path</strong> (<em>str</em>) – Path to the root of the primitives folder, in which the primitives JSON will be stored.
+Defaults to <cite>sigpro/primitives</cite>.</p></li>
+<li><p><strong>primitives_subfolders</strong> (<em>bool</em>) – Whether to store the primitive JSON in a subfolder tree (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or to use a flat
+primitive name (<code class="docutils literal notranslate"><span class="pre">False</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the primitive specification arguments are not valid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>Dynamically-generated custom Primitive type.
+str:</p>
+<blockquote>
+<div><p>Path of the generated JSON file.</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>type</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -287,10 +361,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sigpro.transformations.amplitude.spectrum.html" class="btn btn-neutral float-right" title="sigpro.transformations.amplitude.spectrum module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sigpro.core.html" class="btn btn-neutral float-right" title="sigpro.core module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sigpro.transformations.amplitude.html" class="btn btn-neutral float-left" title="sigpro.transformations.amplitude package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sigpro.contributing.html" class="btn btn-neutral float-left" title="sigpro.contributing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

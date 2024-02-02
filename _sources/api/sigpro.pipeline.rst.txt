@@ -1,0 +1,7 @@
+sigpro.pipeline module
+======================
+
+.. automodule:: sigpro.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:

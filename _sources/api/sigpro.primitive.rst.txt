@@ -1,0 +1,7 @@
+sigpro.primitive module
+=======================
+
+.. automodule:: sigpro.primitive
+   :members:
+   :undoc-members:
+   :show-inheritance:

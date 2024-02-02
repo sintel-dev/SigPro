@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>History &mdash; SigPro 0.1.1 documentation</title>
+  <title>History &mdash; SigPro 0.2.0 documentation</title>
   
 
   
@@ -109,9 +109,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/sigpro.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.basic_primitives.html">sigpro.basic_primitives module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.core.html">sigpro.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.pipeline.html">sigpro.pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sigpro.primitive.html">sigpro.primitive module</a></li>
 </ul>
 </li>
 </ul>
@@ -149,24 +153,32 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.2.0 - 2023-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -240,35 +252,60 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
 <section id="id1">
-<h2>0.1.1 - 2023-04-06<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.2.0 - 2023-02-02<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <section id="features">
 <h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Demo Notebooks for Pipeline usage  - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/55">Issue #55</a> by &#64;andyx13</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">contributing_primitive</span></code> and <code class="docutils literal notranslate"><span class="pre">basic_primitives</span></code> module to assist with new primitive creation/usage   - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/54">Issue #54</a> by &#64;andyx13</p></li>
+<li><p>Incorrect classification for stft.json and stft_real.json - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/53">Issue #53</a> by &#64;andyx13</p></li>
+<li><p>Support for more complex pipeline architectures - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/52">Issue #52</a> by &#64;andyx13</p></li>
+<li><p>Update primitive interfaces - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/51">Issue #51</a> by &#64;andyx13</p></li>
+<li><p>Syntax for pipeline creation - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/41">Issue #41</a> by &#64;andyx13</p></li>
+<li><p>Load demo dataset at random index - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/35">Issue #35</a> by &#64;andyx13</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>0.1.2 - 2023-12-11<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id3">
+<h3>Features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python version update - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/44">Issue #44</a> by &#64;andyx13</p></li>
+<li><p>Add demo notebook and per-primitive documentation - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/47">Issue #47</a> by &#64;andyx13</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>0.1.1 - 2023-04-06<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id5">
+<h3>Features<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Accepting single value data frame format - <a class="reference external" href="https://github.com/sintel-dev/SigPro/issues/36">Issue #36</a> by &#64;frances-h &#64;sarahmish</p></li>
 <li><p>Update demos - <a class="reference external" href="https://github.com/sintel-dev/SigPro/pull/26">Issue #26</a> by &#64;frances-h</p></li>
 </ul>
 </section>
 </section>
-<section id="id2">
-<h2>0.1.0 - 2021-11-14<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<section id="id3">
-<h3>Features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<section id="id6">
+<h2>0.1.0 - 2021-11-14<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<section id="id7">
+<h3>Features<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Rework SigPro to be class based</p></li>
 </ul>
 </section>
 </section>
-<section id="id4">
-<h2>0.0.3 - 2021-09-27<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<section id="id5">
-<h3>Features<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h2>0.0.3 - 2021-09-27<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h3>Features<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">process_signals</span></code> function to take a collection of primitives and create features for the given data.</p></li>
 </ul>
 </section>
 </section>
-<section id="id6">
-<h2>0.0.2 - 2021-02-05<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<section id="id10">
+<h2>0.0.2 - 2021-02-05<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <section id="bug-fixes">
 <h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -276,8 +313,8 @@
 </ul>
 </section>
 </section>
-<section id="id7">
-<h2>0.0.1 - 2021-01-26<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<section id="id11">
+<h2>0.0.1 - 2021-01-26<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>First release to PyPI.</p>
 <p>This release comes with the first version of the <code class="docutils literal notranslate"><span class="pre">contributing</span></code> module, which makes it easier
 to create new primitives and to test those with the demo data included in this package.</p>
@@ -291,8 +328,8 @@ to usee the three main functionalities of <code class="docutils literal notransl
 guide about how to write a valid <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> primitive and contribute it to either <code class="docutils literal notranslate"><span class="pre">SigPro</span></code> or
 your own library.</p></li>
 </ul>
-<section id="id8">
-<h3>Features<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<section id="id12">
+<h3>Features<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Demo data: Available demo data to test primitives.</p></li>
 <li><p>First primitives: The following list of primitives were added:</p>

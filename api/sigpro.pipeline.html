@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sigpro.pipeline module &mdash; SigPro 0.2.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sigpro.primitive module" href="sigpro.primitive.html" />
+    <link rel="prev" title="sigpro.demo module" href="sigpro.demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SigPro
+          
+
+          
+            
+            <img src="../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">SigPro: Signal Processing Tools for Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#user-guides">User Guides</a></li>
+</ul>
+<p><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sigpro.basic_primitives.html">sigpro.basic_primitives module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.contributing.html">sigpro.contributing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.contributing_primitive.html">sigpro.contributing_primitive module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.core.html">sigpro.core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.demo.html">sigpro.demo module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sigpro.pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.primitive.html">sigpro.primitive module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">SigPro Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#find-primitives">Find primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-type-and-subtype">Filter primitives by Type and Subtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#filter-primitives-by-name">Filter primitives by Name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#run-a-primitive">Run a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#selecting-the-data-which-the-primitive-runs-on">Selecting the data which the primitive runs on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#running-the-primitive-with-your-own-data">Running the primitive with your own data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#passing-hyperparameter-values-or-additional-context-values">Passing hyperparameter values or additional context values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-run-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#create-a-primitive-json">Create a primitive JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#using-your-primitive-path">Using your primitive path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#storing-flat-json-file">Storing flat json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#creating-a-primitive-with-tunable-hyperparameters">Creating a primitive with tunable hyperparameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#create-a-primitive-with-context-arguments">Create a primitive with context arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#full-make-primitive-arguments-list">Full <code class="docutils literal notranslate"><span class="pre">make_primitive</span></code> arguments list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to SigPro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#clone-the-repository">1. Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#prepare-your-branch">2. Prepare your branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-your-changes">3. Code your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#test-your-changes">4. Test your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#create-a-pull-request">5. Create a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.2.0 - 2023-02-02</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id9">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id10">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id11">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id12">Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SigPro</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
+        
+      <li>sigpro.pipeline module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.pipeline.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-sigpro.pipeline">
+<span id="sigpro-pipeline-module"></span><h1>sigpro.pipeline module<a class="headerlink" href="#module-sigpro.pipeline" title="Permalink to this headline">¶</a></h1>
+<p>Pipeline signal processing functionality.</p>
+<p><strong>Classes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.LayerPipeline" title="sigpro.pipeline.LayerPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayerPipeline</span></code></a>(primitives, primitive_combinations)</p></td>
+<td><p>Layer pipelines in SigPro.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.LinearPipeline" title="sigpro.pipeline.LinearPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearPipeline</span></code></a>(transformations, aggregations)</p></td>
+<td><p>LinearPipeline class applies multiple transformation and aggregation primitives.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline" title="sigpro.pipeline.Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pipeline</span></code></a>()</p></td>
+<td><p>Abstract Pipeline class to apply multiple transformation and aggregation primitives.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.build_layer_pipeline" title="sigpro.pipeline.build_layer_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_layer_pipeline</span></code></a>(primitives, …)</p></td>
+<td><p>Layer pipeline building.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.build_layer_pipeline_str" title="sigpro.pipeline.build_layer_pipeline_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_layer_pipeline_str</span></code></a>(primitives, …)</p></td>
+<td><p>Layer pipeline building.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.build_linear_pipeline" title="sigpro.pipeline.build_linear_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_linear_pipeline</span></code></a>(transformations, …)</p></td>
+<td><p>Build a linear pipeline with given transformation and aggregation layers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.build_tree_pipeline" title="sigpro.pipeline.build_tree_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_tree_pipeline</span></code></a>(transformation_layers, …)</p></td>
+<td><p>Build a tree pipeline using given transformation and aggregation layers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.merge_pipelines" title="sigpro.pipeline.merge_pipelines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_pipelines</span></code></a>(pipelines)</p></td>
+<td><p>Create a single layer pipeline that is the ‘union’ of several other pipelines.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="sigpro.pipeline.LayerPipeline">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">LayerPipeline</code><span class="sig-paren">(</span><em class="sig-param">primitives</em>, <em class="sig-param">primitive_combinations</em>, <em class="sig-param">features_as_strings=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LayerPipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LayerPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sigpro.pipeline.Pipeline" title="sigpro.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.pipeline.Pipeline</span></code></a></p>
+<p>Layer pipelines in SigPro.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitives</strong> (<em>list</em>) – List of primitive objects. All primitives should have distinct tags.</p></li>
+<li><p><strong>primitive_combinations</strong> (<em>list</em>) – List of output features to be generated. Each feature
+in primitive_combinations should be a tuple of primitive objects found as keys in
+primitives, or a tuple of their string tags. All combinations should start w/ some
+(possibly zero) number of transformations and end with a single aggregation.</p></li>
+<li><p><strong>features_as_strings</strong> (<em>bool</em>) – True if primitive_combinations is defined w/ string names,
+False if primitive_combinations is defined with primitive objects (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the pipeline specification is invalid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>LayerPipeline that generates the primitives in primitive_combinations.</p>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.LayerPipeline.get_output_combinations" title="sigpro.pipeline.LayerPipeline.get_output_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_combinations</span></code></a>()</p></td>
+<td><p>Get a list of output feature tuples produced by the pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.LayerPipeline.get_primitives" title="sigpro.pipeline.LayerPipeline.get_primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_primitives</span></code></a>()</p></td>
+<td><p>Get a list of primitives in the pipeline.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sigpro.pipeline.LayerPipeline.get_output_combinations">
+<code class="sig-name descname">get_output_combinations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LayerPipeline.get_output_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LayerPipeline.get_output_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of output feature tuples produced by the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.LayerPipeline.get_primitives">
+<code class="sig-name descname">get_primitives</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LayerPipeline.get_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LayerPipeline.get_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of primitives in the pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.pipeline.LinearPipeline">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">LinearPipeline</code><span class="sig-paren">(</span><em class="sig-param">transformations</em>, <em class="sig-param">aggregations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LinearPipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LinearPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sigpro.pipeline.Pipeline" title="sigpro.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.pipeline.Pipeline</span></code></a></p>
+<p>LinearPipeline class applies multiple transformation and aggregation primitives.</p>
+<p>The LinearPipeline class applies a sequence of transformation primitives and applies several
+aggregation primitives in parallel to produce output features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformations</strong> (<em>list</em>) – List of transformation primitive objects.</p></li>
+<li><p><strong>aggregations</strong> (<em>list</em>) – List of dictionaries containing the aggregation primitives.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">LinearPipeline</span></code> object that produces the features from applying each
+aggregation individually to the result of applying all transformations to
+the input data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#sigpro.pipeline.LinearPipeline" title="sigpro.pipeline.LinearPipeline">sigpro.pipeline.LinearPipeline</a></p>
+</dd>
+</dl>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.LinearPipeline.get_output_combinations" title="sigpro.pipeline.LinearPipeline.get_output_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_combinations</span></code></a>()</p></td>
+<td><p>Get a list of output feature tuples produced by the pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.LinearPipeline.get_primitives" title="sigpro.pipeline.LinearPipeline.get_primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_primitives</span></code></a>()</p></td>
+<td><p>Get a list of primitives in the pipeline.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sigpro.pipeline.LinearPipeline.get_output_combinations">
+<code class="sig-name descname">get_output_combinations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LinearPipeline.get_output_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LinearPipeline.get_output_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of output feature tuples produced by the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.LinearPipeline.get_primitives">
+<code class="sig-name descname">get_primitives</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#LinearPipeline.get_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.LinearPipeline.get_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of primitives in the pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.pipeline.Pipeline">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">Pipeline</code><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract Pipeline class to apply multiple transformation and aggregation primitives.</p>
+<p><strong>Methods:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_input_args" title="sigpro.pipeline.Pipeline.get_input_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_input_args</span></code></a>()</p></td>
+<td><p>Return the pipeline input args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_output_args" title="sigpro.pipeline.Pipeline.get_output_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_args</span></code></a>()</p></td>
+<td><p>Return the pipeline output args.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_output_combinations" title="sigpro.pipeline.Pipeline.get_output_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_combinations</span></code></a>()</p></td>
+<td><p>Get a list of output feature tuples produced by the pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_output_features" title="sigpro.pipeline.Pipeline.get_output_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_output_features</span></code></a>()</p></td>
+<td><p>Get a list of output feature strings produced by the pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_pipeline" title="sigpro.pipeline.Pipeline.get_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipeline</span></code></a>()</p></td>
+<td><p>Return the MLPipeline in self.pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_primitive_names" title="sigpro.pipeline.Pipeline.get_primitive_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_primitive_names</span></code></a>()</p></td>
+<td><p>Get a list of names of primitives in the pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.get_primitives" title="sigpro.pipeline.Pipeline.get_primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_primitives</span></code></a>()</p></td>
+<td><p>Get a list of Primitive objects in the pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.pipeline.Pipeline.process_signal" title="sigpro.pipeline.Pipeline.process_signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_signal</span></code></a>([data, window, …])</p></td>
+<td><p>Apply multiple transformation and aggregation primitives.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_input_args">
+<code class="sig-name descname">get_input_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_input_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_input_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pipeline input args.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_output_args">
+<code class="sig-name descname">get_output_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_output_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_output_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pipeline output args.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_output_combinations">
+<code class="sig-name descname">get_output_combinations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_output_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_output_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of output feature tuples produced by the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_output_features">
+<code class="sig-name descname">get_output_features</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_output_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_output_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of output feature strings produced by the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_pipeline">
+<code class="sig-name descname">get_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the MLPipeline in self.pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_primitive_names">
+<code class="sig-name descname">get_primitive_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_primitive_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_primitive_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of names of primitives in the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.get_primitives">
+<code class="sig-name descname">get_primitives</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.get_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.get_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of Primitive objects in the pipeline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sigpro.pipeline.Pipeline.process_signal">
+<code class="sig-name descname">process_signal</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">window=None</em>, <em class="sig-param">values_column_name='values'</em>, <em class="sig-param">time_index=None</em>, <em class="sig-param">groupby_index=None</em>, <em class="sig-param">feature_columns=None</em>, <em class="sig-param">keep_columns=False</em>, <em class="sig-param">input_is_dataframe=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#Pipeline.process_signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.Pipeline.process_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply multiple transformation and aggregation primitives.</p>
+<p>The process_signals method is responsible for applying a Pipeline specified by the
+user in order to create features for the given data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – Dataframe with a column that contains signal values.</p></li>
+<li><p><strong>window</strong> (<em>str</em>) – Duration of window size, e.g. (‘1h’).</p></li>
+<li><p><strong>values_column_name</strong> (<em>str</em>) – Column in <code class="docutils literal notranslate"><span class="pre">data</span></code> that represents the signal values.</p></li>
+<li><p><strong>time_index</strong> (<em>str</em>) – Column in <code class="docutils literal notranslate"><span class="pre">data</span></code> that represents the time index.</p></li>
+<li><p><strong>groupby_index</strong> (<em>str</em><em> or </em><em>list</em><em>[</em><em>str</em><em>]</em>) – Column(s) to group together and take the window over.</p></li>
+<li><p><strong>feature_columns</strong> (<em>list</em>) – List of column names from the input data frame that must be considered as
+features and should not be dropped.</p></li>
+<li><p><strong>keep_columns</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>list</em><em>]</em>) – Whether to keep non-feature columns in the output DataFrame or not.
+If a list of column names are passed, those columns are kept.</p></li>
+<li><p><strong>input_is_dataframe</strong> (<em>bool</em>) – Whether the input data is a Dataframe. Used for MLBlocks integration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>pandas.DataFrame:</dt><dd><p>A data frame with new feature columns by applying the previous primitives. If
+<code class="docutils literal notranslate"><span class="pre">keep_columns</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> the original signal values and non-feature
+columns will be conserved in the data frame, otherwise any columns
+not named in <code class="docutils literal notranslate"><span class="pre">keep_columns</span></code> will be deleted.</p>
+</dd>
+<dt>list:</dt><dd><p>A list with the feature names generated.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.pipeline.build_layer_pipeline">
+<code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">build_layer_pipeline</code><span class="sig-paren">(</span><em class="sig-param">primitives</em>, <em class="sig-param">primitive_combinations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#build_layer_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.build_layer_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Layer pipeline building.</p>
+<p>Build a layer pipeline from a list of primitives and a list of
+combination features, each a tuple of Primitives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitives</strong> (<em>list</em>) – List of primitive objects. All primitives should have distinct tags.</p></li>
+<li><p><strong>primitive_combinations</strong> (<em>list</em>) – List of output features to be generated. Each feature
+in primitive_combinations should be a tuple of primitive objects found as keys in
+primitives, or a tuple of their string tags. All combinations should start w/ some
+(possibly zero) number of transformations and end with a single aggregation.</p></li>
+<li><p><strong>features_as_strings</strong> (<em>bool</em>) – True if primitive_combinations is defined w/ string names,
+False if primitive_combinations is defined with primitive objects (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the pipeline specification is invalid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>LayerPipeline that generates the primitives in primitive_combinations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.pipeline.build_layer_pipeline_str">
+<code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">build_layer_pipeline_str</code><span class="sig-paren">(</span><em class="sig-param">primitives</em>, <em class="sig-param">primitive_combinations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#build_layer_pipeline_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.build_layer_pipeline_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Layer pipeline building.</p>
+<p>Build a layer pipeline from a list of primitives and a list of
+combination features, each a tuple of string tags of primitives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primitives</strong> (<em>list</em>) – List of primitive objects. All primitives should have distinct tags.</p></li>
+<li><p><strong>primitive_combinations</strong> (<em>list</em>) – List of output features to be generated. Each feature
+in primitive_combinations should be a tuple of string primitive tags.
+All combinations should start w/ some (possibly zero) number of transformations
+and end with a single aggregation.</p></li>
+<li><p><strong>features_as_strings</strong> (<em>bool</em>) – True if primitive_combinations is defined w/ string names,
+False if primitive_combinations is defined with primitive objects (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the pipeline specification is invalid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>LayerPipeline that generates the primitives in primitive_combinations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.pipeline.build_linear_pipeline">
+<code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">build_linear_pipeline</code><span class="sig-paren">(</span><em class="sig-param">transformations</em>, <em class="sig-param">aggregations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#build_linear_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.build_linear_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a linear pipeline with given transformation and aggregation layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformations</strong> (<em>list</em>) – List of transformation primitives.</p></li>
+<li><p><strong>aggregations</strong> (<em>list</em>) – List of aggregation primitives.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">LinearPipeline</span></code> object that produces the features from applying each
+aggregation individually to the result of applying all transformations to
+the input data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#sigpro.pipeline.LinearPipeline" title="sigpro.pipeline.LinearPipeline">sigpro.pipeline.LinearPipeline</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.pipeline.build_tree_pipeline">
+<code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">build_tree_pipeline</code><span class="sig-paren">(</span><em class="sig-param">transformation_layers</em>, <em class="sig-param">aggregation_layer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#build_tree_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.build_tree_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a tree pipeline using given transformation and aggregation layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformation_layers</strong> (<em>list</em>) – List of transformation layers, each a list of transformation primitives.</p></li>
+<li><p><strong>aggregation_layer</strong> (<em>list</em>) – List of aggregation primitives.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the pipeline specification is invalid.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">LayerPipeline</span></code> object that produces the features in the Cartesian product
+of all transformation layers and the aggregation layer.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sigpro.pipeline.LayerPipeline" title="sigpro.pipeline.LayerPipeline">sigpro.pipeline.LayerPipeline</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sigpro.pipeline.merge_pipelines">
+<code class="sig-prename descclassname">sigpro.pipeline.</code><code class="sig-name descname">merge_pipelines</code><span class="sig-paren">(</span><em class="sig-param">pipelines</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/pipeline.html#merge_pipelines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.pipeline.merge_pipelines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a single layer pipeline that is the ‘union’ of several other pipelines.</p>
+<p>In other words, the pipeline generates all features generated by
+at least one input pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pipelines</strong> (<em>list</em>) – A list of Pipeline objects whose output features should be merged.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">LayerPipeline</span></code> object that produces the features in the union of
+all features generated by the input pipelines.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#sigpro.pipeline.LayerPipeline" title="sigpro.pipeline.LayerPipeline">sigpro.pipeline.LayerPipeline</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sigpro.primitive.html" class="btn btn-neutral float-right" title="sigpro.primitive module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sigpro.demo.html" class="btn btn-neutral float-left" title="sigpro.demo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

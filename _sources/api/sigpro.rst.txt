@@ -19,6 +19,10 @@ Submodules
 
 .. toctree::
 
+   sigpro.basic_primitives
    sigpro.contributing
+   sigpro.contributing_primitive
    sigpro.core
    sigpro.demo
+   sigpro.pipeline
+   sigpro.primitive
