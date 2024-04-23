@@ -14,7 +14,6 @@ def fft_freq(amplitude_values, sampling_frequency):
             * `amplitude_values (numpy.ndarray)`
             * `frequency_values (numpy.ndarray)`
     """
-    amplitude_values = np.array(amplitude_values)
     frequency_values = np.fft.fftfreq(len(amplitude_values), 1 / sampling_frequency)
 
-    return amplitude_values, frequency_values
+    return np.array(amplitude_values), np.array(frequency_values)
