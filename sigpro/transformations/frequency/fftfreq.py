@@ -1,6 +1,3 @@
-"""Build power spectrum from amplitude values."""
-
-
 import numpy as np
 
 
