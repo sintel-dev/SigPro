@@ -1,0 +1,30 @@
+{
+    "name": "sigpro.transformations.frequency.fftfreq.fft_freq",
+    "primitive": "sigpro.transformations.frequency.fftfreq.fft_freq",
+    "classifiers": {
+        "type": "transformation",
+        "subtype": "frequency"
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            },
+            {
+                "name": "sampling_frequency",
+                "type": "float"
+            }
+        ],
+        "output": [
+            {
+                "name": "amplitude_values",
+                "type": "numpy.ndarray"
+            },
+            {
+                "name": "frequency_values",
+                "type": "numpy.ndarray"
+            }
+        ]
+    }
+}
