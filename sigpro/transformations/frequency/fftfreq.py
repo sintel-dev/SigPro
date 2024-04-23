@@ -1,8 +1,10 @@
+"""SigPro Transformations Frequency module."""
+
 import numpy as np
 
 
 def fft_freq(amplitude_values, sampling_frequency):
-    """Compute the Frequency having FFT values
+    """Compute the Frequency having FFT values.
 
     Args:
         amplitude_values (np.ndarray):
