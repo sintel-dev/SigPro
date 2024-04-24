@@ -4,7 +4,7 @@
 
 ### Features
 
-* Frequency primitive - [Issue #60](https://github.com/sintel-dev/SigPro/pull/60)
+* Frequency primitive - [Issue #60](https://github.com/sintel-dev/SigPro/pull/60) by @SaraPido 
 
 
 ## 0.2.0 - 2024-02-02
