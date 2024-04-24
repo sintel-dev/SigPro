@@ -1,6 +1,13 @@
 # History
 
-## 0.2.0 - 2023-02-02
+## 0.2.1 - 2024-04-24
+
+### Features
+
+* Frequency primitive - [Issue #60](https://github.com/sintel-dev/SigPro/pull/60)
+
+
+## 0.2.0 - 2024-02-02
 
 ### Features
 * Demo Notebooks for Pipeline usage  - [Issue #55](https://github.com/sintel-dev/SigPro/issues/55) by @andyx13
@@ -25,21 +32,25 @@
 * Accepting single value data frame format - [Issue #36](https://github.com/sintel-dev/SigPro/issues/36) by @frances-h @sarahmish
 * Update demos - [Issue #26](https://github.com/sintel-dev/SigPro/pull/26) by @frances-h
 
+
 ## 0.1.0 - 2021-11-14
 
 ### Features
 * Rework SigPro to be class based
+
 
 ## 0.0.3 - 2021-09-27
 
 ### Features
 * Add `process_signals` function to take a collection of primitives and create features for the given data. 
 
+
 ## 0.0.2 - 2021-02-05
 
 ### Bug Fixes
 
 * `MANIFEST.in`: copy the json files of the primitives with the package installation.
+
 
 ## 0.0.1 - 2021-01-26
 
