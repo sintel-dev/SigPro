@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.basic_primitives module &mdash; SigPro 0.2.0 documentation</title>
+  <title>sigpro.basic_primitives module &mdash; SigPro 0.2.1 documentation</title>
   
 
   
@@ -154,32 +154,36 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.2.0 - 2023-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id4">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id8">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id8">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id10">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id11">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id12">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../history.html#id11">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../history.html#id12">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id13">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id14">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -271,40 +275,43 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFT" title="sigpro.basic_primitives.FFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFT</span></code></a>()</p></td>
 <td><p>FFT primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFTReal" title="sigpro.basic_primitives.FFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFTReal</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFTFreq" title="sigpro.basic_primitives.FFTFreq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFTFreq</span></code></a>()</p></td>
+<td><p>FFT Freq primitive class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FFTReal" title="sigpro.basic_primitives.FFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FFTReal</span></code></a>()</p></td>
 <td><p>FFTReal primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FrequencyBand" title="sigpro.basic_primitives.FrequencyBand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyBand</span></code></a>(low, high)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.FrequencyBand" title="sigpro.basic_primitives.FrequencyBand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequencyBand</span></code></a>(low, high)</p></td>
 <td><p>FrequencyBand primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Identity" title="sigpro.basic_primitives.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Identity" title="sigpro.basic_primitives.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>()</p></td>
 <td><p>Identity primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Kurtosis" title="sigpro.basic_primitives.Kurtosis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kurtosis</span></code></a>([fisher, bias])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Kurtosis" title="sigpro.basic_primitives.Kurtosis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kurtosis</span></code></a>([fisher, bias])</p></td>
 <td><p>Kurtosis primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Mean" title="sigpro.basic_primitives.Mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mean</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Mean" title="sigpro.basic_primitives.Mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mean</span></code></a>()</p></td>
 <td><p>Mean primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.PowerSpectrum" title="sigpro.basic_primitives.PowerSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerSpectrum</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.PowerSpectrum" title="sigpro.basic_primitives.PowerSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerSpectrum</span></code></a>()</p></td>
 <td><p>PowerSpectrum primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.RMS" title="sigpro.basic_primitives.RMS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RMS</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.RMS" title="sigpro.basic_primitives.RMS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RMS</span></code></a>()</p></td>
 <td><p>RMS primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFT" title="sigpro.basic_primitives.STFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFT</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFT" title="sigpro.basic_primitives.STFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFT</span></code></a>()</p></td>
 <td><p>STFT primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFTReal" title="sigpro.basic_primitives.STFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFTReal</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.STFTReal" title="sigpro.basic_primitives.STFTReal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFTReal</span></code></a>()</p></td>
 <td><p>STFTReal primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Skew" title="sigpro.basic_primitives.Skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Skew</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Skew" title="sigpro.basic_primitives.Skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Skew</span></code></a>()</p></td>
 <td><p>Skew primitive class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Std" title="sigpro.basic_primitives.Std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Std</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Std" title="sigpro.basic_primitives.Std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Std</span></code></a>()</p></td>
 <td><p>Std primitive class.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Var" title="sigpro.basic_primitives.Var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Var</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#sigpro.basic_primitives.Var" title="sigpro.basic_primitives.Var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Var</span></code></a>()</p></td>
 <td><p>Var primitive class.</p></td>
 </tr>
 </tbody>
@@ -337,6 +344,13 @@
 <em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">FFT</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#FFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.FFT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTransformation" title="sigpro.primitive.FrequencyTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTransformation</span></code></a></p>
 <p>FFT primitive class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sigpro.basic_primitives.FFTFreq">
+<em class="property">class </em><code class="sig-prename descclassname">sigpro.basic_primitives.</code><code class="sig-name descname">FFTFreq</code><a class="reference internal" href="../_modules/sigpro/basic_primitives.html#FFTFreq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.basic_primitives.FFTFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sigpro.primitive.html#sigpro.primitive.FrequencyTransformation" title="sigpro.primitive.FrequencyTransformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">sigpro.primitive.FrequencyTransformation</span></code></a></p>
+<p>FFT Freq primitive class.</p>
 </dd></dl>
 
 <dl class="class">

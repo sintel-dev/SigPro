@@ -13,3 +13,4 @@ Submodules
 
    sigpro.transformations.frequency.band
    sigpro.transformations.frequency.fft
+   sigpro.transformations.frequency.fftfreq

@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.aggregations.frequency.band module &mdash; SigPro 0.2.1 documentation</title>
+  <title>sigpro.transformations.frequency.fftfreq module &mdash; SigPro 0.2.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sigpro.aggregations.frequency_time package" href="sigpro.aggregations.frequency_time.html" />
-    <link rel="prev" title="sigpro.aggregations.frequency package" href="sigpro.aggregations.frequency.html" /> 
+    <link rel="next" title="sigpro.transformations.frequency_time package" href="sigpro.transformations.frequency_time.html" />
+    <link rel="prev" title="sigpro.transformations.frequency.fft module" href="sigpro.transformations.frequency.fft.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,12 +99,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sigpro.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="sigpro.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sigpro.aggregations.html">sigpro.aggregations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sigpro.aggregations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sigpro.transformations.html">sigpro.transformations package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sigpro.transformations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
 </ul>
@@ -235,18 +235,18 @@
         
           <li><a href="sigpro.html">sigpro package</a> &raquo;</li>
         
-          <li><a href="sigpro.aggregations.html">sigpro.aggregations package</a> &raquo;</li>
+          <li><a href="sigpro.transformations.html">sigpro.transformations package</a> &raquo;</li>
         
-          <li><a href="sigpro.aggregations.frequency.html">sigpro.aggregations.frequency package</a> &raquo;</li>
+          <li><a href="sigpro.transformations.frequency.html">sigpro.transformations.frequency package</a> &raquo;</li>
         
-      <li>sigpro.aggregations.frequency.band module</li>
+      <li>sigpro.transformations.frequency.fftfreq module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.aggregations.frequency.band.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/sintel-dev/SigPro/blob/master/docs/api/sigpro.transformations.frequency.fftfreq.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -260,9 +260,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="module-sigpro.aggregations.frequency.band">
-<span id="sigpro-aggregations-frequency-band-module"></span><h1>sigpro.aggregations.frequency.band module<a class="headerlink" href="#module-sigpro.aggregations.frequency.band" title="Permalink to this headline">¶</a></h1>
-<p>Band Module.</p>
+  <section id="module-sigpro.transformations.frequency.fftfreq">
+<span id="sigpro-transformations-frequency-fftfreq-module"></span><h1>sigpro.transformations.frequency.fftfreq module<a class="headerlink" href="#module-sigpro.transformations.frequency.fftfreq" title="Permalink to this headline">¶</a></h1>
+<p>SigPro Transformations Frequency module.</p>
 <p><strong>Functions:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -270,30 +270,31 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.aggregations.frequency.band.band_mean" title="sigpro.aggregations.frequency.band.band_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">band_mean</span></code></a>(amplitude_values, …)</p></td>
-<td><p>Compute the mean values for a specific band.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sigpro.transformations.frequency.fftfreq.fft_freq" title="sigpro.transformations.frequency.fftfreq.fft_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fft_freq</span></code></a>(amplitude_values, sampling_frequency)</p></td>
+<td><p>Compute the Frequency having FFT values.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
-<dt id="sigpro.aggregations.frequency.band.band_mean">
-<code class="sig-prename descclassname">sigpro.aggregations.frequency.band.</code><code class="sig-name descname">band_mean</code><span class="sig-paren">(</span><em class="sig-param">amplitude_values</em>, <em class="sig-param">frequency_values</em>, <em class="sig-param">min_frequency</em>, <em class="sig-param">max_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/aggregations/frequency/band.html#band_mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.aggregations.frequency.band.band_mean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute the mean values for a specific band.</p>
-<p>Filter between a high and low band and compute the mean value for this specific band.</p>
+<dt id="sigpro.transformations.frequency.fftfreq.fft_freq">
+<code class="sig-prename descclassname">sigpro.transformations.frequency.fftfreq.</code><code class="sig-name descname">fft_freq</code><span class="sig-paren">(</span><em class="sig-param">amplitude_values</em>, <em class="sig-param">sampling_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sigpro/transformations/frequency/fftfreq.html#fft_freq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sigpro.transformations.frequency.fftfreq.fft_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the Frequency having FFT values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>amplitude_values</strong> (<em>np.ndarray</em>) – A numpy array with the signal values.</p></li>
-<li><p><strong>frequency_values</strong> (<em>np.ndarray</em>) – A numpy array with the frequency values.</p></li>
-<li><p><strong>min_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Band minimum.</p></li>
-<li><p><strong>max_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Band maximum.</p></li>
+<li><p><strong>amplitude_values</strong> (<em>np.ndarray</em>) – A numpy array with the fft values.</p></li>
+<li><p><strong>sampling_frequency</strong> (<em>int</em><em> or </em><em>float</em>) – Sampling frequency value passed in Hz.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Mean value for the given band.</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><cite>amplitude_values (numpy.ndarray)</cite></p></li>
+<li><p><cite>frequency_values (numpy.ndarray)</cite></p></li>
+</ul>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
@@ -308,10 +309,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sigpro.aggregations.frequency_time.html" class="btn btn-neutral float-right" title="sigpro.aggregations.frequency_time package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sigpro.transformations.frequency_time.html" class="btn btn-neutral float-right" title="sigpro.transformations.frequency_time package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sigpro.aggregations.frequency.html" class="btn btn-neutral float-left" title="sigpro.aggregations.frequency package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sigpro.transformations.frequency.fft.html" class="btn btn-neutral float-left" title="sigpro.transformations.frequency.fft module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

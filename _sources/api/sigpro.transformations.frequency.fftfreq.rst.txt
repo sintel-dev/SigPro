@@ -1,0 +1,7 @@
+sigpro.transformations.frequency.fftfreq module
+===============================================
+
+.. automodule:: sigpro.transformations.frequency.fftfreq
+   :members:
+   :undoc-members:
+   :show-inheritance:
