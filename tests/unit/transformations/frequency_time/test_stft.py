@@ -19,7 +19,7 @@ def test_stft():
     expected_time_values_len = 3
     value = amplitude_values[0][0]
 
-    assert type(value) == np.complex128
+    assert isinstance(value, np.complex128)
     assert len(amplitude_values) == expected_amplitude_values_len
     assert len(frequency_values) == expected_frequency_values_len
     assert len(time_values) == expected_time_values_len
@@ -39,7 +39,7 @@ def test_stft_real():
     expected_time_values_len = 3
     value = amplitude_values[0][0]
 
-    assert type(value) == np.float64
+    assert isinstance(value, np.float64)
     assert len(amplitude_values) == expected_amplitude_values_len
     assert len(frequency_values) == expected_frequency_values_len
     assert len(time_values) == expected_time_values_len

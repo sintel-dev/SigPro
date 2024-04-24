@@ -29,6 +29,13 @@ class FFT(primitive.FrequencyTransformation):
         super().__init__("sigpro.transformations.frequency.fft.fft")
 
 
+class FFTFreq(primitive.FrequencyTransformation):
+    """FFT Freq primitive class."""
+
+    def __init__(self):
+        super().__init__("sigpro.transformations.frequency.fftfreq.fft_freq")
+
+
 class FFTReal(primitive.FrequencyTransformation):
     """FFTReal primitive class."""
 
