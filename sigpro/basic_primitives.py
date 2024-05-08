@@ -177,3 +177,22 @@ class BandMean(primitive.FrequencyAggregation):
             'min_frequency': min_frequency, 'max_frequency': max_frequency})
         self.set_fixed_hyperparameters({'min_frequency': {'type': 'float'},
                                         'max_frequency': {'type': 'float'}})
+
+class BandRMS(primitive.FrequencyAggregation):
+    """
+    BandMean primitive class.
+
+    Filters between a high and low band and compute the mean value for this specific band.
+
+    Args:
+        min_frequency (int or float):
+            Band minimum.
+        max_frequency (int or float):
+            Band maximum.
+    """
+
+    def __init__(self, min_frequency, max_frequency):
+        super().__init__('sigpro.aggregations.frequency.band.band_rms', init_params={
+            'min_frequency': min_frequency, 'max_frequency': max_frequency})
+        self.set_fixed_hyperparameters({'min_frequency': {'type': 'float'},
+                                        'max_frequency': {'type': 'float'}})
