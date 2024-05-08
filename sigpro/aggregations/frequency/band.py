@@ -4,8 +4,7 @@ import numpy as np
 
 
 def band_mean(amplitude_values, frequency_values, min_frequency, max_frequency):
-    """
-    Compute the mean values for a specific band.
+    """Compute the mean values for a specific band.
 
     Filter between a high and low band and compute the mean value for this specific band.
 
@@ -23,7 +22,6 @@ def band_mean(amplitude_values, frequency_values, min_frequency, max_frequency):
         float:
             Mean value for the given band.
     """
-
     lower_frequency_than = frequency_values <= max_frequency
     higher_frequency_than = frequency_values >= min_frequency
     selected_idx = np.where(higher_frequency_than & lower_frequency_than)
@@ -53,7 +51,6 @@ def band_rms(amplitude_values, frequency_values, min_frequency, max_frequency):
         float:
             rms value for the given band.
     """
-
     lower_frequency_than = frequency_values <= max_frequency
     higher_frequency_than = frequency_values >= min_frequency
 
