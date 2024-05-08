@@ -178,6 +178,7 @@ class BandMean(primitive.FrequencyAggregation):
         self.set_fixed_hyperparameters({'min_frequency': {'type': 'float'},
                                         'max_frequency': {'type': 'float'}})
 
+
 class BandRMS(primitive.FrequencyAggregation):
     """
     BandMean primitive class.
