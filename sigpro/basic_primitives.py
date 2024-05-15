@@ -181,9 +181,10 @@ class BandMean(primitive.FrequencyAggregation):
 
 class BandRMS(primitive.FrequencyAggregation):
     """
-    BandMean primitive class.
+    BandRMS primitive class.
 
-    Filters between a high and low band and compute the mean value for this specific band.
+    Filter between a high and low band (inclusive) and compute the rms value for this
+    specific band.
 
     Args:
         min_frequency (int or float):

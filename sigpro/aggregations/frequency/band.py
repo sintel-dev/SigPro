@@ -54,10 +54,7 @@ def band_rms(amplitude_values, frequency_values, min_frequency, max_frequency):
     lower_frequency_than = frequency_values <= max_frequency
     higher_frequency_than = frequency_values >= min_frequency
 
-    selected_idx = np.ravel(np.where(np.ravel(higher_frequency_than & lower_frequency_than)))
-
-    selected_idx = [int(x) for x in selected_idx]
-
-    selected_values = np.array(amplitude_values)[selected_idx]
+    selected_idx = np.ravel(np.where(higher_frequency_than & lower_frequency_than))
+    selected_values = amplitude_values[selected_idx]
 
     return np.sqrt(np.mean(np.square(selected_values)))
