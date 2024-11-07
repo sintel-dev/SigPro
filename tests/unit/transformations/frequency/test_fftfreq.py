@@ -1,7 +1,7 @@
 """Tests for sigpro.transformations.frequency module."""
 import numpy as np
-from sigpro.transformations.frequency.fftfreq import fft_freq
 
+from sigpro.transformations.frequency.fftfreq import fft_freq
 
 
 def test_fft_freq():
