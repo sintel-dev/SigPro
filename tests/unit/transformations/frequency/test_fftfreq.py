@@ -1,16 +1,16 @@
 """Tests for sigpro.transformations.frequency module."""
 import numpy as np
-from sigpro.transformations.frequency import fft_freq_allband
+from sigpro.transformations.frequency import fft_freq
 
 
 
-def test_fft_freq_allband():
+def test_fft_freq():
     # setup
     amplitude_values = [1.5, -0.5, 2.0, 0.5, -1.0]
     sampling_frequency = 2  # in Hz
 
     # run
-    amplitude_result, frequency_result = fft_freq_allband(amplitude_values, sampling_frequency)
+    amplitude_result, frequency_result = fft_freq(amplitude_values, sampling_frequency)
 
     # assert
     expected_amplitude_values = np.array([1.5, -0.5, 2.0, 0.5, -1.0])
