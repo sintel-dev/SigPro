@@ -7,7 +7,7 @@ from sigpro.transformations.frequency.fftfreq import fft_freq
 def test_fft_freq():
     # setup
     amplitude_values = [1.5, -0.5, 2.0, 0.5, -1.0]
-    sampling_frequency = 2  # in Hz
+    sampling_frequency = 2
 
     # run
     amplitude_result, frequency_result = fft_freq(amplitude_values, sampling_frequency)
