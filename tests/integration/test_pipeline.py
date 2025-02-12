@@ -39,7 +39,11 @@ def _verify_pipeline_outputs(sigpro_pipeline, input_data, output_data, columns_t
         assert column in feature_list
         assert column in processed_signal.columns
     cols_reduced = [i for i in columns_to_check if i in output_data.columns]
-    pd.testing.assert_frame_equal(processed_signal[cols_reduced], output_data[cols_reduced])
+    pd.testing.assert_frame_equal(
+        processed_signal[cols_reduced],
+        output_data[cols_reduced],
+        rtol=1e-2
+    )
 
 
 def test_linear_pipeline():

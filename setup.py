@@ -12,10 +12,10 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'mlblocks>=0.6.1',
+    'mlblocks>=0.6.2',
     'pandas>=1.5.3',
-    'numpy>=1.24.4',
-    'scipy>=1.10.1',
+    'numpy>=1.26.0',
+    'scipy>=1.11.3',
 ]
 
 setup_requires = [
@@ -41,7 +41,16 @@ development_requires = [
     'sphinx_rtd_theme>=0.2.4,<0.5',
     'autodocsumm>=0.1.10',
     'markupsafe<2.1.0',
-    'Jinja2>=2,<3',
+    'Jinja2>=2,<3.1',
+
+    # fails on Sphinx < v3.4
+    'alabaster<=0.7.12',
+    # fails on Sphins < v5.0
+    'sphinxcontrib-applehelp<1.0.8',
+    'sphinxcontrib-devhelp<1.0.6',
+    'sphinxcontrib-htmlhelp<2.0.5',
+    'sphinxcontrib-serializinghtml<1.1.10',
+    'sphinxcontrib-qthelp<1.0.7',
 
     # style check
     'flake8>=3.7.7,<4',
@@ -62,7 +71,8 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
-    'importlib-metadata<2,>=0.12',
+    'importlib-metadata<5',
+    'mistune<2',
     'invoke',
 ]
 
@@ -75,12 +85,12 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',        
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
-    description='Signal Processing Tools for Machine Mearning',
+    description='Signal Processing Tools for Machine Learning',
     entry_points={
         'mlblocks': [
             'primitives=sigpro:MLBLOCKS_PRIMITIVES',
@@ -98,7 +108,7 @@ setup(
     long_description_content_type='text/markdown',
     name='sigpro',
     packages=find_packages(include=['sigpro', 'sigpro.*']),
-    python_requires='>=3.8,<3.12',
+    python_requires='>=3.9,<3.13',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
