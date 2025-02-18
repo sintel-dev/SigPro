@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.core &mdash; SigPro 0.2.1 documentation</title>
+  <title>sigpro.core &mdash; SigPro 0.3.0 documentation</title>
   
 
   
@@ -151,36 +151,40 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.2.1 - 2024-04-24</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id1">0.3.0 - 2025-02-17</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.2.0 - 2024-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id2">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id4">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id6">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id8">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id8">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id10">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#id11">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id12">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id12">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id13">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id14">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../history.html#id13">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../history.html#id14">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#id15">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#id16">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -251,11 +255,11 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Process Signals core functionality.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">mlblocks</span> <span class="kn">import</span> <span class="n">MLPipeline</span><span class="p">,</span> <span class="n">load_primitive</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mlblocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">MLPipeline</span><span class="p">,</span> <span class="n">load_primitive</span>
 
 <span class="n">DEFAULT_INPUT</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -282,7 +286,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="SigPro"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro">[docs]</a><span class="k">class</span> <span class="nc">SigPro</span><span class="p">:</span>
+<div class="viewcode-block" id="SigPro"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SigPro</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SigPro class applies multiple transformation and aggregation primitives.</span>
 
 <span class="sd">    The Process Signals is responsible for applying a collection of primitives specified by the</span>
@@ -315,7 +319,7 @@
 <span class="sd">            If a list of column names are passed, those columns are kept.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_build_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build Pipeline function.</span>
 
 <span class="sd">        Given a list of transformations and aggregations build a pipeline</span>
@@ -403,7 +407,7 @@
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span><span class="p">,</span> <span class="n">values_column_name</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformations</span><span class="p">,</span> <span class="n">aggregations</span><span class="p">,</span> <span class="n">values_column_name</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span>
                  <span class="n">keep_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_is_dataframe</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">transformations</span> <span class="o">=</span> <span class="n">transformations</span>
@@ -413,7 +417,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span> <span class="o">=</span> <span class="n">input_is_dataframe</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_pipeline</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_apply_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">is_series</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">is_series</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a ``mlblocks.MLPipeline`` to a row.</span>
 
 <span class="sd">        Apply a ``MLPipeline`` to a window of a ``pd.DataFrame``, this function can</span>
@@ -446,7 +450,7 @@
 
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">output_names</span><span class="p">,</span> <span class="n">output</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="SigPro.process_signal"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.process_signal">[docs]</a>    <span class="k">def</span> <span class="nf">process_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groupby_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="SigPro.process_signal"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.process_signal">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">process_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groupby_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">feature_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply multiple transformation and aggregation primitives.</span>
 
@@ -505,14 +509,14 @@
 
         <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">feature_columns</span></div>
 
-<div class="viewcode-block" id="SigPro.get_input_args"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.get_input_args">[docs]</a>    <span class="k">def</span> <span class="nf">get_input_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SigPro.get_input_args"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.get_input_args">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_input_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pipeline input args.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_INPUT</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">get_predict_args</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="SigPro.get_output_args"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.get_output_args">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SigPro.get_output_args"><a class="viewcode-back" href="../../api/sigpro.core.html#sigpro.SigPro.get_output_args">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_output_args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pipeline output args.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_is_dataframe</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_OUTPUT</span><span class="p">)</span>

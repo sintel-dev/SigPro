@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.aggregations.amplitude.statistical &mdash; SigPro 0.2.1 documentation</title>
+  <title>sigpro.aggregations.amplitude.statistical &mdash; SigPro 0.3.0 documentation</title>
   
 
   
@@ -151,36 +151,40 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.2.1 - 2024-04-24</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.3.0 - 2025-02-17</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.0 - 2024-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id11">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id13">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id14">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id13">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id14">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id15">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id16">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -250,11 +254,11 @@
   <h1>Source code for sigpro.aggregations.amplitude.statistical</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Amplitude statistical module.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
 
 
-<div class="viewcode-block" id="mean"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.mean">[docs]</a><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="mean"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.mean">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the mean value of the values.</span>
 
 <span class="sd">    Args:</span>
@@ -268,7 +272,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="std"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.std">[docs]</a><span class="k">def</span> <span class="nf">std</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="std"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.std">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">std</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the arithmetic mean value of the values.</span>
 
 <span class="sd">    Args:</span>
@@ -282,7 +286,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="var"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.var">[docs]</a><span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="var"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.var">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the variance value of the values.</span>
 
 <span class="sd">    Args:</span>
@@ -296,7 +300,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="rms"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.rms">[docs]</a><span class="k">def</span> <span class="nf">rms</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="rms"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.rms">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">rms</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the RMS (Root Mean Square) of the values.</span>
 
 <span class="sd">    Args:</span>
@@ -310,7 +314,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="crest_factor"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.crest_factor">[docs]</a><span class="k">def</span> <span class="nf">crest_factor</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="crest_factor"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.crest_factor">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">crest_factor</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the ratio of the peak to the RMS.</span>
 
 <span class="sd">    Used for estimating the amount of impact wear in a bearing.</span>
@@ -327,7 +331,7 @@
     <span class="k">return</span> <span class="n">peak</span> <span class="o">/</span> <span class="n">rms</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="skew"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.skew">[docs]</a><span class="k">def</span> <span class="nf">skew</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
+<div class="viewcode-block" id="skew"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.skew">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">skew</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the sample skewness of an array of values.</span>
 
 <span class="sd">    Args:</span>
@@ -341,7 +345,7 @@
     <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="kurtosis"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.kurtosis">[docs]</a><span class="k">def</span> <span class="nf">kurtosis</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="kurtosis"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.amplitude.statistical.html#sigpro.aggregations.amplitude.statistical.kurtosis">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">kurtosis</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the kurtosis ,Fisher or Pearson, of an array of values.</span>
 
 <span class="sd">    Args:</span>

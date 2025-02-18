@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SigPro Usage &mdash; SigPro 0.2.1 documentation</title>
+  <title>SigPro Usage &mdash; SigPro 0.3.0 documentation</title>
   
 
   
@@ -154,36 +154,40 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.2.1 - 2024-04-24</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.3.0 - 2025-02-17</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.2.0 - 2024-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id2">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id4">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id4">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id6">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id6">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id8">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id8">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id10">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#id11">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id12">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id12">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id13">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id14">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="history.html#id13">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="history.html#id14">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id15">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="history.html#id16">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -271,7 +275,7 @@ ones that are suitable for your task.</p>
 <p>This can be done with the <code class="docutils literal notranslate"><span class="pre">sigpro.get_primitives</span></code> function.</p>
 <p>In order to get the complete list of primitives available you can
 call it without any arguments:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro</span> <span class="kn">import</span> <span class="n">get_primitives</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sigpro</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_primitives</span>
 
 <span class="n">get_primitives</span><span class="p">()</span>
 </pre></div>
@@ -323,7 +327,7 @@ their behavior for learning or debugging purposes.</p>
 the name of the primitive that you want to run.</p>
 <p>For example, if you want to run the
 <code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.mean</span></code> primitive you can use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro</span> <span class="kn">import</span> <span class="n">run_primitive</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sigpro</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_primitive</span>
 
 <span class="n">run_primitive</span><span class="p">(</span><span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span><span class="p">)</span>
 </pre></div>
@@ -353,7 +357,7 @@ pass the <code class="docutils literal notranslate"><span class="pre">demo_row_i
 <p>In this case, the row used by the <code class="docutils literal notranslate"><span class="pre">run_primitive</span></code> function will be the
 one returned by the <code class="docutils literal notranslate"><span class="pre">get_amplitude_demo</span></code> when passing the same row index
 as input:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro.demo</span> <span class="kn">import</span> <span class="n">get_amplitude_demo</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sigpro.demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_amplitude_demo</span>
 
 <span class="n">row</span> <span class="o">=</span> <span class="n">get_amplitude_demo</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -392,7 +396,7 @@ or <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <p>Here is an example where you pass your own <code class="docutils literal notranslate"><span class="pre">amplitude_values</span></code> for the <code class="docutils literal notranslate"><span class="pre">mean</span></code>
 primitive (bear in mind that this primitive only requires amplitude values
 if more data was needed then it has to be passed as well):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
@@ -490,7 +494,7 @@ and contribute it to the project please read the <a class="reference external" h
 <p>For example, if you want to create the primitive for the implemented code
 in <code class="docutils literal notranslate"><span class="pre">sigpro.aggregations.amplitude.statistical.py</span></code> for the method <code class="docutils literal notranslate"><span class="pre">mean</span></code>, you
 can use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sigpro.contributing</span> <span class="kn">import</span> <span class="n">make_primitive</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sigpro.contributing</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_primitive</span>
 
 <span class="n">make_primitive</span><span class="p">(</span>
     <span class="s1">&#39;sigpro.aggregations.amplitude.statistical.mean&#39;</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.aggregations.frequency.band &mdash; SigPro 0.2.1 documentation</title>
+  <title>sigpro.aggregations.frequency.band &mdash; SigPro 0.3.0 documentation</title>
   
 
   
@@ -151,36 +151,40 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.2.1 - 2024-04-24</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.3.0 - 2025-02-17</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.0 - 2024-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id11">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id13">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id14">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id13">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id14">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id15">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id16">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -250,10 +254,10 @@
   <h1>Source code for sigpro.aggregations.frequency.band</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Band Module.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
-<div class="viewcode-block" id="band_mean"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.frequency.band.html#sigpro.aggregations.frequency.band.band_mean">[docs]</a><span class="k">def</span> <span class="nf">band_mean</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span><span class="p">,</span> <span class="n">min_frequency</span><span class="p">,</span> <span class="n">max_frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="band_mean"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.frequency.band.html#sigpro.aggregations.frequency.band.band_mean">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">band_mean</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span><span class="p">,</span> <span class="n">min_frequency</span><span class="p">,</span> <span class="n">max_frequency</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the mean values for a specific band.</span>
 
 <span class="sd">    Filter between a high and low band and compute the mean value for this specific band.</span>
@@ -278,6 +282,36 @@
     <span class="n">selected_values</span> <span class="o">=</span> <span class="n">amplitude_values</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">selected_values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="band_rms"><a class="viewcode-back" href="../../../../api/sigpro.aggregations.frequency.band.html#sigpro.aggregations.frequency.band.band_rms">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">band_rms</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span><span class="p">,</span> <span class="n">min_frequency</span><span class="p">,</span> <span class="n">max_frequency</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the rms values for a specific band.</span>
+
+<span class="sd">    Filter between a high and low band (inclusive) and compute the rms value for this</span>
+<span class="sd">    specific band.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        amplitude_values (np.ndarray):</span>
+<span class="sd">            A numpy array with the signal values.</span>
+<span class="sd">        frequency_values (np.ndarray):</span>
+<span class="sd">            A numpy array with the frequency values.</span>
+<span class="sd">        min_frequency (int or float):</span>
+<span class="sd">            Band minimum.</span>
+<span class="sd">        max_frequency (int or float):</span>
+<span class="sd">            Band maximum.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float:</span>
+<span class="sd">            rms value for the given band.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lower_frequency_than</span> <span class="o">=</span> <span class="n">frequency_values</span> <span class="o">&lt;=</span> <span class="n">max_frequency</span>
+    <span class="n">higher_frequency_than</span> <span class="o">=</span> <span class="n">frequency_values</span> <span class="o">&gt;=</span> <span class="n">min_frequency</span>
+
+    <span class="n">selected_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">higher_frequency_than</span> <span class="o">&amp;</span> <span class="n">lower_frequency_than</span><span class="p">))</span>
+    <span class="n">selected_values</span> <span class="o">=</span> <span class="n">amplitude_values</span><span class="p">[</span><span class="n">selected_idx</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">selected_values</span><span class="p">)))</span></div>
 </pre></div>
 
            </div>

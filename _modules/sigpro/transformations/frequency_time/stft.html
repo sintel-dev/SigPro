@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sigpro.transformations.frequency_time.stft &mdash; SigPro 0.2.1 documentation</title>
+  <title>sigpro.transformations.frequency_time.stft &mdash; SigPro 0.3.0 documentation</title>
   
 
   
@@ -151,36 +151,40 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.2.1 - 2024-04-24</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id1">0.3.0 - 2025-02-17</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#features">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.0 - 2024-02-02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id2">0.2.1 - 2024-04-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id3">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.1.2 - 2023-12-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id4">0.2.0 - 2024-02-02</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id5">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.1 - 2023-04-06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id6">0.1.2 - 2023-12-11</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id7">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.0 - 2021-11-14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id8">0.1.1 - 2023-04-06</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id9">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id10">0.1.0 - 2021-11-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id11">Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.2 - 2021-02-05</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id12">0.0.3 - 2021-09-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id13">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id14">0.0.2 - 2021-02-05</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../history.html#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id13">0.0.1 - 2021-01-26</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id14">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#id15">0.0.1 - 2021-01-26</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../history.html#id16">Features</a></li>
 </ul>
 </li>
 </ul>
@@ -250,11 +254,11 @@
   <h1>Source code for sigpro.transformations.frequency_time.stft</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Transformations Frequency Time - Short Time Fourier Transform module.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span>
 
 
-<div class="viewcode-block" id="stft"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency_time.stft.html#sigpro.transformations.frequency_time.stft.stft">[docs]</a><span class="k">def</span> <span class="nf">stft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="stft"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency_time.stft.html#sigpro.transformations.frequency_time.stft.stft">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">stft</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Short Time Fourier Transform.</span>
 
 <span class="sd">    Args:</span>
@@ -275,7 +279,7 @@
     <span class="k">return</span> <span class="n">amplitude_values</span><span class="p">,</span> <span class="n">frequency_values</span><span class="p">,</span> <span class="n">time_values</span></div>
 
 
-<div class="viewcode-block" id="stft_real"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency_time.stft.html#sigpro.transformations.frequency_time.stft.stft_real">[docs]</a><span class="k">def</span> <span class="nf">stft_real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
+<div class="viewcode-block" id="stft_real"><a class="viewcode-back" href="../../../../api/sigpro.transformations.frequency_time.stft.html#sigpro.transformations.frequency_time.stft.stft_real">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">stft_real</span><span class="p">(</span><span class="n">amplitude_values</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Short Time Fourier Transform and it&#39;s real values.</span>
 
 <span class="sd">    Args:</span>
