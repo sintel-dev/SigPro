@@ -1,10 +1,18 @@
 # History
 
+## 0.3.0 - 2025-02-17
+
+### Features
+* Add Support for Python 3.12 & Remove 3.8 - [Issue #63](https://github.com/sintel-dev/SigPro/pull/63) by @sarahmish
+* Add fft frequency transformation - [Issue #62](https://github.com/sintel-dev/SigPro/pull/62) by @SaraPido
+* Band rms - [Issue #61](https://github.com/sintel-dev/SigPro/pull/61) by @SaraPido
+
+
 ## 0.2.1 - 2024-04-24
 
 ### Features
 
-* Frequency primitive - [Issue #60](https://github.com/sintel-dev/SigPro/pull/60)
+* Frequency primitive - [Issue #60](https://github.com/sintel-dev/SigPro/pull/60) by @SaraPido 
 
 
 ## 0.2.0 - 2024-02-02
